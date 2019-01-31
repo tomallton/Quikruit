@@ -1,5 +1,5 @@
 """
-WSGI config for quickruit project.
+WSGI config for quikruit project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
