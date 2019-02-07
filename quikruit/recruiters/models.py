@@ -30,3 +30,29 @@ class JobListing(StringBasedModelIDMixin):
 		related_name='job_listings',
 		on_delete=models.CASCADE
 	)
+    
+class RequiredSkill(models.Model):
+    job_listing = models.ForeignKey(
+        'recruiters.JobListing',
+        related_name ='required_skills',
+        on_delete=models.CASCADE
+    )
+    skill = models.ForeignKey(
+        'applicants.SkillHobby',
+        related_name='required_skills',
+        on_delete=models.CASCADE
+    )
+    
+    MUST = 2
+    SHOULD = 1
+    COULD = 0
+    
+    PRIORITY_CHOICES = (
+        (MUST,  "Need to have"),
+        (SHOULD, "Should have"),
+        (COULD, "Nice to have")
+    )
+    
+    priority = models.IntegerField(
+        choices=PRIORITY_CHOICES
+    )
