@@ -1,1 +1,1 @@
-HTML files specific to the "core" app.
+HTML files specific to the "core" app. hello.
