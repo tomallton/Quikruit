@@ -1,0 +1,1 @@
+Static (e.g. JS, CSS) files for the `applicants` app
