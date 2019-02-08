@@ -2,7 +2,7 @@ from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
 
 class ApplicantProfile(StringBasedModelIDMixin):
-	account = models.OneToOneField(
+    account = models.OneToOneField(
 		'core.QuikruitAccount', 
 		related_name="applicant_profile",
 		on_delete=models.CASCADE
@@ -17,7 +17,7 @@ class ApplicantProfile(StringBasedModelIDMixin):
 class PriorEmployment(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
-        related_name = 'applicant_priorEmployment',
+        related_name = 'prior_employment',
         on_delete = models.CASCADE
     )
     
@@ -30,12 +30,12 @@ class PriorEmployment(models.Model):
 class ALevel(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
-        related_name = 'applicant_priorEmployment',
+        related_name = 'a_levels',
         on_delete = models.CASCADE
     )
     
     subject = models.CharField(max_length=40)
     
-    gade = models.CharField(max_length=2)
+    grade = models.CharField(max_length=2)
     
 # Create your models here.

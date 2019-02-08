@@ -103,5 +103,16 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-.DS_STORE
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+*migrations/
+
+.env
 db.sqlite3
+
+# macOS
+.DS_STORE
