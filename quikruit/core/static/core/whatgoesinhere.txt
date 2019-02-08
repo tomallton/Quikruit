@@ -1,0 +1,1 @@
+Static files (e.g. JavaScript and CSS) related to the Core app.
