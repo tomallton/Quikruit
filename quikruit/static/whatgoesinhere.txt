@@ -1,1 +1,0 @@
-General Static (CSS and Javascript)

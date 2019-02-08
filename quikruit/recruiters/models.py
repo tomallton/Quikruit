@@ -31,28 +31,38 @@ class JobListing(StringBasedModelIDMixin):
 		on_delete=models.CASCADE
 	)
     
-# class RequiredSkill(models.Model):
-#     job_listing = models.ForeignKey(
-#         'recruiters.JobListing',
-#         related_name ='required_skills',
-#         on_delete=models.CASCADE
-#     )
-#     skill = models.ForeignKey(
-#         'applicants.SkillHobby',
-#         related_name='required_skills',
-#         on_delete=models.CASCADE
-#     )
+class RequiredSkill(models.Model):
+    job_listing = models.ForeignKey(
+        'recruiters.JobListing',
+        related_name ='required_skills',
+        on_delete=models.CASCADE
+    )
+    skill = models.ForeignKey(
+        'applicants.SkillHobby',
+        related_name='required_skills',
+        on_delete=models.CASCADE
+    )
     
-#     MUST = 2
-#     SHOULD = 1
-#     COULD = 0
+    MUST = 2
+    SHOULD = 1
+    COULD = 0
     
-#     PRIORITY_CHOICES = (
-#         (MUST,  "Need to have"),
-#         (SHOULD, "Should have"),
-#         (COULD, "Nice to have")
-#     )
+    PRIORITY_CHOICES = (
+        (MUST,  "Need to have"),
+        (SHOULD, "Should have"),
+        (COULD, "Nice to have")
+    )
     
-#     priority = models.IntegerField(
-#         choices=PRIORITY_CHOICES
-#     )
+    priority = models.IntegerField(
+        choices=PRIORITY_CHOICES
+    )
+    
+class Suitabilities(models.Model):
+    application = models.ForeignKey(
+        'applicants.JobApplication',
+        related_name = 'application_suitabilities',
+        on_delete=models.CASCADE
+    )
+    manual_score = models.FloatField()
+    general_score = models.FloatField()
+    job_score = models.FloatField()
