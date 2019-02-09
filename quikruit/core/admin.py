@@ -5,7 +5,6 @@ from .models import QuikruitAccount
 from .forms import AccountCreationForm
 
 class QuikruitAccountAdmin(auth_admin.UserAdmin):
-	form = AccountCreationForm
 	add_form = AccountCreationForm
 
 	list_display = ('email', 'is_active', 'is_superuser')
