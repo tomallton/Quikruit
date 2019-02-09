@@ -14,7 +14,7 @@ os.environ.setdefault("PYTHON_EGG_CACHE", "/opt/bitnami/apps/django/django_proje
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'quikruit.settings')
 
 application = get_wsgi_application()
 
