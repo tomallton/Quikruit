@@ -3,3 +3,7 @@ os: linux
 files:
   - source: /
     destination: /home/bitnami/apps/django/django_projects/Quikruit_Development
+hooks:
+  AfterInstall:
+  - location: /home/bitnami/scripts/RestartServer.sh
+    runas: bitnami
