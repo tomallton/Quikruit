@@ -76,7 +76,7 @@ class JobApplication(StringBasedModelIDMixin):
     cover_letter = models.TextField(blank=True)
     date_submitted = models.DateTimeField(null=True)
 
-    IN_PROGRESS            = 0
+    IN_PROGRESS            = 0 # Progress
     SENT                   = 1
     UNDER_CONSIDERATION    = 2
     ONLINE_TEST_REQUESTED  = 3
