@@ -6,4 +6,3 @@ files:
 hooks:
   AfterInstall:
     - location: SetPerms.sh
-    - location: Migrate.sh
