@@ -9,10 +9,14 @@ class ApplicantProfile(StringBasedModelIDMixin):
 	)
     
     name = models.CharField(max_length=40)
-    
-    #picture =  How/Where do we want to store the pics?
-    
-    #cv =  How/Where do we want to store the CVs?
+    picture = models.ImageField(null=True)
+    cv = models.FileField(null=True)
+
+    jobs = models.ManyToManyField(
+        'recruiters.JobListing',
+        through='applicants.JobApplication'
+        related_name='applicants'
+    )
     
 class PriorEmployment(models.Model):
     applicant = models.ForeignKey(
@@ -22,8 +26,29 @@ class PriorEmployment(models.Model):
     )
     company = models.CharField(max_length=60)
     position = models.CharField(max_length=60)
-    length_employment = models.CharField(max_length=30)
+    employed_from  = models.DateField()
+    employed_until = models.DateField()
+
+    @property
+    def length_of_employment(self):
+        return self.employed_until - self.employed_from
+     
     
+class Degree(models.Model):
+    applicant = models.ForeignKey(
+        'applicants.ApplicantProfile',
+        related_name = 'degree',
+        on_delete = models.CASCADE
+    )
+    institution = models.CharField(max_length=60)
+    qualification = models.CharField(max_length=60)
+    date_awarded = models.DateField()
+
+    # Since Degrees gave have different ways of being awarded in
+    # Different countries, the `level` attribute will not have
+    # the expected 1st, 2:1, 2:2 etc. choices. 
+    level_awarded = models.CharField(max_length=20)
+
 class ALevel(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
@@ -54,11 +79,13 @@ class SkillHobby(StringBasedModelIDMixin):
         max_length=40,
         unique=True
     )
-    SKILL = 0
-    HOBBY = 1
+    SKILL                = 0
+    HOBBY                = 1
+    PROGRAMMING_LANGUAGE = 2
     kind_choices = (
         (SKILL, "Skill"),
-        (HOBBY, "Hobby")
+        (HOBBY, "Hobby"),
+        (PROGRAMMING_LANGUAGE, "Programming Language")
     )
     kind = models.IntegerField(choices=kind_choices)
 
@@ -76,7 +103,7 @@ class JobApplication(StringBasedModelIDMixin):
     cover_letter = models.TextField(blank=True)
     date_submitted = models.DateTimeField(null=True)
 
-    IN_PROGRESS            = 0 # Progress
+    IN_PROGRESS            = 0
     SENT                   = 1
     UNDER_CONSIDERATION    = 2
     ONLINE_TEST_REQUESTED  = 3

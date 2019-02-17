@@ -22,6 +22,8 @@ class RecruiterProfile(models.Model):
 		on_delete=models.CASCADE
 	)
 
+    picture = models.ImageField(null=True)
+
 class JobListing(StringBasedModelIDMixin):
 	title = models.CharField(max_length=40)
 	description = models.TextField()
@@ -63,6 +65,5 @@ class Suitabilities(models.Model):
         related_name = 'application_suitabilities',
         on_delete=models.CASCADE
     )
-    manual_score = models.FloatField()
-    general_score = models.FloatField()
-    job_score = models.FloatField()
+    magic_score = models.FloatField()
+    specific_score = models.FloatField()
