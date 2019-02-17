@@ -14,7 +14,7 @@ class ApplicantProfile(StringBasedModelIDMixin):
 
     jobs = models.ManyToManyField(
         'recruiters.JobListing',
-        through='applicants.JobApplication'
+        through='applicants.JobApplication',
         related_name='applicants'
     )
     
