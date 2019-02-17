@@ -1,0 +1,217 @@
+body {
+ background-color: #3a3935;
+}
+
+#title{
+  text-align: center;
+  font-size: 400%;
+  position: relative;
+  margin-bottom: 4%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#outercontainer {
+  border: 4px solid black;
+  background-color: #7d7c78;
+  width: auto;
+  height: auto;
+  font-family: "Quicksand";
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#maincontainer{
+  border: 3px solid black;
+  height: auto;
+  width: auto;
+  background-color: white;
+  padding: 2%;
+}
+
+#header{
+  height: auto;
+  width: auto;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f4ad07;
+  border: solid black 2px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: white;
+}
+
+#welcome {
+  color: #3a3935;
+}
+
+#status {
+  border: solid black 2px;
+  width: auto;
+  height: 10%;
+  padding: 1%;
+}
+
+#listbox {
+  border: solid black 2px;
+  width: auto;
+  height: 10%;
+  padding: 1%;
+  margin-top: 2%;
+}
+
+.date{
+  width: 20%;
+  text-align: right;
+}
+
+td {
+  width: 20%;
+  text-align: left;
+}
+
+#withdraw {
+  border: solid black 2px;
+  background-color: white;
+  font-size: 100%;
+  margin-top: 2%;
+  padding: 1%;
+  cursor: pointer;
+  width: auto;
+  text-align: center;
+  color: red;
+}
+
+#right {
+  text-align: right;
+}
+
+#rejected {
+  position: relative;
+  padding: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  width: 48%;
+}
+
+#accepted {
+  position: relative;
+  float: right;
+  margin-top: -28.5%;
+  padding: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  width: 48%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: "Quicksand";
+  font-size: 14px;
+}
+
+.dropdown > a, .dropdown > button {
+  font-family: "Quicksand";
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 6px 20px 6px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown > a:before, .dropdown > button:before {
+  position: absolute;
+  right: 7px;
+  top: 12px;
+  content: ' ';
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+}
+
+.dropdown input[type=checkbox] {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  opacity: 0;
+}
+
+.dropdown input[type=checkbox]:checked {
+  position: fixed;
+  z-index:+0;
+  top: 0px; left: 0px;
+  right: 0px; bottom: 0px;
+}
+
+.dropdown ul {
+  position: absolute;
+  top: 30px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  left: 0px;
+  list-style: none;
+  padding: 4px 0px;
+  display: none;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,.175);
+}
+
+.dropdown input[type=checkbox]:checked + ul {
+  display: block;
+}
+
+.dropdown ul li {
+  display: block;
+  padding: 6px 20px;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.dropdown ul li:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
+}
+
+.dropdown ul li a {
+  text-decoration: none;
+  display: block;
+  color: black
+}
+
+.dropdown .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  font-size: 1px;
+  padding: 0;
+}

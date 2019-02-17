@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Online Test</title>
+      <link rel="stylesheet" href="multiplechoiceonlinetest.css" type="text/css">
+      <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+      <script src='jquery-3.3.1.min.js' type='text/javascript'></script>
+      <script src='registration.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <div id="outercontainer">
+      <div id="maincontainer">
+      	<div id="header">
+      	  <div id="logo"><img src="logo.png" alt="Quikruit Logo"></div>
+      	  <div id="title">QUIKRUIT</div>
+          <div id="navbar">
+            <ul>
+              <li><a href="default.asp">Applicant Home</a></li>
+              <li><a href="news.asp">Application Form</a></li>
+              <li><a href="contact.asp">Settings</a></li>
+              <li><a href="about.asp">Log Out</a></li>
+            </ul>
+          </div>
+      	</div>
+        <h2>ONLINE TEST</h2>
+      	<div id="info">
+          <div id="question">
+            <h3>QUESTION 1</h3>
+            <h4>This is Question 1. Blah blah blah blah</h4>
+          </div>
+          <div id="answer">
+            <form id='answerform'>
+      	      <div class = "answer"><input type='checkbox' id="answer1slot">Answer 1</div>
+      	      <div class = "answer"><input type='checkbox' id="answer2slot">Answer 2</div>
+      	      <div class = "answer"><input type='checkbox' id="answer3slot">Answer 3</div>
+      	      <div class = "answer"><input type='checkbox' id="answer4slot">Answer 4</div>
+      	      <input type='submit' value='Submit Answer' id="submitbutton1"><p class="error" id="submit_error"></p>
+        	  </form>
+          </div>
+      	</div>
+      </div>
+    </div>
+  </body>
+</html>

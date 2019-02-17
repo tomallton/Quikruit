@@ -1,0 +1,133 @@
+body {
+ background-color: #3a3935;
+}
+
+#title{
+  text-align: center;
+  font-size: 400%;
+  position: relative;
+  margin-bottom: 4%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#outercontainer {
+  border: 4px solid black;
+  background-color: #7d7c78;
+  width: auto;
+  height: auto;
+  font-family: "Quicksand";
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#maincontainer{
+  border: 3px solid black;
+  height: auto;
+  width: auto;
+  background-color: white;
+  padding: 2%;
+}
+
+#header{
+  height: auto;
+  width: auto;
+  position: relative;
+}
+
+#navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f4ad07;
+  border: solid black 1px;
+}
+
+ul {
+  list-style-type: none;
+  margin: auto;
+  padding: auto;
+}
+
+#box {
+  width: 70%;
+  margin: auto;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: white;
+}
+
+.application {
+  font-family: 'Quicksand';
+  border: solid black 2px;
+  margin-left: 24%;
+  height: 7%;
+  width: 50%;
+  margin-bottom: 0.5%;
+  font-size: 90%;
+  padding: 1%;
+}
+
+.error {
+  font-family: 'Quicksand';
+  color: red;
+  margin-left: 24%;
+  height: auto;
+  width: 50%;
+  margin-bottom: 2%;
+  font-size: 90%;
+  padding: 1%;
+}
+
+#submitbutton1, #savebutton1, #exitbutton1 {
+ border: solid black 2px;
+ background-color: white;
+ font-size: 100%;
+ color: black;
+ padding: 1%;
+ cursor: pointer;
+ width: auto;
+ margin-right: 2%;
+ text-align: center;
+}
+
+#submitbutton1 {
+  color: #27cc0a;
+}
+
+#exitbutton1 {
+  color: red;
+}
+
+.button{
+  background-color: white;
+  border: solid black 1px;
+  font-size: 90%;
+  margin: auto;
+  float: right;
+  padding: 1%;
+  cursor: pointer;
+  width: 20%;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color:red;
+}
