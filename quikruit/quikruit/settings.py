@@ -126,3 +126,5 @@ STATIC_URL = '/Project/static/'
 STATICFILES_DIRS = [
     'global_static/',
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

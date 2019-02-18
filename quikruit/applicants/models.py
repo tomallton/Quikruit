@@ -1,6 +1,7 @@
 from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
 from django.utils import timezone
+from quikruit.settings import MEDIA_ROOT
 
 def _directory_path(instance, filename, model):
     split_file_name = filename.split(sep='.')
@@ -8,7 +9,7 @@ def _directory_path(instance, filename, model):
     now = timezone.now()
     # File will be uploaded to 
     # MEDIA_ROOT/applicant_profiles/pictures/user_<id>/<filename>
-    return 'employee_profile/{t}/user_{uid}/{y}_{m}_{d}.{f}'.format(
+    return MEDIA_ROOT + '/employee_profile/{t}/user_{uid}/{y}_{m}_{d}.{f}'.format(
         t=model,
         uid=instance.account.model_id, 
         y=now.year, 
