@@ -1,5 +1,27 @@
 from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
+from django.utils import timezone
+
+def _directory_path(instance, filename, model):
+    split_file_name = filename.split(sep='.')
+    filetype = split_file_name[len(split_file_name) - 1]
+    now = timezone.now()
+    # File will be uploaded to 
+    # MEDIA_ROOT/applicant_profiles/pictures/user_<id>/<filename>
+    return 'employee_profile/{t}/user_{uid}/{y}_{m}_{d}.{f}'.format(
+        t=model,
+        uid=instance.account.model_id, 
+        y=now.year, 
+        m=now.month, 
+        d=now.day,
+        f=filetype
+    )
+
+def cv_directory_path(instance, filename):
+    return _directory_path(instance, filename, 'CVs')
+
+def profile_picture_directory_path(instance, filename):
+    return _directory_path(instance, filename, 'ProfilePictures')
 
 class ApplicantProfile(StringBasedModelIDMixin):
     account = models.OneToOneField(
@@ -9,8 +31,15 @@ class ApplicantProfile(StringBasedModelIDMixin):
 	)
     
     name = models.CharField(max_length=40)
-    picture = models.ImageField(null=True)
-    cv = models.FileField(null=True)
+    
+    picture = models.ImageField(
+        upload_to=profile_picture_directory_path,
+        blank=True
+    )
+
+    cv = models.FileField(
+        upload_to=cv_directory_path,
+        blank=True)
 
     jobs = models.ManyToManyField(
         'recruiters.JobListing',

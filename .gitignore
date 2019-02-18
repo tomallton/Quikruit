@@ -110,6 +110,7 @@ venv.bak/
 __pycache__/
 local_settings.py
 *migrations/
+media/
 
 .env
 db.sqlite3

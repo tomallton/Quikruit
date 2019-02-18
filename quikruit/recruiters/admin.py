@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Department)
 admin.site.register(RecruiterProfile)
 admin.site.register(JobListing)
+admin.site.register(RequiredSkill)
+admin.site.register(Suitabilities)
