@@ -22,4 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('applicants/', include('applicants.urls')),
     path('recruiters/', include('recruiters.urls'))
-] + static(MEDIA_URL, document_root=MEDIA_ROOT)
+] + static('media/', document_root=MEDIA_ROOT)
