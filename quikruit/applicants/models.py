@@ -7,13 +7,13 @@ def _directory_path(instance, filename, model):
     split_file_name = filename.split(sep='.')
     filetype = split_file_name[len(split_file_name) - 1]
     now = timezone.now()
-    # File will be uploaded to 
+    # File will be uploaded to
     # MEDIA_ROOT/applicant_profiles/pictures/user_<id>/<filename>
     return 'employee_profile/{t}/user_{uid}/{y}_{m}_{d}.{f}'.format(
         t=model,
-        uid=instance.account.model_id, 
-        y=now.year, 
-        m=now.month, 
+        uid=instance.account.model_id,
+        y=now.year,
+        m=now.month,
         d=now.day,
         f=filetype
     )
@@ -26,13 +26,13 @@ def profile_picture_directory_path(instance, filename):
 
 class ApplicantProfile(StringBasedModelIDMixin):
     account = models.OneToOneField(
-		'core.QuikruitAccount', 
+		'core.QuikruitAccount',
 		related_name="applicant_profile",
 		on_delete=models.CASCADE
 	)
-    
+
     name = models.CharField(max_length=40)
-    
+
     picture = models.ImageField(
         upload_to=profile_picture_directory_path,
         blank=True
@@ -47,7 +47,7 @@ class ApplicantProfile(StringBasedModelIDMixin):
         through='applicants.JobApplication',
         related_name='applicants'
     )
-    
+
 class PriorEmployment(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
@@ -62,8 +62,7 @@ class PriorEmployment(models.Model):
     @property
     def length_of_employment(self):
         return self.employed_until - self.employed_from
-     
-    
+
 class Degree(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
@@ -76,7 +75,7 @@ class Degree(models.Model):
 
     # Since Degrees gave have different ways of being awarded in
     # Different countries, the `level` attribute will not have
-    # the expected 1st, 2:1, 2:2 etc. choices. 
+    # the expected 1st, 2:1, 2:2 etc. choices.
     level_awarded = models.CharField(max_length=20)
 
 class ALevel(models.Model):
@@ -151,5 +150,3 @@ class JobApplication(StringBasedModelIDMixin):
         (OFFER_GIVEN, "Job offer sent"),
         (EMPLOYED, "Offer accepted")
     )
-
-
