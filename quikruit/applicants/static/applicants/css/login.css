@@ -47,7 +47,7 @@ body {
   position: relative;
 }
 
-#passwordslot, #loginslot {
+#passwordslot, #loginslot, #emailslot, #confirmpasswordslot, #registerslot {
   font-family: 'Quicksand';
   border: solid black 2px;
   margin-left: 24%;
@@ -58,7 +58,7 @@ body {
   padding: 1%;
 }
 
-#username_error, #password_error, #submit_error {
+#username_error, #password_error, #submit_error, #email_error, #confirmpassword_error {
   font-family: 'Quicksand';
   color: red;
   margin-left: 24%;
@@ -69,41 +69,7 @@ body {
   padding: 1%;
 }
 
-#loginbutton1 {
- border: solid black 2px;
- background-color: white;
- font-size: 100%;
- margin: auto;
- margin-left: 45%;
- padding: 1%;
- cursor: pointer;
- width: auto;
-}
-
-
-#passwordslot, #registerslot, #emailslot, #confirmpasswordslot {
-  font-family: 'Quicksand';
-  border: solid black 2px;
-  margin-left: 24%;
-  height: 7%;
-  width: 50%;
-  margin-bottom: 2%;
-  font-size: 90%;
-  padding: 1%;
-}
-
-#username_error, #email_error, #password_error, #confirmpassword_error, #submit_error {
-  font-family: 'Quicksand';
-  color: red;
-  margin-left: 24%;
-  height: auto;
-  width: 50%;
-  margin-bottom: 2%;
-  font-size: 90%;
-  padding: 1%;
-}
-
-#registerbutton1 {
+#loginbutton1, #registerbutton1 {
  border: solid black 2px;
  background-color: white;
  font-size: 100%;
