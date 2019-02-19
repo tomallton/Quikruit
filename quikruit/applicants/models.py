@@ -130,7 +130,7 @@ class SkillHobby(StringBasedModelIDMixin):
     kind = models.IntegerField(choices=kind_choices)
 
     def __str__(self):
-        return self.name
+        return "{0}: {1}".format(self.name, self.kind)
 
 class JobApplication(StringBasedModelIDMixin):
     job_listing = models.ForeignKey(
@@ -164,5 +164,5 @@ class JobApplication(StringBasedModelIDMixin):
         (OFFER_GIVEN, "Job offer sent"),
         (EMPLOYED, "Offer accepted")
     )
-
+    status = models.IntegerField(choices=status_choices, default=0)
     last_updated = models.DateTimeField(auto_now=True)

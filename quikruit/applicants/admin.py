@@ -31,17 +31,26 @@ class AlevelInline(admin.TabularInline):
 	def has_add_permission(self,request):
 		return False
 
+class SkillHobbyInline:
+	pass
+
 class ApplicantProfileAdmin(admin.ModelAdmin):
 	inlines = [
 		PriorEmploymentInline,
 		DegreeInline,
 		AlevelInline
 	]
+	list_display = ('name', 'account')
+	readonly_fields = ['account','name','picture','cv']
 
 class SkillHobbyAdmin(admin.ModelAdmin):
 	list_display = ('name', 'kind')
 
+
+class JobApplicationAdmin(admin.ModelAdmin):
+	list_display = ('job_listing', 'applicant', 'status')
+
 admin.site.register(ApplicantProfile, ApplicantProfileAdmin)
-admin.site.register(JobApplication)
+admin.site.register(JobApplication, JobApplicationAdmin)
 admin.site.register(SkillHobby, SkillHobbyAdmin)
 admin.site.register(SkillHobbyLevel)

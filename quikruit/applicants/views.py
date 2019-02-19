@@ -28,25 +28,28 @@ def application_form(request):
 def test_formset_page(request):
     if not request.user.is_applicant:
         return HttpResponseRedirect("/Project/applicants/login/")
-
-    profile = request.user.applicant_profile
-
+   
+    profile=request.user.applicant_profile
+    error = None
+   
     if request.method == "POST":
+        
         pdb.set_trace()
         prior_employment_formset = PriorEmploymentFormSet(
             request.POST,
             instance=profile
         )
-        pass
+        if not prior_employment_formset.is_valid():
+            error = "Invalid formset"
     elif request.method == "GET":
-        
         a_level_formset = ALevelFormSet(instance=profile)
         prior_employment_formset = PriorEmploymentFormSet(instance=profile)
         degree_formset = DegreeFormSet(instance=profile)
-        context = {
-            'profile': profile,
-            'a_levels': a_level_formset,
-            'prior_employment': prior_employment_formset,
-            'degree': degree_formset
-        }
-        return render(request, 'applicants/app_testformsets.html', context)
+    context = {
+        'profile': profile,
+        'a_levels': a_level_formset,
+        'prior_employment': prior_employment_formset,
+        'degree': degree_formset,
+        'error': error
+    }
+    return render(request, 'applicants/app_testformsets.html', context)
