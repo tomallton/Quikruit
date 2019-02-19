@@ -2,6 +2,15 @@
 <body>
 	<h1>Tesiting formsets</h1>
 	<h2>Applicant {{ profile.name }}</h2>
-	{{ a_levels.as_p }}
+	<form method="POST" action="{% url 'applicants_testing' %}">
+		{% csrf_token %}
+		<h3>Prior Employment</h3>
+		{{ prior_employment.as_p }}
+		<h3>Degree</h3>
+		{{ degree.as_p }}
+		<h3>A-Levels</h3>
+		{{ a_levels.as_p }}
+		<input type="submit">
+	</form>
 </body>
 </html>
