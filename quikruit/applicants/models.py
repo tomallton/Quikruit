@@ -35,18 +35,26 @@ class ApplicantProfile(StringBasedModelIDMixin):
 
     picture = models.ImageField(
         upload_to=profile_picture_directory_path,
-        blank=True
+        blank=True,
+        null=True
     )
 
     cv = models.FileField(
         upload_to=cv_directory_path,
-        blank=True)
+        blank=True,
+        null=True)
 
     jobs = models.ManyToManyField(
         'recruiters.JobListing',
         through='applicants.JobApplication',
         related_name='applicants'
     )
+
+    def __repr__(self):
+        return "<Applicant: {0} [ID: {1}]>".format(self.name, self.model_id)
+
+    def __str__(self):
+        return "{0} ({1})".format(self.name, self.account.email)
 
 class PriorEmployment(models.Model):
     applicant = models.ForeignKey(
@@ -87,6 +95,9 @@ class ALevel(models.Model):
     subject = models.CharField(max_length=40)
     grade = models.CharField(max_length=2)
 
+    def __str__(self):
+        return "A-Level {} at grade {}".format(self.subject, self.grade)
+
 class SkillHobbyLevel(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
@@ -117,6 +128,9 @@ class SkillHobby(StringBasedModelIDMixin):
         (PROGRAMMING_LANGUAGE, "Programming Language")
     )
     kind = models.IntegerField(choices=kind_choices)
+
+    def __str__(self):
+        return self.name
 
 class JobApplication(StringBasedModelIDMixin):
     job_listing = models.ForeignKey(
@@ -150,3 +164,5 @@ class JobApplication(StringBasedModelIDMixin):
         (OFFER_GIVEN, "Job offer sent"),
         (EMPLOYED, "Offer accepted")
     )
+
+    last_updated = models.DateTimeField(auto_now=True)

@@ -68,3 +68,6 @@ class QuikruitAccount(StringBasedModelIDMixin, AbstractBaseUser):
             return True
         except ApplicantProfile.DoesNotExist:
             return False
+
+    def __str__(self):
+        return "{}".format(self.email)

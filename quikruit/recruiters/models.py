@@ -7,6 +7,9 @@ class Department(models.Model):
         primary_key=True
     )
 
+    def __str__(self):
+        return self.name
+
 class RecruiterProfile(models.Model):
     account = models.OneToOneField(
         'core.QuikruitAccount', 
@@ -31,6 +34,9 @@ class JobListing(StringBasedModelIDMixin):
         related_name='job_listings',
         on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return "{0}: {1}".format(self.department, self.title)
     
 class RequiredSkill(models.Model):
     job_listing = models.ForeignKey(
