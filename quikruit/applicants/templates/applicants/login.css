@@ -47,7 +47,7 @@ body {
   position: relative;
 }
 
-#passwordslot, #loginslot {
+#passwordslot, #loginslot, #emailslot, #confirmpasswordslot, #registerslot {
   font-family: 'Quicksand';
   border: solid black 2px;
   margin-left: 24%;
@@ -58,7 +58,7 @@ body {
   padding: 1%;
 }
 
-#username_error, #password_error, #submit_error {
+#username_error, #password_error, #submit_error, #email_error, #confirmpassword_error {
   font-family: 'Quicksand';
   color: red;
   margin-left: 24%;
@@ -69,7 +69,7 @@ body {
   padding: 1%;
 }
 
-#loginbutton1 {
+#loginbutton1, #registerbutton1 {
  border: solid black 2px;
  background-color: white;
  font-size: 100%;
