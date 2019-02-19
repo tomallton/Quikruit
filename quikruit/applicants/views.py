@@ -20,3 +20,6 @@ def homepage(request):
 
 def login(request):
 	return render(request, 'applicants/app_login.html', None)
+
+def application_form(request):
+	return render(request, 'applicants/app_applicationform.html', None)
