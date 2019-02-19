@@ -49,7 +49,7 @@ body {
 
 #passwordslot, #passwordslot1, #loginslot, #emailslot, #confirmpasswordslot, #registerslot {
   font-family: 'Quicksand';
-  border: solid black 2px;
+  border: solid pink 2px;
   margin-left: 24%;
   height: 7%;
   width: 50%;
