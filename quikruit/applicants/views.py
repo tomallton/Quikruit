@@ -12,7 +12,7 @@ def homepage(request):
 	except ApplicantProfile.DoesNotExist:
 		return HttpResponseRedirect("/Project/applicants/login/")
 	context = {'profile': profile}
-	return render(request, 'applicants/applicanthomepage.html', context)
+	return render(request, 'applicants/app_homepage.html', context)
 
 def login(request):
-	return render(request, 'applicants/login.html', None)
+	return render(request, 'applicants/app_login.html', None)
