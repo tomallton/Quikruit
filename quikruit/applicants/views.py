@@ -4,16 +4,14 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 import pdb
 from .models import *
+from .forms import ALevelFormSet
 
 @login_required(login_url='/applicants/login/')
 def homepage(request):
-	profile = None
-	try:
-		profile = request.user.applicant_profile
-	except ApplicantProfile.DoesNotExist:
+	if not request.user.is_applicant:
 		return HttpResponseRedirect("/Project/applicants/login/")
 	context = {
-		'profile': profile,
+		'profile': request.user.applicant_profile,
 		'current_date_and_time': timezone.now()
 	}
 	return render(request, 'applicants/app_homepage.html', context)
@@ -23,3 +21,12 @@ def login(request):
 
 def application_form(request):
 	return render(request, 'applicants/app_applicationform.html', None)
+
+def test_formset_page(request):
+	if not request.user.is_applicant:
+		return HttpResponseRedirect("/Project/applicants/login/")
+	context = {
+		'profile': request.user.applicant_profile,
+		'a_levels': ALevelFormSet(instance=request.user.applicant_profile)
+	}
+	return render(request, 'applicants/app_testformsets.html', context)

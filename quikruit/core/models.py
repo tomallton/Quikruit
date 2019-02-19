@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from quikruit.mixins import StringBasedModelIDMixin
+from applicants import models as applicant_models
 
 class QuikruitAccountManager(BaseUserManager):
     def _create_user(self, email, password=None, **kwargs):
@@ -59,3 +60,11 @@ class QuikruitAccount(StringBasedModelIDMixin, AbstractBaseUser):
 
     def has_perm(self, perm, obj=None):
         return self.is_staff
+
+    @property
+    def is_applicant(self):
+        try:
+            profile = self.applicant_profile
+            return True
+        except ApplicantProfile.DoesNotExist:
+            return False
