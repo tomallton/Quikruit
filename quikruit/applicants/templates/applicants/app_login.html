@@ -4,6 +4,7 @@
   <head>
       <meta charset="UTF-8">
       <title>Login Page</title>
+      <!-- <link rel="stylesheet" href="login.css" type="text/css"/> -->
       <link rel="stylesheet" href="{% static 'applicants/css/login.css' %}" type="text/css"/>
       <script src='{% static "js/jquery-3.3.1.min.js" %}' type='text/javascript'></script>
       <script src='{% static "applicants/js/login.js" %}' type='text/javascript'></script>
@@ -20,14 +21,14 @@
       	  <form id='loginform'>
     	      <span class="error" id="username_error"></span><div id=loginusername><input type='text' name='loginusername' placeholder="Username" id="loginslot"></div>
     	      <span class="error" id="password_error"></span><div id=loginpassword><input type='password' name='loginpassword' placeholder="Password" id="passwordslot"></div>
-    	      <input type='submit' value='Login' id="loginbutton1"><p class="error" id="submit_error"></p>
+    	      <input type='submit' value='Login' id="loginbutton1"><p class="error"></p>
       	  </form>
           <form id='registerform'>
             <span class="error" id="username_error"></span><div id=registerusername><input type='text' name='username' placeholder="Username" id="registerslot"></div>
             <span class="error" id="email_error"></span><div id=registeremail><input type='email' name='email' placeholder="Email" id="emailslot"></div>
             <span class="error" id="password_error"></span><div id=registerpassword><input type='password' name='registerpassword' placeholder="Password" id="passwordslot1"></div>
             <span class="error" id="confirmpassword_error"></span><div id=confirmpassword><input type='password' name='confirmregisterpassword' placeholder="Confirm Password" id="confirmpasswordslot"></div>
-            <input type='submit' value='Register' id="registerbutton1"><p class="error" id="submit_error"></p>
+            <input type='submit' value='Register' id="registerbutton1"><p class="error"></p>
           </form>
       	</div>
       </div>
