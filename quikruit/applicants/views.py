@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.utils import timezone
@@ -19,37 +20,50 @@ def homepage(request):
 	}
 	return render(request, 'applicants/app_homepage.html', context)
 
-def login(request):
-	return render(request, 'applicants/app_login.html', None)
-
 def application_form(request):
 	return render(request, 'applicants/app_applicationform.html', None)
 
 def test_formset_page(request):
+    profile = request.user.applicant_profile
+    def render_page():
+        a_level_formset = ALevelFormSet(instance=profile)
+        prior_employment_formset = PriorEmploymentFormSet(instance=profile)
+        degree_formset = DegreeFormSet(instance=profile)
+        context = {
+            'profile': profile,
+            'a_levels': a_level_formset,
+            'prior_employment': prior_employment_formset,
+            'degree': degree_formset,
+        }
+        return render(request, 'applicants/app_testformsets.html', context)
+
     if not request.user.is_applicant:
         return HttpResponseRedirect("/Project/applicants/login/")
-   
-    profile=request.user.applicant_profile
-    error = None
+
    
     if request.method == "POST":
-        
-        pdb.set_trace()
         prior_employment_formset = PriorEmploymentFormSet(
             request.POST,
             instance=profile
         )
-        if not prior_employment_formset.is_valid():
-            error = "Invalid formset"
+        a_level_formset = ALevelFormSet(
+            request.POST,
+            instance=profile
+        )
+        degree_formset = DegreeFormSet(
+            request.POST,
+            instance=profile
+        )
+        if (not prior_employment_formset.is_valid() or 
+            not a_level_formset.is_valid() or
+            not degree_formset.is_valid()):
+            pdb.set_trace()
+        prior_employment_formset.clean()
+        prior_employment_formset.save()
+        a_level_formset.clean()
+        a_level_formset.save() 
+        degree_formset.clean()
+        degree_formset.save()
+        return render_page()
     elif request.method == "GET":
-        a_level_formset = ALevelFormSet(instance=profile)
-        prior_employment_formset = PriorEmploymentFormSet(instance=profile)
-        degree_formset = DegreeFormSet(instance=profile)
-    context = {
-        'profile': profile,
-        'a_levels': a_level_formset,
-        'prior_employment': prior_employment_formset,
-        'degree': degree_formset,
-        'error': error
-    }
-    return render(request, 'applicants/app_testformsets.html', context)
+        return render_page()
