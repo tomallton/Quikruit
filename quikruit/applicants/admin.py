@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.html import format_html
+from django.urls import reverse
 from .models import *
 
 # Register your models here.
@@ -34,6 +36,7 @@ class AlevelInline(admin.TabularInline):
 class SkillHobbyInline:
 	pass
 
+@admin.register(ApplicantProfile)
 class ApplicantProfileAdmin(admin.ModelAdmin):
 	inlines = [
 		PriorEmploymentInline,
@@ -43,14 +46,22 @@ class ApplicantProfileAdmin(admin.ModelAdmin):
 	list_display = ('name', 'account')
 	readonly_fields = ['account','name','picture','cv']
 
+@admin.register(SkillHobby)
 class SkillHobbyAdmin(admin.ModelAdmin):
 	list_display = ('name', 'kind')
 
-
+@admin.register(JobApplication)
 class JobApplicationAdmin(admin.ModelAdmin):
-	list_display = ('job_listing', 'applicant', 'status')
+	list_display = ('job_listing', 'applicant', 'status', 'last_updated')
+	readonly_fields = ('applicant_profile','job_listing','date_submitted', 'cover_letter', 'last_updated')
+	exclude = ('applicant',)
 
-admin.site.register(ApplicantProfile, ApplicantProfileAdmin)
-admin.site.register(JobApplication, JobApplicationAdmin)
-admin.site.register(SkillHobby, SkillHobbyAdmin)
+	def applicant_profile(self, obj):
+		return format_html(
+			'<a href="{l}">{a} <strong>[Click to view]</strong></a>'.format(
+				l=reverse('admin:applicants_applicantprofile_change', args=[obj.applicant.model_id]),
+				a=obj.applicant
+			)
+		)
+
 admin.site.register(SkillHobbyLevel)
