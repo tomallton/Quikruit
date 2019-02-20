@@ -3,6 +3,7 @@ from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.models import Group
 from .models import QuikruitAccount
 from .forms import AccountCreationForm
+from django.utils.html import format_html
 
 class QuikruitAccountAdmin(auth_admin.UserAdmin):
 	add_form = AccountCreationForm
@@ -27,4 +28,5 @@ class QuikruitAccountAdmin(auth_admin.UserAdmin):
 	readonly_fields = ('model_id',)
 	filter_horizontal = ()
 
+admin.site.site_header = format_html('<strong>Quickruit Recruiters page</strong>')
 admin.site.register(QuikruitAccount, QuikruitAccountAdmin)

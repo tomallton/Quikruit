@@ -50,11 +50,30 @@ class ApplicantProfile(StringBasedModelIDMixin):
         related_name='applicants'
     )
 
+    skills_and_hobbies = models.ManyToManyField(
+        'applicants.SkillHobby',
+        through='applicants.SkillHobbyLevel',
+        related_name='suitable_applicants'
+    )
+
     def __repr__(self):
         return "<Applicant: {0} [ID: {1}]>".format(self.name, self.model_id)
 
     def __str__(self):
         return "{0} ({1})".format(self.name, self.account.email)
+
+    @property
+    def skills(self):
+        return self.skills_and_hobbies.filter(kind=SkillHobby.SKILL)
+
+    @property
+    def programming_languages(self):
+        return self.skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE)
+
+    @property
+    def hobbies(self):
+        return self.skills_and_hobbies.filter(kind=SkillHobby.HOBBY)
+    
 
 class PriorEmployment(models.Model):
     applicant = models.ForeignKey(
@@ -101,13 +120,13 @@ class ALevel(models.Model):
 class SkillHobbyLevel(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
-        related_name="skills_and_hobbies",
+        related_name="skill_hobby_levels",
         on_delete=models.CASCADE
     )
 
     skillhobby = models.ForeignKey(
         'applicants.SkillHobby',
-        related_name="skill_hobby_levels",
+        related_name="applicant_levels",
         on_delete=models.CASCADE
     )
 

@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from quikruit.settings import MEDIA_URL, MEDIA_ROOT
-import core
+from core import views as core_views
 
 urlpatterns = [
-    path('', core.views.global_homepage),
+    path('', core_views.global_homepage),
     path('admin/', admin.site.urls),
     path('applicants/', include('applicants.urls')),
     path('recruiters/', include('recruiters.urls'))
