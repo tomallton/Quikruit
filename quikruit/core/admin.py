@@ -28,5 +28,5 @@ class QuikruitAccountAdmin(auth_admin.UserAdmin):
 	readonly_fields = ('model_id',)
 	filter_horizontal = ()
 
-admin.site.site_header = format_html('<strong>Quickruit Recruiters page</strong>')
+admin.site.site_header = format_html('<img id="logo" src="/Project/static/svg/logo_recruiters.svg" alt="Quikruit Logo">')
 admin.site.register(QuikruitAccount, QuikruitAccountAdmin)
