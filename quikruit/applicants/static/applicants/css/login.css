@@ -9,6 +9,7 @@ a:hover {
 
 body {
  background-color: #3a3935;
+ font-family: "Quicksand"
 }
 
 #title{
@@ -26,7 +27,6 @@ body {
   background-color: #7d7c78;
   width: auto;
   height: auto;
-  font-family: "Quicksand";
   margin-left: 15%;
   margin-right: 15%;
   margin-top: 5%;
@@ -47,7 +47,22 @@ body {
   position: relative;
 }
 
-#passwordslot, #passwordslot1, #loginslot, #emailslot, #confirmpasswordslot, #registerslot {
+#loginform {
+  width: 50%;
+  margin: 0 auto;
+}
+
+input {
+  font-family: "Quicksand";
+  border: solid black 2px;
+  width: 100%;
+  margin-bottom: 2%;
+  font-size: 90%;
+  padding: .5em;
+  box-sizing: border-box;
+}
+
+#passwordslot1, #loginslot, #emailslot, #confirmpasswordslot, #registerslot {
   font-family: 'Quicksand';
   border: solid black 2px;
   margin-left: 24%;
@@ -59,7 +74,6 @@ body {
 }
 
 .error {
-  font-family: 'Quicksand';
   color: red;
   margin-left: 24%;
   height: auto;
@@ -72,10 +86,10 @@ body {
 #loginbutton1, #registerbutton1 {
  border: solid pink 2px;
  background-color: white;
+ display: block;
  font-size: 100%;
- margin: auto;
- margin-left: 45%;
- padding: 1%;
+ margin: 0 auto;
+ padding: .5em;
  cursor: pointer;
  width: auto;
 }

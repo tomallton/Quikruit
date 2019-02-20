@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 	# Applicants homepage.
@@ -8,7 +9,7 @@ urlpatterns = [
 
 	# Applicants login page.
 	# URL example: http://quikruit.example/applicants/login/
-	path('login/', views.login, name='applicants_login'),
+	path('login/', auth_views.LoginView.as_view(template_name='applicants/app_login.html'), name='applicants_login'),
 
 	# # Job listing page. 
 	# # URL example: http://quikruit.example/job/3v4tnf7cgy7yg78/

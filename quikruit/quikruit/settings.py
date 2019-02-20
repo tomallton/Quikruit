@@ -25,7 +25,7 @@ SECRET_KEY = 'l=_d&*to=duxe-@i$mt+cb4h0hbn-5791xqfcol1)ig=d*37t9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.8.125.240', 'localhost', '127.0.0.1', 'jordans-mbp.wifi-campus.warwick.ac.uk']
+ALLOWED_HOSTS = ['3.8.125.240', 'localhost', '127.0.0.1', 'jordans-macbook-pro.local']
 
 
 # Application definition
@@ -129,3 +129,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/Project/media/"
+
+LOGIN_REDIRECT_URL = "/applicants/"
