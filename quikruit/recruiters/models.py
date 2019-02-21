@@ -63,6 +63,9 @@ class RequiredSkill(models.Model):
     priority = models.IntegerField(
         choices=PRIORITY_CHOICES
     )
+
+    def __str__(self):
+        return "{} requires {}".format(self.job_listing, self.skill)
     
 class Suitabilities(models.Model):
     application = models.ForeignKey(

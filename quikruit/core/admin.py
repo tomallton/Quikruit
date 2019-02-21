@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
 from django.contrib.auth.models import Group
-from .models import QuikruitAccount
+from .models import QuikruitAccount, Notification
 from .forms import AccountCreationForm
 from django.utils.html import format_html
 
@@ -27,6 +27,11 @@ class QuikruitAccountAdmin(auth_admin.UserAdmin):
 	ordering = ('email',)
 	readonly_fields = ('model_id',)
 	filter_horizontal = ()
+
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+	fields = ('account','message','link','created')
+	readonly_fields = ('created',)
 
 admin.site.site_header = format_html('<img id="logo" src="/Project/static/svg/logo_recruiters.svg" alt="Quikruit Logo">')
 admin.site.register(QuikruitAccount, QuikruitAccountAdmin)
