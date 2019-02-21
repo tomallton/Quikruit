@@ -20,4 +20,6 @@ urlpatterns = [
 	path('job/apply/', views.application_form, name='applicants_applicationform'),
 
 	path('testing/', views.test_formset_page, name='applicants_testing')
+
+	path('applicants/register', views.register, name='applicants_register')
 ]
