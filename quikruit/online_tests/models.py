@@ -36,7 +36,7 @@ class QuestionAnswer(models.Model):
     )
     
     question = models.ForeignKey(
-        'online_test.TestQuestion',
+        'online_tests.TestQuestion',
         related_name = 'question_answer',
         on_delete = models.CASCADE
     )
