@@ -33,22 +33,46 @@ class AlevelInline(admin.TabularInline):
 	def has_add_permission(self,request):
 		return False
 
-class SkillHobbyInline:
-	pass
+class SkillHobbyLevelInline(admin.TabularInline):
+	model = SkillHobbyLevel
+	can_delete = False
+	readonly_fields = ['skillhobby','level']
+	extra = 0
 
 @admin.register(ApplicantProfile)
 class ApplicantProfileAdmin(admin.ModelAdmin):
 	inlines = [
 		PriorEmploymentInline,
 		DegreeInline,
-		AlevelInline
+		AlevelInline,
+		SkillHobbyLevelInline
 	]
 	list_display = ('name', 'account')
-	readonly_fields = ['account','name','picture','cv']
+	readonly_fields = ['account','name','picture','cv','_skills', '_hobbies', '_programming_languages']
+
+	def _base(self, queryset):
+		html = "<ul>{}</ul>".format("".join("<li>{}</li>".format(o) for o in queryset))
+		return format_html(html)
+
+	def _skills(self, obj):
+		return self._base(obj.skills)
+
+	def _hobbies(self, obj):
+		return self._base(obj.hobbies)
+
+	def _programming_languages(self, obj):
+		return self._base(obj.programming_languages)
 
 @admin.register(SkillHobby)
 class SkillHobbyAdmin(admin.ModelAdmin):
 	list_display = ('name', 'kind')
+
+@admin.register(SkillHobbyLevel)
+class SkillHobbyLevelAdmin(admin.ModelAdmin):
+	list_display = ('applicant_name', 'skillhobby', 'level')
+
+	def applicant_name(self, obj):
+		return obj.applicant.name
 
 @admin.register(JobApplication)
 class JobApplicationAdmin(admin.ModelAdmin):
@@ -63,5 +87,3 @@ class JobApplicationAdmin(admin.ModelAdmin):
 				a=obj.applicant
 			)
 		)
-
-admin.site.register(SkillHobbyLevel)

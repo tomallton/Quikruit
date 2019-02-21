@@ -133,6 +133,9 @@ class SkillHobbyLevel(models.Model):
     level_choices = ((i,"{}".format(i)) for i in range(1,6))
     level = models.IntegerField(choices=level_choices)
 
+    def __str__(self):
+        return "{} | {} | {}".format(self.applicant.name, self.skillhobby, self.level)
+
 class SkillHobby(StringBasedModelIDMixin):
     name = models.CharField(
         max_length=40,
@@ -149,7 +152,7 @@ class SkillHobby(StringBasedModelIDMixin):
     kind = models.IntegerField(choices=kind_choices)
 
     def __str__(self):
-        return "{0}: {1}".format(self.name, self.kind)
+        return "{0}: {1}".format(self.get_kind_display(), self.name)
 
 class JobApplication(StringBasedModelIDMixin):
     job_listing = models.ForeignKey(
@@ -173,15 +176,22 @@ class JobApplication(StringBasedModelIDMixin):
     REJECTED               = 5
     OFFER_GIVEN            = 6
     EMPLOYED               = 7
+    WITHDRAWN              = 8
+    INTERVIEW_REQUESTED    = 9 
+    INTERVIEW_COMPLETED    = 10
 
     status_choices = (
-        (IN_PROGRESS, "In progress"),
-        (SENT, "Application sent"),
-        (UNDER_CONSIDERATION, "Application under consideration"),
-        (ONLINE_TEST_REQUESTED, "Online test requested"),
-        (REJECTED, "No longer being considered"),
-        (OFFER_GIVEN, "Job offer sent"),
-        (EMPLOYED, "Offer accepted")
+        (IN_PROGRESS, 'In progress'),
+        (SENT, 'Application sent'),
+        (WITHDRAWN, 'Application withdrawn'),
+        (UNDER_CONSIDERATION, 'Application under consideration'),
+        (ONLINE_TEST_REQUESTED, 'Online test requested'),
+        (ONLINE_TEST_COMPLETED, 'Online test completed'),
+        (INTERVIEW_REQUESTED, 'Interview requested'),
+        (INTERVIEW_COMPLETED, 'Interview completed'),
+        (REJECTED, 'No longer being considered'),
+        (OFFER_GIVEN, 'Job offer sent'),
+        (EMPLOYED, 'Job offer accepted')
     )
     status = models.IntegerField(choices=status_choices, default=0)
     last_updated = models.DateTimeField(auto_now=True)

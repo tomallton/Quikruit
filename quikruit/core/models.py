@@ -71,3 +71,14 @@ class QuikruitAccount(StringBasedModelIDMixin, AbstractBaseUser):
 
     def __str__(self):
         return "{}".format(self.email)
+
+class Notification(StringBasedModelIDMixin):
+    account = models.ForeignKey(
+        'core.QuikruitAccount',
+        related_name='notifications',
+        on_delete=models.CASCADE
+    )
+    message = models.TextField()
+    link = models.URLField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+

@@ -16,6 +16,7 @@ def homepage(request):
 		return HttpResponseRedirect("/Project/applicants/login/")
 	context = {
 		'profile': profile,
+        'notifications': profile.account.notifications,
 		'current_date_and_time': timezone.now()
 	}
 	return render(request, 'applicants/app_homepage.html', context)
