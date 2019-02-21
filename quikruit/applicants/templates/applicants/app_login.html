@@ -1,4 +1,4 @@
-{% load static %}
+  {% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,7 +33,7 @@
             <input type='submit' value='Log in' id="loginbutton1"><p class="error"></p>
             <input type="hidden" name="next" value="{{ next }}">
           </form>
-          <form id='registerform' method='post' action="{% url 'applicants_register' %}">
+          <form id='registerform' method='post'>
             {% csrf_token %}
             <span class="error" id="username_error"></span><div id=registerusername><input type='text' name='username' placeholder="Username" id="registerslot"></div>
             <span class="error" id="email_error"></span><div id=registeremail><input type='email' name='email' placeholder="Email" id="emailslot"></div>
