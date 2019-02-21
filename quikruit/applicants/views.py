@@ -24,6 +24,9 @@ def homepage(request):
 def application_form(request):
 	return render(request, 'applicants/app_applicationform.html', None)
 
+def register(request):
+    return return HttpResponseRedirect("/Project/applicants/login/")
+
 def test_formset_page(request):
     profile = request.user.applicant_profile
     def render_page():
