@@ -14,7 +14,7 @@
       <div id="maincontainer">
         <div id="header">
           <div id="logo"><img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=50></div>
-          <div id="title">Log in to Quickruit</div>
+          <div id="title">Log in to Quikruit</div>
         </div>
         <div id="info">
           {% if form.errors %}
@@ -33,7 +33,7 @@
             <input type='submit' value='Log in' id="loginbutton1"><p class="error"></p>
             <input type="hidden" name="next" value="{{ next }}">
           </form>
-          <form id='registerform'>
+          <form id='registerform' method='post' action="{% url 'applicants_register' %}">
             {% csrf_token %}
             <span class="error" id="username_error"></span><div id=registerusername><input type='text' name='username' placeholder="Username" id="registerslot"></div>
             <span class="error" id="email_error"></span><div id=registeremail><input type='email' name='email' placeholder="Email" id="emailslot"></div>
