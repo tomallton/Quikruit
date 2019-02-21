@@ -30,7 +30,12 @@
         <h2>
           <ul>
             {% for notif in notifications %}
-              <li> {{ notif.message }}{{ notif.link }}{{ notif.created }} </li>
+              {% if notif.link %}
+                <li><a href="{{ notif.link }}">{{ notif.message }}</a></li>
+              {% else %}
+                <li>{{ notif.message }}</li>
+              {% endif %}
+              <li> {{ notif.created }} </li>
             {% empty %}
               <h6>No notifications</h6>
             {% endfor %}
