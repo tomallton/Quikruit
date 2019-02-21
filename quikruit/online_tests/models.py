@@ -16,7 +16,7 @@ class TestQuestion(StringBasedModelIDMixin):
     questionType = models.IntegerField() #TODO: decide on the types
     
     testSkill = models.ForeignKey(
-        'applicants.skill',
+        'applicants.SkillHobby',
         related_name = 'question_for_skill',
         on_delete = models.CASCADE,
         null = True
