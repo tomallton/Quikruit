@@ -26,22 +26,22 @@ class QuikruitAccount(StringBasedModelIDMixin, AbstractBaseUser):
     email = models.EmailField(unique=True)
 
     is_active = models.BooleanField(
-        "active account", 
+        "active account",
         default=False
     )
 
     is_staff = models.BooleanField(
-        "can access admin site", 
+        "can access admin site",
         default=False
     )
 
     is_superuser = models.BooleanField(
-        "superuser privileges", 
+        "superuser privileges",
         default=False
     )
-    
+
     date_created = models.DateField(
-        "date of account creation", 
+        "date of account creation",
         auto_now_add=True
     )
 
@@ -81,4 +81,3 @@ class Notification(StringBasedModelIDMixin):
     message = models.TextField()
     link = models.URLField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-

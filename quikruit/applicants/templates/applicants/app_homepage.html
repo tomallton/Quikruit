@@ -25,7 +25,14 @@
           </div>
       	</div>
         <h2 id="welcome">Welcome to your Home Page, {{ profile.name }}.</h2>
-        <h2>{{ profile.account }}{{ profile.picture }}{{ profile.cv }}{{ profile.jobs }}</h2>
+        <h2>{{ profile.account }} {{ profile.picture }}</h2>
+        <h2>{{ profile.cv }}{{ profile.jobs }}</h2>
+        <h2>
+          <ul>
+            { % for notif in notifications % }
+              <li> {{ notif.message }}{{ notif.link }}{{ notif.created }} </li>
+            { % endfor % }
+          </ul>
         </br>
       	<div id="info">
           <h4>APPLICATION STATUS AND CORRESPONDENCE</h4>

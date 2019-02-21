@@ -1,4 +1,4 @@
-from django.shortcuts import render
+	from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -41,7 +41,7 @@ def test_formset_page(request):
     if not request.user.is_applicant:
         return HttpResponseRedirect("/Project/applicants/login/")
 
-   
+
     if request.method == "POST":
         prior_employment_formset = PriorEmploymentFormSet(
             request.POST,
@@ -55,14 +55,14 @@ def test_formset_page(request):
             request.POST,
             instance=profile
         )
-        if (not prior_employment_formset.is_valid() or 
+        if (not prior_employment_formset.is_valid() or
             not a_level_formset.is_valid() or
             not degree_formset.is_valid()):
             pdb.set_trace()
         prior_employment_formset.clean()
         prior_employment_formset.save()
         a_level_formset.clean()
-        a_level_formset.save() 
+        a_level_formset.save()
         degree_formset.clean()
         degree_formset.save()
         return render_page()

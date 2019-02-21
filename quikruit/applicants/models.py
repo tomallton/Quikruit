@@ -73,7 +73,7 @@ class ApplicantProfile(StringBasedModelIDMixin):
     @property
     def hobbies(self):
         return self.skills_and_hobbies.filter(kind=SkillHobby.HOBBY)
-    
+
 
 class PriorEmployment(models.Model):
     applicant = models.ForeignKey(
@@ -177,7 +177,7 @@ class JobApplication(StringBasedModelIDMixin):
     OFFER_GIVEN            = 6
     EMPLOYED               = 7
     WITHDRAWN              = 8
-    INTERVIEW_REQUESTED    = 9 
+    INTERVIEW_REQUESTED    = 9
     INTERVIEW_COMPLETED    = 10
 
     status_choices = (
