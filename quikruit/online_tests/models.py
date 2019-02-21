@@ -3,7 +3,7 @@ from quikruit.mixins import StringBasedModelIDMixin
 
 class OnlineTest(StringBasedModelIDMixin):
     application = models.ForeignKey(
-        'applicantsJobApplication',
+        'applicants.JobApplication',
         related_name = 'online_test',
         on_delete=models.CASCADE
     )
