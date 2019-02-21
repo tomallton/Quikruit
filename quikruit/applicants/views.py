@@ -22,7 +22,7 @@ def homepage(request):
 	return render(request, 'applicants/app_homepage.html', context)
 
 def application_form(request):
-	return render(request, 'applicants/app_applicationform.html', None)
+	return render(request, 'applicants/app_applicationform_old.html', None)
 
 def register(request):
     return HttpResponseRedirect("/Project/applicants/login/")
