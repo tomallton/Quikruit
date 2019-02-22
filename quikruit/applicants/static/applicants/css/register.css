@@ -59,15 +59,6 @@ input {
 
 #registerform li {
   list-style: none;
-}
-
-#registerform ul {
-  width: auto;
-  margin: auto;
-  border: 2px solid red;
-}
-
-#registerform {
   border: solid red 2px;
 }
 
