@@ -7,6 +7,7 @@ from django.utils import timezone
 import pdb
 from .models import *
 from .forms import *
+from recruiters.models import JobListing
 from core.forms import AccountCreationForm
 
 @login_required(login_url='/applicants/login/')
@@ -19,7 +20,8 @@ def homepage(request):
 	context = {
 		'profile': profile,
         'notifications': profile.account.notifications.all(),
-		'current_date_and_time': timezone.now()
+		'current_date_and_time': timezone.now(),
+        'job_listings': JobListing.objects.all()
 	}
 	return render(request, 'applicants/app_homepage.html', context)
 
