@@ -124,3 +124,13 @@ td {
   padding-right: 0%;
   width: 50%;
 }
+
+select {
+ border: solid black 2px;
+ background-color: white;
+ font-size: 90%;
+ padding: 2%;
+ cursor: pointer;
+ width: auto;
+ font-family: "Quicksand";
+}
