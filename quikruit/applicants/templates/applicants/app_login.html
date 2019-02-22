@@ -23,8 +23,8 @@
           <form id='loginform' method="post" action="{% url 'applicants_login' %}">
             {% csrf_token %}
             <div class="inputcontainer">
-              {{ form.email.label_tag }}<br>
-              {{ form.email }}<br>
+              {{ form.username.label_tag }}<br>
+              {{ form.username }}<br>
             </div>
             <div class="inputcontainer">
               {{ form.password.label_tag }}<br>
