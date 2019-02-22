@@ -1,0 +1,73 @@
+a:visited, a:link{
+ text-decoration: none;
+ color: #000000;
+}
+
+a:hover {
+ color: #babfb3;
+}
+
+body {
+ background-color: #3a3935;
+ font-family: "Quicksand"
+}
+
+#title{
+  text-align: center;
+  font-size: 400%;
+  position: relative;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#outercontainer {
+  border: 4px solid black;
+  background-color: #7d7c78;
+  width: auto;
+  height: auto;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#maincontainer{
+  border: 3px solid black;
+  height: auto;
+  width: auto;
+  background-color: white;
+  padding: 2%;
+}
+
+#header{
+  height: auto;
+  width: auto;
+  position: relative;
+}
+
+input {
+  font-family: "Quicksand";
+  border: solid black 2px;
+  width: 100%;
+  margin-bottom: 2%;
+  font-size: 90%;
+  padding: .5em;
+  box-sizing: border-box;
+}
+
+#registerform li {
+  list-style: none;
+}
+.errorlist {
+  padding: 0;
+  margin: 0;
+}
+
+.errorlist li {
+  color: red;
+  list-style: none;
+  height: auto;
+  font-size: 90%;
+}
