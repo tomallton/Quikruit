@@ -84,12 +84,11 @@ input {
 }
 
 #loginbutton1, #registerbutton1 {
- border: solid pink 2px;
+ border: solid black 2px;
  background-color: white;
  display: block;
  font-size: 100%;
  margin: 0 auto;
  padding: .5em;
  cursor: pointer;
- width: auto;
 }
