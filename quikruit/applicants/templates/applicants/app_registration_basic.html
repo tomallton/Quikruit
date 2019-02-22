@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create a Quikruit Account</title>
+</head>
+<body>
+	<form action="{% url 'applicants_registration' %}" method="POST">
+		{% csrf_token %}
+		{{ account_form.as_p }}
+		{{ profile_form.as_p }}
+		<input type="submit">
+	</form>
+</body>
+</html>

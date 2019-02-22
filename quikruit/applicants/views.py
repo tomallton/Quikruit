@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 import pdb
 from .models import *
 from .forms import *
+from core.forms import AccountCreationForm
 
 @login_required(login_url='/applicants/login/')
 def homepage(request):
@@ -21,13 +23,39 @@ def homepage(request):
 	}
 	return render(request, 'applicants/app_homepage.html', context)
 
-def application_form(request):
-	return render(request, 'applicants/app_applicationform_old.html', None)
-
 def register(request):
-    return HttpResponseRedirect("/Project/applicants/login/")
+    context = {}
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('applicants_homepage'))
 
-def test_formset_page(request):
+    if request.method == 'POST':
+        account_form = AccountCreationForm(request.POST)
+        profile_form = ApplicantProfileForm(request.POST)
+        
+        if account_form.errors or profile_form.errors:
+            context = {
+                'account_form': account_form,
+                'profile_form': profile_form,
+                'account_errors': account_form.errors,
+                'profile_errors': profile_form.errors,
+            }
+        else:
+            account_form.instance.is_active = True
+            new_account = account_form.save()
+            profile_form.instance.account = new_account
+            profile_form.save()
+            return HttpResponseRedirect(reverse('applicants_homepage'))
+    else:
+        account_form = AccountCreationForm()
+        profile_form = ApplicantProfileForm()
+        # pdb.set_trace()
+        context = {
+            'account_form': account_form,
+            'profile_form': profile_form
+        }
+    return render(request, 'applicants/app_registration.html', context)
+
+def application_form(request):
     profile = request.user.applicant_profile
     def render_page():
         a_level_formset = ALevelFormSet(instance=profile)
@@ -39,7 +67,7 @@ def test_formset_page(request):
             'prior_employment': prior_employment_formset,
             'degree': degree_formset,
         }
-        return render(request, 'applicants/app_testformsets.html', context)
+        return render(request, 'applicants/app_applicationform.html', context)
 
     if not request.user.is_applicant:
         return HttpResponseRedirect("/Project/applicants/login/")

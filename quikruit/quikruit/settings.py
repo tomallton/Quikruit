@@ -29,7 +29,7 @@ ALLOWED_HOSTS = [
     '3.8.125.240', 
     'localhost', 
     '127.0.0.1', 
-    'jordans-macbook-pro.local'
+    'jordans-macbook-pro.local',
     'jordans-mbp.wifi-campus.warwick.ac.uk'
 ]
 

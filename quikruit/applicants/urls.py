@@ -11,6 +11,8 @@ urlpatterns = [
 	# URL example: http://quikruit.example/applicants/login/
 	path('login/', auth_views.LoginView.as_view(template_name='applicants/app_login.html'), name='applicants_login'),
 
+	path('logout/', auth_views.LogoutView.as_view(template_name='applicants/app_logout.html'), name='applicants_logout'),
+
 	# # Job listing page. 
 	# # URL example: http://quikruit.example/job/3v4tnf7cgy7yg78/
 	# path('job/<slug:job_id>/', views.homepage, name='applicants_viewjob')
@@ -19,7 +21,5 @@ urlpatterns = [
 	# URL Example: http://quikruit.example/job/3v4tnf7cgy7yg78/apply/
 	path('job/apply/', views.application_form, name='applicants_applicationform'),
 
-	path('testing/', views.test_formset_page, name='applicants_testing'),
-
-	path('applicants/register', views.register, name='applicants_register')
+	path('register/', views.register, name='applicants_registration')
 ]
