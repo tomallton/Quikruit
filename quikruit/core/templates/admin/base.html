@@ -1,5 +1,6 @@
 {% extends "admin/base.html" %}
 
+{% load static %}
 {% block extrastyle %}
 <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 <style type="text/css">
@@ -14,7 +15,11 @@ body{
 }
 
 #header{
+<<<<<<< HEAD
 	background-image:url('orangebackground.jpg');
+=======
+	background-image:url('{% static 'img/orangebackground.jpg' %}');
+>>>>>>> 39ac3fb2f3c416565c7445e655f5a1e1ef0ca18c
 }
 
 h1{
