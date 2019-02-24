@@ -18,7 +18,7 @@ body{
 	background-image:url('{% static "img/orangebackground.jpg" %}');
 }
 
-h1,a,p{
+h1,h2,a,p{
 	color:white;
 }
 
@@ -27,8 +27,17 @@ a:link, a:hover, a:visited {
 	font-family:'Century Gothic','Futura',san-serif;
 }
 
-.inline-group h2, div.breadcrumbs, .module caption {
+.selector-chosen h2, .module h2, .module caption, .inline-group h2 {
+    background: #D14102;
+    color: #fff;
+}
+
+.inline-group h2, div.breadcrumbs, .module caption, .button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover, .button.default, input[type=submit].default, .submit-row input.default {
 	background: #D14102;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button, .button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+	background: #f16f37;
 }
 
 #content-related .module h2 {
