@@ -22,4 +22,4 @@ urlpatterns = [
 	path('job/apply/', views.application_form, name='applicants_applicationform'),
 
 	path('register/', views.register, name='applicants_registration')
-]	
+]
