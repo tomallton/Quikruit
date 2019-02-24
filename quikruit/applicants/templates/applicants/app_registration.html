@@ -10,20 +10,18 @@
       <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
   </head>
   <body>
-    <div id="outercontainer">
-      <div id="maincontainer">
-        <div id="header">
-          <div id="logo"><img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=50></div>
-          <div id="title">Register to Quikruit</div>
-        </div>
-        <div id="info">
-          <form id="registerform" action="{% url 'applicants_registration' %}" method="POST">
-            {% csrf_token %}
-            {{ account_form.as_ul }}
-            {{ profile_form.as_ul }}
-            <input type="submit">
-          </form>
-        </div>
+    <div id="container">
+      <div id="header">
+        <img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=40>
+      </div>
+      <h1>Register to Quikruit</h1>
+      <div id="info">
+        <form id="registerform" action="{% url 'applicants_registration' %}" method="POST">
+          {% csrf_token %}
+          {{ account_form.as_ul }}
+          {{ profile_form.as_ul }}
+          <input type="submit">
+        </form>
       </div>
     </div>
   </body>
