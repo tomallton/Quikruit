@@ -8,4 +8,4 @@ PriorEmploymentFormSet = forms.inlineformset_factory(ApplicantProfile, PriorEmpl
 class ApplicantProfileForm(forms.ModelForm):
 	class Meta:
 		model = ApplicantProfile
-		fields = ('name','picture','cv')
+		fields = ('name','picture')
