@@ -3,7 +3,7 @@ from quikruit.mixins import StringBasedModelIDMixin
 
 class Department(models.Model):
     name = models.CharField(
-        max_length=40, 
+        max_length=40,
         primary_key=True
     )
 
@@ -12,13 +12,13 @@ class Department(models.Model):
 
 class RecruiterProfile(models.Model):
     account = models.OneToOneField(
-        'core.QuikruitAccount', 
+        'core.QuikruitAccount',
         related_name="recruiter_profile",
         on_delete=models.CASCADE
     )
-    
+
     name = models.CharField(max_length=40)
-    
+
     department = models.ForeignKey(
         'recruiters.Department',
         related_name = "recruiters",
@@ -37,7 +37,7 @@ class JobListing(StringBasedModelIDMixin):
 
     def __str__(self):
         return "{0}: {1}".format(self.department, self.title)
-    
+
 class RequiredSkill(models.Model):
     job_listing = models.ForeignKey(
         'recruiters.JobListing',
@@ -49,24 +49,24 @@ class RequiredSkill(models.Model):
         related_name='required_skills',
         on_delete=models.CASCADE
     )
-    
+
     MUST = 2
     SHOULD = 1
     COULD = 0
-    
+
     PRIORITY_CHOICES = (
         (MUST,  "Need to have"),
         (SHOULD, "Should have"),
         (COULD, "Nice to have")
     )
-    
+
     priority = models.IntegerField(
         choices=PRIORITY_CHOICES
     )
 
     def __str__(self):
         return "{} requires {}".format(self.job_listing, self.skill)
-    
+
 class Suitabilities(models.Model):
     application = models.ForeignKey(
         'applicants.JobApplication',
