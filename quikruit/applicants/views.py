@@ -25,6 +25,7 @@ def homepage(request):
 	}
 	return render(request, 'applicants/app_homepage.html', context)
 
+
 def register(request):
     context = {}
     if request.user.is_authenticated:
