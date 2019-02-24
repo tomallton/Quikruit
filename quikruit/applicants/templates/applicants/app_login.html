@@ -10,32 +10,29 @@
       <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
   </head>
   <body>
-    <div id="outercontainer">
-      <div id="maincontainer">
-        <div id="header">
-          <div id="logo"><img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=50></div>
-          <div id="title">Log in to Quikruit</div>
-        </div>
-        <div id="info">
-          {% if form.errors %}
-            <span class="error">Your username and password didn't match. Please try again.</span>
-          {% endif %}
-          <form id='loginform' method="post" action="{% url 'applicants_login' %}">
-            {% csrf_token %}
-            <div class="inputcontainer">
-              {{ form.username.label_tag }}<br>
-              {{ form.username }}<br>
-            </div>
-            <div class="inputcontainer">
-              {{ form.password.label_tag }}<br>
-              {{ form.password }}<br>
-            </div>
-            <input type='submit' value='Log in' id="loginbutton1"><p class="error"></p>
-            <input type="hidden" name="next" value="{{ next }}">
-          </form>
-          <a href="{% url 'applicants_registration' %}" id="registerbutton1">Click here to Register</a>
-        </div>
-      </div>
+  <div id="container">
+    <div id="header">
+      <img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=40>
     </div>
+    <h1>Log in to Quikruit</h1>
+
+    <div id="info">
+      {% if form.errors %}
+        <span class="error">Your username and password didn't match. Please try again.</span>
+      {% endif %}
+      <form id='loginform' method="post" action="{% url 'applicants_login' %}">
+        {% csrf_token %}
+        <div class="inputcontainer">
+          {{ form.username.label_tag }}<br>
+          {{ form.username }}<br>
+          {{ form.password.label_tag }}<br>
+          {{ form.password }}<br>
+        </div>
+        <input type='submit' value='LOGIN' id="loginbutton1"><p class="error"></p>
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+      <a href="{% url 'applicants_registration' %}" id="registerbutton1">CLICK HERE TO REGISTER</a>
+    </div>
+  </div>
   </body>
 </html>
