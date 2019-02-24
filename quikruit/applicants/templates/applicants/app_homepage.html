@@ -16,10 +16,9 @@
       </div>
           <div id="navbar">
             <ul>
-              <li><a href="app_homepage.html">Applicant Home</a></li>
-              <li><a href="">Application Form</a></li>
-              <li><a href="">Settings</a></li>
-              <li><a href='{% url "applicants_logout" %}'>Log Out</a></li>
+              <li><a href="">Applicant Home</a></li>
+              <li><a href="{% url 'applicants_applicationform' %}">Application Form</a></li>
+              <li><a href="{% url 'applicants_logout' %}">Log Out</a></li>
             </ul>
           </div>
         <h2 id="welcome">Welcome to your Home Page, {{ profile.name }}.</h2>
