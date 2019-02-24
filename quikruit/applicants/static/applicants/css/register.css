@@ -18,6 +18,13 @@ body {
     color: white;
 }
 
+input#id_picture {
+    font-family: 'Century Gothic','Futura',san-serif;
+    font-size: 15px;
+    padding: 0;
+    color: white;
+}
+
 #container {
   position: relative;
   width: 100%;
@@ -41,19 +48,38 @@ h1{
   overflow: hidden;
 }
 
+input#id_email, input#id_password {
+    border: none;
+}
+
+div#info {
+    width: 50%;
+    color: grey;
+    margin: 0 auto;
+}
+
 input {
   font-family: "Quicksand";
-  border: solid black 2px;
   width: 100%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
   font-size: 90%;
   padding: .5em;
   box-sizing: border-box;
 }
 
+input[type="submit"] {
+    background-color: #D14102;
+    display: block;
+    padding: .5em;
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 40px;
+}
+
 #registerform li {
   list-style: none;
-  border: solid red 2px;
 }
 
 .errorlist {
