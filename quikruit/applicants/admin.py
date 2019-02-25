@@ -48,7 +48,7 @@ class ApplicantProfileAdmin(admin.ModelAdmin):
 		SkillHobbyLevelInline
 	]
 	list_display = ('name', 'account')
-	readonly_fields = ['account','name','picture','cv','_skills', '_hobbies', '_programming_languages']
+	readonly_fields = ['account','name','cv','_skills', '_hobbies', '_programming_languages']
 
 	def _base(self, queryset):
 		html = "<ul>{}</ul>".format("".join("<li>{}</li>".format(o) for o in queryset))

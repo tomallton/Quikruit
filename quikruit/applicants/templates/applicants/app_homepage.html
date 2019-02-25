@@ -22,7 +22,10 @@
             </ul>
           </div>
         <h2 id="welcome">Welcome to your Home Page, {{ profile.name }}.</h2>
-        <h2>{{ profile.account }} {{ profile.picture }}</h2>
+        <h2>{{ profile.account }}</h2>
+        {% if profile.picture.name %}
+          <img id="profilepicture" src='{{ profile.picture.url }}'>
+        {% endif %}
         <h2>{{ profile.cv }}{{ profile.jobs }}</h2>
         <ul>
           {% for notif in notifications %}
