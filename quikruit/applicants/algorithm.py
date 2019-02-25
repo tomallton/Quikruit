@@ -5,6 +5,7 @@ def generate_score():
     return unsupervised()
     
 def supervised():
+  # a logistic regression approach
   
 def unsupervised():
   
