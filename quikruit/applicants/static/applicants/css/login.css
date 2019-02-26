@@ -7,16 +7,6 @@ a:hover {
  color: #babfb3;
 }
 
-body {
-    font-family: 'Century Gothic','Futura',system-ui,sans-serif;
-    background: #3a3935;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    display: block;
-    color: white;
-}
-
 #container {
   position: relative;
   width: 100%;
@@ -31,13 +21,6 @@ h1{
   position: relative;
 }
 
-#header {
-  width: auto;
-  height: 40px;
-  padding: 10px 40px;
-  line-height: 40px;
-  overflow: hidden;
-}
 
 #loginform {
   width: 50%;
@@ -64,7 +47,7 @@ input {
   padding: 1%;
 }
 
-.error {
+.errorlist {
   color: red;
   margin-left: 24%;
   height: auto;
@@ -72,6 +55,7 @@ input {
   margin-bottom: 2%;
   font-size: 90%;
   padding: 1%;
+  list-style: none;
 }
 
 .inputcontainer{

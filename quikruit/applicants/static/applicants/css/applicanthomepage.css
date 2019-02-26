@@ -54,10 +54,6 @@ li a:hover {
   color: white;
 }
 
-#welcome {
-  color: white;
-}
-
 #status {
   border: solid black 2px;
   width: auto;
@@ -81,18 +77,6 @@ li a:hover {
 td {
   width: 20%;
   text-align: left;
-}
-
-#withdraw {
-  border: solid black 2px;
-  background-color: white;
-  font-size: 100%;
-  margin-top: 2%;
-  padding: 1%;
-  cursor: pointer;
-  width: auto;
-  text-align: center;
-  color: red;
 }
 
 #right {
