@@ -5,8 +5,8 @@ Development of Quikruit
 
 Recruiter account:
 
-- admin@example.com
-- cs261group25
+admin@example.com
+cs261group25
 
 ## Useful links for Cristian and Tom
 * [Field lookups](https://docs.djangoproject.com/en/2.1/ref/models/querysets/#field-lookups)
