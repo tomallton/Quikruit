@@ -6,7 +6,7 @@ body {
     font-size: 16px;
     display: block;
     color: white;
-    width: 100%;
+    width: 94%%;
 }
 
 #container {
@@ -31,24 +31,24 @@ h1{
 }
 
 #navbar ul {
+  width:100%;
   list-style-type: none;
   margin: 0px;
   padding: 0px;
   overflow: hidden;
   background-color: #D14102;
-  width:100%;
 }
 
 #navbar ul li {
   float: left;
-  padding-left: 15px;
+  padding-left: 30px;
 }
 
 li a {
   display: block;
   color: black;
   text-align: center;
-  padding: 10px 20px;
+  padding: 8px;
   text-decoration: none;
 }
 
@@ -58,27 +58,29 @@ li a:hover {
 
 #status {
   border: solid black 2px;
-  width: auto;
+  width: 94%;
   height: 10%;
   padding: 1%;
 }
 
 #correspondence {
-  border: solid black 2px;
-  width: auto;
+  text-align: center;
+  border-right: solid black 2px;
+  border-left: solid black 2px;
+  width: 94%;
   height: 10%;
   padding: 1%;
   margin-top: 2%;
 }
 
-.date{
-  width: 20%;
-  text-align: right;
+table {
+  width:100%;
+  border-right: solid #D14102 2px;
+  border-left: solid #D14102 2px;
 }
 
-td {
-  width: 20%;
-  text-align: left;
+table td {
+  width: 25%;
 }
 
 #withdraw {
@@ -88,29 +90,9 @@ td {
   margin-top: 2%;
   padding: 1%;
   cursor: pointer;
-  width: auto;
+  width: 94%;
   text-align: center;
   color: red;
-}
-
-#right {
-  text-align: right;
-}
-
-#info {
-  position: relative;
-  padding: 1%;
-  padding-left: 0%;
-  padding-right: 0%;
-  width: 45%;
-}
-
-#info2 {
-  position: relative;
-  padding: 1%;
-  padding-left: 0%;
-  padding-right: 0%;
-  width: 50%;
 }
 
 select {
@@ -127,4 +109,5 @@ select {
   /* border: solid black 2px; */
   padding: 1px;
   background: #f16f37;
+  width: 96%
 }

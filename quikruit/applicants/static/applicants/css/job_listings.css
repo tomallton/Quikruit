@@ -2,6 +2,36 @@
 	padding: 0 40px;
 }
 
+#container{
+	padding: 0px;
+}
+
+#navbar ul {
+  width:100%;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #D14102;
+}
+
+#navbar ul li {
+  float: left;
+  padding-left: 30px;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: white;
+}
+
 .jobcontainer {
 	border: 2px solid white;
 	margin: 30px 0;
@@ -9,7 +39,7 @@
 }
 
 .jobtitle {
-	margin-top: 0;  
+	margin-top: 0;
 }
 
 .jobdescription {
@@ -34,5 +64,5 @@
 	font-size: 1.5em;
 	padding: 10px;
 	display: inline-block;
-	
+
 }

@@ -19,6 +19,14 @@
 		<div id="header">
 			<img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=40>
 		</div>
+		<div id="navbar">
+			<ul>
+				<li><a style="color:white">Welcome, {{ profile.name }}. </a></li>
+				<li><a href="{% url 'applicants_applicationform' %}">Application Form /</a></li>
+				<li><a href="{% url 'applicants_joblistings' %}">Job Listings /</a></li>
+				<li><a href="{% url 'applicants_logout' %}">Log Out /</a></li>
+			</ul>
+		</div>
 		<h1>Application Form</h1>
 		<h2>Applicant {{ profile.name }}</h2>
 		<form method="POST" action="{% url 'applicants_applicationform' %}">

@@ -17,6 +17,32 @@ body {
     color: white;
 }
 
+#navbar ul {
+  width:100%;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #D14102;
+}
+
+#navbar ul li {
+  float: left;
+  padding-left: 30px;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: white;
+}
+
 #container {
   position: relative;
   width: 100%;

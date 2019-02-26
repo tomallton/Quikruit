@@ -15,10 +15,10 @@
     </div>
     <div id="navbar">
       <ul>
-        <li><a style="color:white">Welcome to your Home Page, {{ profile.name }}</a></li>
-        <li><a href="{% url 'applicants_applicationform' %}">Application Form</a></li>
-        <li><a href="{% url 'applicants_joblistings' %}">Job Listings</a></li>
-        <li><a href="{% url 'applicants_logout' %}">Log Out</a></li>
+        <li><a style="color:white">Welcome, {{ profile.name }}. </a></li>
+        <li><a href="{% url 'applicants_applicationform' %}">Application Form /</a></li>
+        <li><a href="{% url 'applicants_joblistings' %}">Job Listings /</a></li>
+        <li><a href="{% url 'applicants_logout' %}">Log Out /</a></li>
       </ul>
     </div>
     <div id="container">
@@ -41,42 +41,41 @@
       </div>
       </br>
       <div id="jobs">
-        <p>Select a Job to apply for:</p>
-        <select>
-          {% for job in job_listings %}
-          <option value="{{job.title}}">{{job.title}}</option>
-          {% endfor %}
-        </select>
+        {% if job_listings %}
+          <p>Select a Job to apply for:</p>
+          <select>
+            {% for job in job_listings %}
+            <option value="{{job.title}}">{{job.title}}</option>
+            {% endfor %}
+          </select>
+        {% endif %}
       </div>
-    	<div id="info">
-        <h4>APPLICATION STATUS AND CORRESPONDENCE</h4>
         <div id = "status">Decision Pending</div>
         <div id = "correspondence">
           <table>
+            <th>CORRESPONDENCE</th>
+            <th>DATE</th>
+            <th>TASKS TO BE COMPLETED</th>
+            <th>DUE DATE</th>
             <tr>
               <td>Application Submitted</td>
               <td class="date">31.10.2010</td>
-            </tr>
-            <tr>
-              <td>Account Created</td>
-              <td class="date">21.10.2010</td>
-            </tr>
-          </table>
-        </div>
-        <h4 id="withdraw">WITHDRAW APPLICATION</h4>
-    	</div>
-      <div id="info2">
-        <h4 id="right">TASKS TO BE COMPLETED</h4>
-        <div id = "correspondence">
-          <table>
-            <tr>
               <td>Complete Online Test</td>
               <td class="date">5 days remaining</td>
             </tr>
             <tr>
+              <td>Account Created</td>
+              <td class="date">21.10.2010</td>
               <td>Complete Application Form</td>
               <td class="date">3 days remaining</td>
             </tr>
+          </table>
+        </div>
+        <br>
+        <h4 id="withdraw">WITHDRAW APPLICATION</h4>
+    	</div>
+
+
           </table>
         </div>
       </div>
