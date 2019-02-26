@@ -5,10 +5,14 @@ def generate_score():
   if (there are enough labeled applications on the system):
     return supervised()
   else:
-    return unsupervised()
+    return manual_score()
     
 def supervised():
   # A logistic regression approach
   
-def unsupervised():
-  # ??
+def manual_score():
+  starting_score = 50
+  maximum_addition = 50
+  maximum_subtraction = -50
+  
+  
