@@ -20,9 +20,18 @@
           {% csrf_token %}
           {{ account_form.as_ul }}
           {{ profile_form.as_ul }}
-          <input type="submit">
+          <input type="submit" value="SUBMIT">
         </form>
       </div>
     </div>
+    <br>
+    <a style = " margin: 20px 30px 20px;
+     background-color: #D14102;
+     display: block;
+     padding: .5em;
+     cursor: pointer;
+     color: white;
+    }
+    " id="login_button" href="{% url 'applicants_login' %}">RETURN TO LOGIN PAGE</a>
   </body>
 </html>

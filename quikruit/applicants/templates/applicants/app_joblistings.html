@@ -18,7 +18,7 @@
       </div>
       <div id="navbar">
         <ul>
-          <li><a style="color:white">Welcome, {{ profile.name }}. </a></li>
+          <li><a href="{% url 'applicants_homepage' %}">Homepage /</a></li>
           <li><a href="{% url 'applicants_applicationform' %}">Application Form /</a></li>
           <li><a href="{% url 'applicants_joblistings' %}">Job Listings /</a></li>
           <li><a href="{% url 'applicants_logout' %}">Log Out /</a></li>

@@ -92,3 +92,12 @@ input[type="submit"] {
   height: auto;
   font-size: 90%;
 }
+
+#login_button {
+ margin: 20px 30px 20px;
+ background-color: #D14102;
+ display: block;
+ padding: .5em;
+ cursor: pointer;
+ color: white;
+}

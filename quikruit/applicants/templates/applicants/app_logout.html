@@ -1,10 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Logged Out</title>
-	</head>
-	<body style="font: 14px 'Century Gothic', Futura, sans-serif; margin: 20px; background: #3a3935; color: white;">
-		<h1 style="padding: 10px; width:100%; background: #D14102">Logged out successfully.</h1>
-		<a style="color:white" href="{% url 'applicants_login' %}" id="registerbutton1">Click here to login again</a>
-	</body>
+<body style="margin: 0px; font: 14px 'Century Gothic', Futura, sans-serif; background: #3a3935; color: white;">
+	<div style="width: auto; height: 40px; padding: 10px 40px; line-height: 40px; overflow: hidden;
+	 background-image: url({% static 'img/orangebackground.jpg' %}); margin: 0px">
+		<img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=40>
+	</div>
+	<div style="padding-left: 40px">
+		<h1 style="width:100%; padding-bottom: 5px">Logged out successfully.</h1>
+		<a style="color:white; background:#D14102; padding: 10px;" href="{% url 'applicants_login' %}">Click here to login again.</a>
+	</div>
+</body>
 </html>
