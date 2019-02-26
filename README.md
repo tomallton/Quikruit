@@ -2,7 +2,9 @@
 Development of Quikruit
 * [Applicants server](http://3.8.125.240/Project/applicants)
 * [Recruiters server](http://3.8.125.240/Project/recruiters)
+
 Recruiter account:
+
 - admin@example.com
 - cs261group25
 
