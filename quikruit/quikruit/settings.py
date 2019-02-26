@@ -37,7 +37,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'core',
+    'markdownx',
+    'core', 
     'recruiters',
     'applicants',
     'online_tests',

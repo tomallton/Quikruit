@@ -32,7 +32,7 @@ def register(request):
 
     if request.method == 'POST':
         account_form = AccountCreationForm(request.POST)
-        profile_form = ApplicantProfileForm(request.POST)
+        profile_form = ApplicantProfileForm(request.POST, request.FILES)
         
         if account_form.errors or profile_form.errors:
             context = {
@@ -102,3 +102,9 @@ def application_form(request):
         return render_page()
     elif request.method == "GET":
         return render_page()
+
+def job_list(request):
+    context = {
+        "job_listings": JobListing.objects.all()
+    }
+    return render(request, 'applicants/app_joblistings.html', context)
