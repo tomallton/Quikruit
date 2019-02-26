@@ -8,7 +8,7 @@ a:hover {
 }
 
 body {
-    font-family: 'Century Gothic','Futura',san-serif;
+    font-family: 'Century Gothic','Futura',system-ui,sans-serif;
     background: #3a3935;
     margin: 0;
     padding: 0;
