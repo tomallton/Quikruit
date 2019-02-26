@@ -139,3 +139,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/Project/media/"
 
 LOGIN_REDIRECT_URL = "/Project/applicants/"
+
+MARKDOWNX_URLS_PATH = '/Project/markdownx/markdownify/'
