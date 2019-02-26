@@ -14,7 +14,6 @@
 
 .jobdescription {
 	display: none;
-	border: 2px solid white;
 	padding: 10px 20px;
 }
 
@@ -26,7 +25,7 @@
 }
 
 .applybutton {
-	background: orange;
+	background: #fc6308;
 	border: 2px solid black;
 	font-weight: bold;
 	color: black;
@@ -35,4 +34,5 @@
 	font-size: 1.5em;
 	padding: 10px;
 	display: inline-block;
+	
 }

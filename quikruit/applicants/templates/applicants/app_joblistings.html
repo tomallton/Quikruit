@@ -30,10 +30,10 @@
           <div class="jobcontainer">
             <h2 class='jobtitle'>{{job.title}}</h2>
             <h3>DEPARTMENT: {{job.department}}</h3>
-            <h2 class='descriptioncollapsebutton' id='collapse_{{ job.model_id }}'>▶︎ Description</h2>
+            <h2 class='descriptioncollapsebutton' id='collapse_{{ job.model_id }}'>▶︎ Description</h2><br>
             <div class="jobdescription" id='desc_{{ job.model_id }}'>
               {{job.description|show_markdown|safe}}
-            </div><br>
+            </div>
             <a class='applybutton' href="{% url 'applicants_applicationform' %}">APPLY</a>
           </div>
         {% endfor %}
