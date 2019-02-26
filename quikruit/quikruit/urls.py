@@ -24,5 +24,5 @@ urlpatterns = [
     path('recruiters/', admin.site.urls),
     path('applicants/', include('applicants.urls')),
     path('testing/', include('online_tests.urls')),
-    path('markdownx/', include('markdownx.urls')),
+    # path('markdownx/', include('markdownx.urls')),
 ] + static('media/', document_root=MEDIA_ROOT)
