@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load markdown_view_tag %}
 <html>
   <head>
       <meta charset="UTF-8">
@@ -28,7 +29,7 @@
         {% for job in job_listings %}
           <h4>JOB TITLE: {{job.title}}</h4>
           <p><h5>DEPARTMENT:</h5> {{job.department}}</p>
-          <p>{{job.description}}</p>
+          <p>{{job.description|show_markdown|safe}}</p>
         {% endfor %}
       </div>
     </div>
