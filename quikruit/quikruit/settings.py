@@ -129,15 +129,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = '/home/bitnami/apps/django/django_projects/quikruit/static/'
-STATIC_URL = '/static/'
+STATIC_URL = '/quikruit/static/'
 
 STATICFILES_DIRS = [
     'global_static/',
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = "/media/"
+MEDIA_URL = "/quikruit/media/"
 
-LOGIN_REDIRECT_URL = "/applicants/"
+LOGIN_REDIRECT_URL = "/quikruit/applicants/login/"
 
-MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
+MARKDOWNX_URLS_PATH = '/quikruit/markdownx/markdownify/'
