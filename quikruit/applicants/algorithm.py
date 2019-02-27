@@ -1,9 +1,11 @@
-
+# A dictionary which maps programming languages to their position in a one-hot encoding
+# For example, a person that knows C and Java will have the array [1, 1, 0, 0, 0]
 programming_languages = {
   "Java": 0,
   "C": 1,
   "C++": 2,
-  
+  "Python": 3,
+  "Other": 4
 }
 
 def generate_score():
