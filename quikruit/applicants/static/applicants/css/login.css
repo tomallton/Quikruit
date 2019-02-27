@@ -24,13 +24,6 @@ body {
   padding: 0;
 }
 
-h1{
-  font-size: 20px;
-  margin: 20px 30px 20px;
-  text-align: left;
-  position: relative;
-}
-
 #header {
   width: auto;
   height: 40px;
@@ -54,16 +47,6 @@ input {
   box-sizing: border-box;
 }
 
-#passwordslot1, #loginslot, #emailslot, #confirmpasswordslot, #registerslot {
-  font-family: 'Quicksand';
-  margin-left: 24%;
-  height: 7%;
-  width: 50%;
-  margin-bottom: 2%;
-  font-size: 90%;
-  padding: 1%;
-}
-
 .error {
   color: red;
   margin-left: 24%;
@@ -77,7 +60,6 @@ input {
 .inputcontainer{
   color:grey;
 }
-
 
 #loginbutton1{
   background-color: #D14102;

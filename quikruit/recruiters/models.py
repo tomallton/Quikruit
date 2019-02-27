@@ -74,7 +74,7 @@ class RequiredSkill(models.Model):
     )
 
     def __str__(self):
-        return "{} requires {}".format(self.job_listing, self.skill)
+        return "{} requires".format(self.job_listing)
 
 class Suitabilities(models.Model):
     application = models.ForeignKey(

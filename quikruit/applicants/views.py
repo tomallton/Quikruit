@@ -103,8 +103,15 @@ def application_form(request):
     elif request.method == "GET":
         return render_page()
 
+@login_required(login_url='/Project/applicants/login/')
 def job_list(request):
+    profile = None
+    try:
+        profile = request.user.applicant_profile
+    except ApplicantProfile.DoesNotExist:
+        return HttpResponseRedirect("/Project/applicants/login/")
     context = {
-        "job_listings": JobListing.objects.all()
+        'profile': profile,
+        'job_listings': JobListing.objects.all()
     }
     return render(request, 'applicants/app_joblistings.html', context)

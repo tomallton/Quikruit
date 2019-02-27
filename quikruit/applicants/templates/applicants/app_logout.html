@@ -1,14 +1,27 @@
+{% extends 'applicants/app_base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<body style="margin: 0px; font: 14px 'Century Gothic', Futura, sans-serif; background: #3a3935; color: white;">
-	<div style="width: auto; height: 40px; padding: 10px 40px; line-height: 40px; overflow: hidden;
-	 background-image: url({% static 'img/orangebackground.jpg' %}); margin: 0px">
-		<img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=40>
-	</div>
-	<div style="padding-left: 40px">
-		<h1 style="width:100%; padding-bottom: 5px">Logged out successfully.</h1>
-		<a style="color:white; background:#D14102; padding: 10px;" href="{% url 'applicants_login' %}">Click here to login again.</a>
-	</div>
-</body>
-</html>
+
+{% block head %}
+<style type="text/css">
+a {
+    color: white;
+    background: #D14102;
+    padding: 10px;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+h1 {
+    margin: 0;
+}
+</style>
+{% endblock %}
+
+{% block title %}Logged out.{% endblock %}
+
+{% block navbar %}{# NO NAVBAR #}{% endblock %}
+
+{% block content %}
+<h1>Logged out successfully.</h1>
+<a href="{% url 'applicants_login' %}">Click here to login again.</a>
+{% endblock %}

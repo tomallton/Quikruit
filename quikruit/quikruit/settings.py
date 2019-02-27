@@ -140,4 +140,4 @@ MEDIA_URL = "/Project/media/"
 
 LOGIN_REDIRECT_URL = "/Project/applicants/"
 
-MARKDOWNX_URLS_PATH = '/Project/markdownx/markdownify/'
+MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
