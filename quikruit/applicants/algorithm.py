@@ -1,4 +1,10 @@
-# Programming languages (and other similar CV data) could be represented using one-hot encoding
+
+programming_languages = {
+  "Java": 0,
+  "C": 1,
+  "C++": 2,
+  
+}
 
 def generate_score():
   
