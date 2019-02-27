@@ -83,8 +83,7 @@ class PriorEmployment(models.Model):
     )
     company = models.CharField(max_length=60)
     position = models.CharField(max_length=60)
-    employed_from  = models.DateField()
-    employed_until = models.DateField()
+    employment_length = models.DurationField(null=True)
 
     @property
     def length_of_employment(self):
@@ -98,7 +97,6 @@ class Degree(models.Model):
     )
     institution = models.CharField(max_length=60)
     qualification = models.CharField(max_length=60)
-    date_awarded = models.DateField()
 
     # Since Degrees gave have different ways of being awarded in
     # Different countries, the `level` attribute will not have
@@ -130,7 +128,7 @@ class SkillHobbyLevel(models.Model):
         on_delete=models.CASCADE
     )
 
-    level_choices = ((i,"{}".format(i)) for i in range(1,6))
+    level_choices = ((i,"{}".format(i)) for i in range(0,11))
     level = models.IntegerField(choices=level_choices)
 
     def __str__(self):
@@ -166,32 +164,22 @@ class JobApplication(StringBasedModelIDMixin):
         on_delete=models.CASCADE
     )
     cover_letter = models.TextField(blank=True)
-    date_submitted = models.DateTimeField(null=True)
+    date_submitted = models.DateTimeField(auto_now_add=True)
 
-    IN_PROGRESS            = 0
-    SENT                   = 1
-    UNDER_CONSIDERATION    = 2
-    ONLINE_TEST_REQUESTED  = 3
-    ONLINE_TEST_COMPLETED  = 4
-    REJECTED               = 5
-    OFFER_GIVEN            = 6
-    EMPLOYED               = 7
-    WITHDRAWN              = 8
-    INTERVIEW_REQUESTED    = 9
-    INTERVIEW_COMPLETED    = 10
+    SENT                   = 0
+    REJECTED               = 1
+    ONLINE_TEST_COMPLETED  = 2
+    INTERVIEW_REQUESTED    = 3
+    INTERVIEW_COMPLETED    = 4
+    OFFER_GIVEN            = 5
 
     status_choices = (
-        (IN_PROGRESS, 'In progress'),
         (SENT, 'Application sent'),
-        (WITHDRAWN, 'Application withdrawn'),
-        (UNDER_CONSIDERATION, 'Application under consideration'),
-        (ONLINE_TEST_REQUESTED, 'Online test requested'),
         (ONLINE_TEST_COMPLETED, 'Online test completed'),
         (INTERVIEW_REQUESTED, 'Interview requested'),
         (INTERVIEW_COMPLETED, 'Interview completed'),
         (REJECTED, 'No longer being considered'),
         (OFFER_GIVEN, 'Job offer sent'),
-        (EMPLOYED, 'Job offer accepted')
     )
     status = models.IntegerField(choices=status_choices, default=0)
     last_updated = models.DateTimeField(auto_now=True)

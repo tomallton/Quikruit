@@ -9,7 +9,7 @@ from .models import *
 class PriorEmploymentInline(admin.TabularInline):
 	model = PriorEmployment
 	can_delete = False
-	readonly_fields = ['company','position','employed_from','employed_until']
+	readonly_fields = ['company','position','employment_length']
 	extra = 0
 
 	def has_add_permission(self,request):
@@ -17,7 +17,7 @@ class PriorEmploymentInline(admin.TabularInline):
 
 class DegreeInline(admin.TabularInline):
 	model = Degree
-	readonly_fields = ['institution','qualification','date_awarded','level_awarded']
+	readonly_fields = ['institution','qualification','level_awarded']
 	can_delete = False
 	extra = 0
 
@@ -35,7 +35,6 @@ class AlevelInline(admin.TabularInline):
 
 class SkillHobbyLevelInline(admin.TabularInline):
 	model = SkillHobbyLevel
-	can_delete = False
 	readonly_fields = ['skillhobby','level']
 	extra = 0
 
