@@ -128,16 +128,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = '/home/bitnami/apps/django/django_projects/Quikruit_Development/static/'
-STATIC_URL = '/Project/static/'
+STATIC_ROOT = '/home/bitnami/apps/django/django_projects/quikruit/static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     'global_static/',
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = "/Project/media/"
+MEDIA_URL = "/media/"
 
-LOGIN_REDIRECT_URL = "/Project/applicants/"
+LOGIN_REDIRECT_URL = "/applicants/"
 
-MARKDOWNX_URLS_PATH = '/Project/markdownx/markdownify/'
+MARKDOWNX_URLS_PATH = '/markdownx/markdownify/'
