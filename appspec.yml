@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /home/bitnami/apps/django/django_projects/Quikruit_Development
+  - source: /quikruit
+    destination: /home/bitnami/apps/django/django_projects/quikruit
 hooks:
   AfterInstall:
     - location: SetPerms.sh
