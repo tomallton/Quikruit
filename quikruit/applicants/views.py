@@ -9,6 +9,10 @@ from .models import *
 from .forms import *
 from recruiters.models import JobListing
 from core.forms import AccountCreationForm
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
 
 @login_required(login_url='/quikruit/applicants/login/')
 def homepage(request):
@@ -33,7 +37,7 @@ def register(request):
     if request.method == 'POST':
         account_form = AccountCreationForm(request.POST)
         profile_form = ApplicantProfileForm(request.POST, request.FILES)
-        
+
         if account_form.errors or profile_form.errors:
             context = {
                 'account_form': account_form,
@@ -136,3 +140,20 @@ def job_list(request):
         'job_listings': JobListing.objects.all()
     }
     return render(request, 'applicants/app_joblistings.html', context)
+
+@login_required(login_url='/quikruit/applicants/login/')
+def settings(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'applicants/app_changepassword.html', {
+        'form': form
+    })
