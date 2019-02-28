@@ -129,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = '/home/bitnami/apps/django/django_projects/quikruit/static/'
-STATIC_URL = '/quikruit/static/'
+STATIC_URL = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = [
     'global_static/',

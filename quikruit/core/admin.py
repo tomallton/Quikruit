@@ -33,5 +33,5 @@ class NotificationAdmin(admin.ModelAdmin):
 	fields = ('account','message','link','created')
 	readonly_fields = ('created',)
 
-admin.site.site_header = format_html('<img id="logo" src="/Project/static/svg/logo_recruiters.svg" alt="Quikruit Logo">')
+admin.site.site_header = format_html('<img id="logo" src="/quikruit/static/svg/logo_recruiters.svg" alt="Quikruit Logo">')
 admin.site.register(QuikruitAccount, QuikruitAccountAdmin)
