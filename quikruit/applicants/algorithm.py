@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 # A dictionary which maps programming languages to their position in a one-hot encoding
-# For example, a person that knows C and Java will have the array [1, 1, 0, 0, 0, 0, 0, 0]
+# For example, a person that knows C and SQL will have the array [0, 1, 0, 0, 0, 0, 0, 1, 0]
 programming_languages = {
   "Java": 0,
   "C": 1,
@@ -10,22 +10,25 @@ programming_languages = {
   "HTML": 4,
   "JavaScript": 5,
   "PHP": 6,
-  "Other": 7
+  "SQL": 7,
+  "Other": 8
 }
-# Computer Science, Computing, Information Technology, Engineering, Electronics
+# is this fine?
 a_levels = {
-  "Computer Science related": 0, # ?
-  
+  "Hardware related": 0, # Engineering, Electronics, Computing
+  "Software related": 1, # Computing, Information Technology, Software Systems Development, Computer Science
+  "Theoretically related": 2, # Mathematics, Physics, Computer Science
+  "Other": 3 # Everything else
 }
 
 def generate_score():
   
   if (there are enough labeled applications on the system):
-    return supervised()
+    return supervised_learning()
   else:
     return manual_score()
     
-def supervised():
+def supervised_learning():
   # A logistic regression approach
   
 # This method will use the job details in order to calculate a score if the supervised learning cannot be used
