@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 import pdb
 from .models import *
@@ -57,17 +57,38 @@ def register(request):
         }
     return render(request, 'applicants/app_registration.html', context)
 
+# @login_required(login_url='/quikruit/applicants/login/')
+# def application_form(request, job_id):
+#     try:
+#         profile = request.user.applicant_profile
+#     except ApplicantProfile.DoesNotExist:
+#         return HttpResponseRedirect("/quikruit/applicants/login/")
+#     context = {
+#         'profile': profile,
+#         'job': JobListing.objects.get(pk=job_id)
+#     }
+#     return render(request, 'applicants/app_applicationform.html', context)
+
 @login_required(login_url='/quikruit/applicants/login/')
-def application_form(request):
-    profile = request.user.applicant_profile
+def application_form(request, job_id):
+    try:
+        profile = request.user.applicant_profile
+    except ApplicantProfile.DoesNotExist:
+        return HttpResponseRedirect("/quikruit/applicants/login/")
+    job = JobListing.objects.get(pk=job_id)
     def render_page():
         a_level_formset = ALevelFormSet(instance=profile)
         prior_employment_formset = PriorEmploymentFormSet(instance=profile)
         degree_formset = DegreeFormSet(instance=profile)
+        cover_letter_form = JobApplicationForm()
+        skills_and_hobbies_formset = SkillHobbyLevelFormSet(instance=profile)
         context = {
+            'job': job,
             'profile': profile,
             'a_levels': a_level_formset,
             'prior_employment': prior_employment_formset,
+            'skills_and_hobbies': skills_and_hobbies_formset,
+            'cover_letter_form': cover_letter_form,
             'degree': degree_formset,
         }
         return render(request, 'applicants/app_applicationform.html', context)

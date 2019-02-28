@@ -1,9 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'online_tests/testing_base.html' %}
 
-</body>
-</html>
+{% block title %}Quikruit Testing Homepage{% endblock %}
+
+{% block content %}
+<h1>Testing homepage</h1>
+
+<div id="testlist">
+	<h3>Here are the tests requested of you:</h3>
+	<ul>
+		{% for test in tests_requested %}
+			<a href="#">Test for application: {{ test.application.job_listing.title }}</a>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}

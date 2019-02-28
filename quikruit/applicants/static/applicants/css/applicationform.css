@@ -12,6 +12,21 @@ li a:hover {
   color: white;
 }
 
+#applicationform {
+  padding-top: 20px;
+}
+
+.collapsebutton {
+  border: 2px solid white;
+  padding: 5px;
+  display: inline-block;
+  margin: 2px 0;
+}
+
+.collapsiblebox {
+  padding: 10px 0;
+}
+
 .application {
   font-family: 'Quicksand';
   border: solid black 2px;
@@ -21,6 +36,11 @@ li a:hover {
   margin-bottom: 0.5%;
   font-size: 90%;
   padding: 1%;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .error {

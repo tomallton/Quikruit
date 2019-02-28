@@ -150,7 +150,7 @@ class SkillHobby(StringBasedModelIDMixin):
     kind = models.IntegerField(choices=kind_choices)
 
     def __str__(self):
-        return "{0}: {1}".format(self.get_kind_display(), self.name)
+        return "{1} [{0}]".format(self.get_kind_display(), self.name)
 
 class JobApplication(StringBasedModelIDMixin):
     job_listing = models.ForeignKey(

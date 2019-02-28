@@ -138,6 +138,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/quikruit/media/"
 
-LOGIN_REDIRECT_URL = "/quikruit/applicants/login/"
+LOGIN_REDIRECT_URL = "/quikruit/applicants/"
 
 MARKDOWNX_URLS_PATH = '/quikruit/markdownx/markdownify/'

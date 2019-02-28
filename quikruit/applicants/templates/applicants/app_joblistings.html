@@ -1,7 +1,5 @@
 {% extends 'applicants/app_base.html' %}
-
-{% load static %}
-{% load markdown_view_tag %}
+{% load static %} {% load markdown_view_tag %}
 
 {% block title %}Applicant Job Listing{% endblock %}
 
@@ -27,7 +25,7 @@
     <div class="jobdescription" id='desc_{{ job.model_id }}'>
       {{job.description|show_markdown|safe}}
     </div>
-    <a class='applybutton' href="{% url 'applicants_applicationform' %}">APPLY</a>
+    <a class='applybutton' href="{% url 'applicants_applicationform' job_id=job.model_id %}">APPLY</a>
   </div>
 {% endfor %}
 </div>
