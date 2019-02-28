@@ -13,12 +13,17 @@ programming_languages = {
   "SQL": 7,
   "Other": 8
 }
-# is this fine?
+
+# is this ok?
 a_levels = {
   "Hardware related": 0, # Engineering, Electronics, Computing
   "Software related": 1, # Computing, Information Technology, Software Systems Development, Computer Science
   "Theoretically related": 2, # Mathematics, Physics, Computer Science
   "Other": 3 # Everything else
+}
+
+prior_employement = {
+  
 }
 
 def generate_score():
