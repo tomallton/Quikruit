@@ -22,16 +22,14 @@ a_levels = {
   "Other": 3 # Everything else
 }
 
+degree = a_levels
+
 prior_employement = {
   
 }
 
 skills_and_hobbies = {
  # can be excluded? 
-}
-
-degree = {
-  
 }
 
 def generate_score():
