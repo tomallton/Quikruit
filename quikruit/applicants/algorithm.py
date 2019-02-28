@@ -26,6 +26,14 @@ prior_employement = {
   
 }
 
+skills_and_hobbies = {
+ # can be excluded? 
+}
+
+degree = {
+  
+}
+
 def generate_score():
   
   if (there are enough labeled applications on the system):
