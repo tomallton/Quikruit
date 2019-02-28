@@ -20,19 +20,43 @@
 	{% csrf_token %}
 	<h3 class="collapsebutton" id='collapsebutton_employment'>▼ Prior Employment</h3><br>
 	<div class='collapsiblebox' id='collapse_employment'>
-		{{ prior_employment }}
+			{{ prior_employment.management_form }}
+		<div id='formset_employment'>
+			{% for form in prior_employment %}
+				{{ form }}
+			{% endfor %}
+		</div>
+		<h3 class='addnew' id='addnew_employment'>+ Add another Employment</h3>
 	</div>
 	<h3 class='collapsebutton' id='collapsebutton_degree'>▼ Degree</h3><br>
 	<div class='collapsiblebox' id='collapse_degree'>
-		{{ degree }}
+		{{ degree.management_form }}
+		<div id='formset_degree'>
+			{% for form in degree %}
+				{{ form }}
+			{% endfor %}
+		</div>
+		<h3 class='addnew' id='addnew_degree'>+ Add another Degree</h3>
 	</div>
-	<h3 class='collapsebutton' id='collapsebutton_alevels'>▼ A-Levels</h3><br>
-	<div class='collapsiblebox' id='collapse_alevels'>
-		{{ a_levels }}
+	<h3 class='collapsebutton' id='collapsebutton_alevel'>▼ A-Levels</h3><br>
+	<div class='collapsiblebox' id='collapse_alevel'>
+		{{ a_levels.management_form }}
+		<div id="formset_alevel">
+			{% for form in a_levels %}
+				{{ form }}
+			{% endfor %}
+		</div>
+		<h3 class='addnew' id='addnew_alevel'>+ Add another A-Level</h3>
 	</div>
-	<h3 class='collapsebutton' id='collapsebutton_skillsandhobbies'>▼ Skills and Hobbies</h3><br>
-	<div class='collapsiblebox' id='collapse_skillsandhobbies'>
-		{{ skills_and_hobbies }}
+	<h3 class='collapsebutton' id='collapsebutton_skillhobby'>▼ Skills and Hobbies</h3><br>
+	<div class='collapsiblebox' id='collapse_skillhobby'>
+		{{ skills_and_hobbies.management_form }}
+		<div id='formset_skillhobby'>
+			{% for form in skills_and_hobbies %}
+				{{ form }}
+			{% endfor %}
+		</div>
+		<h3 class='addnew' id='addnew_skillhobby'>+ Add another Skill or Hobby</h3>
 	</div>
 	<h3>Cover Letter</h3>
 	{{ cover_letter_form.cover_letter }}

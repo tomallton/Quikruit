@@ -23,6 +23,13 @@ li a:hover {
   margin: 2px 0;
 }
 
+.addnew {
+  border: 2px solid white;
+  padding: 5px;
+  display: inline-block;
+  margin: 2px 0;
+}
+
 .collapsiblebox {
   padding: 10px 0;
 }

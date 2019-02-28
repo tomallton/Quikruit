@@ -114,9 +114,20 @@ def application_form(request, job_id):
             request.POST,
             instance=profile
         )
+        skills_and_hobbies_formset = SkillHobbyLevelFormSet(
+            request.POST,
+            instance=profile
+        )
+        job_application_form = JobApplicationForm(
+            request.POST
+        )
+        job_application_form.instance.applicant = profile
+        job_application_form.instance.job_listing = job
         if (not prior_employment_formset.is_valid() or
             not a_level_formset.is_valid() or
-            not degree_formset.is_valid()):
+            not degree_formset.is_valid() or
+            not skills_and_hobbies_formset.is_valid() or
+            not job_application_form.is_valid()):
             pdb.set_trace()
         prior_employment_formset.clean()
         prior_employment_formset.save()
@@ -124,6 +135,10 @@ def application_form(request, job_id):
         a_level_formset.save()
         degree_formset.clean()
         degree_formset.save()
+        skills_and_hobbies_formset.clean()
+        skills_and_hobbies_formset.save()
+        job_application_form.clean()
+        job_application_form.save()
         return render_page()
     elif request.method == "GET":
         return render_page()
