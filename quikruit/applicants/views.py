@@ -9,10 +9,10 @@ from .models import *
 from .forms import *
 from recruiters.models import JobListing
 from core.forms import AccountCreationForm
-# from django.contrib import messages
-# from django.contrib.auth import update_session_auth_hash
-# from django.contrib.auth.forms import PasswordChangeForm
-# from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
 
 @login_required(login_url='/quikruit/applicants/login/')
 def homepage(request):
