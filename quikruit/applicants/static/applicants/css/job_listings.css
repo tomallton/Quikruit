@@ -1,0 +1,68 @@
+#content {
+	padding: 0 40px;
+}
+
+#container{
+	padding: 0px;
+}
+
+#navbar ul {
+  width:100%;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #D14102;
+}
+
+#navbar ul li {
+  float: left;
+  padding-left: 30px;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: white;
+}
+
+.jobcontainer {
+	border: 2px solid white;
+	margin: 30px 0;
+	padding: 10px;
+}
+
+.jobtitle {
+	margin-top: 0;
+}
+
+.jobdescription {
+	display: none;
+	padding: 10px 20px;
+}
+
+.descriptioncollapsebutton {
+	border: 2px solid white;
+	padding: 5px;
+	display: inline-block;
+	margin: 2px 0;
+}
+
+.applybutton {
+	background: #fc6308;
+	border: 2px solid black;
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+	margin-top: 10px;
+	font-size: 1.5em;
+	padding: 10px;
+	display: inline-block;
+
+}

@@ -1,5 +1,11 @@
 # Quikruit_Development
 Development of Quikruit
+* [Applicants server](http://3.8.125.240/quikruit/applicants)
+* [Recruiters server](http://3.8.125.240/quikruit/recruiters)
+
+Recruiter account:
+
+admin@example.com          cs261group25
 
 ## Useful links for Cristian and Tom
 * [Field lookups](https://docs.djangoproject.com/en/2.1/ref/models/querysets/#field-lookups)

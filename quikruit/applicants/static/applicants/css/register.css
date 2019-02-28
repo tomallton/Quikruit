@@ -31,13 +31,6 @@ input#id_picture {
   padding: 0;
 }
 
-h1{
-  font-size: 20px;
-  margin: 20px 30px 20px;
-  text-align: left;
-  position: relative;
-}
-
 #header{
   background-image: url("https://cdn.pixabay.com/photo/2017/10/06/11/09/tile-2822716_1280.jpg");
   width: auto;
@@ -91,4 +84,13 @@ input[type="submit"] {
   list-style: none;
   height: auto;
   font-size: 90%;
+}
+
+#login_button {
+ margin: 20px 30px 20px;
+ background-color: #D14102;
+ display: block;
+ padding: .5em;
+ cursor: pointer;
+ color: white;
 }

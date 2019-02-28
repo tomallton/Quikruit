@@ -1,5 +1,14 @@
 from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
+from markdownx.models import MarkdownxField
+from django import template
+from markdownx.utils import markdownify
+
+register = template.Library()
+
+@register.filter
+def show_markdown(text):
+    return markdownify(text)
 
 class Department(models.Model):
     name = models.CharField(
@@ -28,7 +37,7 @@ class RecruiterProfile(models.Model):
 
 class JobListing(StringBasedModelIDMixin):
     title = models.CharField(max_length=40)
-    description = models.TextField()
+    description = MarkdownxField()
     department = models.ForeignKey(
         'recruiters.Department',
         related_name='job_listings',
@@ -65,7 +74,7 @@ class RequiredSkill(models.Model):
     )
 
     def __str__(self):
-        return "{} requires {}".format(self.job_listing, self.skill)
+        return "{} requires".format(self.job_listing)
 
 class Suitabilities(models.Model):
     application = models.ForeignKey(

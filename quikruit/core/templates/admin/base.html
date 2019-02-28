@@ -6,7 +6,7 @@
 <style type="text/css">
 
 body{
-	font-family:'Century Gothic','Futura',san-serif;
+	font-family:'Century Gothic','Futura',system-ui,sans-serif;
 	background:#3a3935;
 }
 
@@ -18,13 +18,13 @@ body{
 	background-image:url('{% static "img/orangebackground.jpg" %}');
 }
 
-h1,h2,a,p{
+h1,h2,a{
 	color:white;
 }
 
 a:link, a:hover, a:visited {
 	color:#2F4F4F;
-	font-family:'Century Gothic','Futura',san-serif;
+	font-family:'Century Gothic','Futura',system-ui,sans-serif;
 }
 
 .selector-chosen h2, .module h2, .module caption, .inline-group h2 {
@@ -44,7 +44,7 @@ div#changelist {
 	background: #3a3935
 }
 
-form.form-row p {
+p {
 	color: black;
 }
 
@@ -54,6 +54,14 @@ form.form-row p {
 	color: white;
 	padding: 7px;
 	font-size: 14px;
+}
+
+div.markdownx-preview * {
+	all: revert;
+}
+
+li {
+	list-style: initial !important;
 }
 
 </style>

@@ -1,36 +1,32 @@
-<!DOCTYPE html>
-{% load static %}
-<html>
-  <head>
-      <meta charset="UTF-8">
-      <title>Applicant Job Listing</title>
-      <link rel="stylesheet" href='{% static "applicants/css/applicanthomepage.css" %}' type="text/css">
-      <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-      <script src='{% static "js/jquery-3.3.1.min.js" %}' type='text/javascript'></script>
-      <script src='{% static "applicants/js/registration.js" %}' type='text/javascript'></script>
-  </head>
-  <body>
-    <div id="container">
-      <div id="header" style="background-image: url({% static 'img/orangebackground.jpg' %})">
-        <img src='{% static "svg/logo_applicants.svg" %}' alt="Quikruit Logo" height=40>
-      </div>
-      <div id="navbar">
-        <ul>
-          <li><a href="">Applicant Home</a></li>
-          <li><a href="{% url 'applicants_applicationform' %}">Application Form</a></li>
-          <li><a href="{% url 'applicants_logout' %}">Log Out</a></li>
-        </ul>
-      </div>
-      <h2 id="welcome">Here are all the positions for which you can apply for:</h2>
-      <div id="jobs">
-        <h4>JOB LISTINGS</h4>
-        <p>Select a Job to apply for:</p>
-        {% for job in job_listings %}
-          <h4>JOB TITLE: {{job.title}}</h4>
-          <p><h5>DEPARTMENT:</h5> {{job.department}}</p>
-          <p>{{job.description}}</p>
-        {% endfor %}
-      </div>
+{% extends 'applicants/app_base.html' %}
+{% load static %} {% load markdown_view_tag %}
+
+{% block title %}Applicant Job Listing{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'applicants/css/job_listings.css' %}">
+<script src='{% static "applicants/js/joblisting.js" %}' type='text/javascript'></script>
+{% endblock %}
+
+{% block profilepicture %}
+{% if profile.picture.name %}
+  <img id="profilepicture" src='{{ profile.picture.url }}' style='width: 40px; border-radius: 100%; float:right;'>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2 id="welcome">Here are all the positions for which you can apply for:</h2>
+<div id="jobs">
+  {% for job in job_listings %}
+  <div class="jobcontainer">
+    <h2 class='jobtitle'>{{job.title}}</h2>
+    <h3>DEPARTMENT: {{job.department}}</h3>
+    <h2 class='descriptioncollapsebutton' id='collapse_{{ job.model_id }}'>▶︎ Description</h2><br>
+    <div class="jobdescription" id='desc_{{ job.model_id }}'>
+      {{job.description|show_markdown|safe}}
     </div>
-  </body>
-</html>
+    <a class='applybutton' href="{% url 'applicants_applicationform' job_id=job.model_id %}">APPLY</a>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

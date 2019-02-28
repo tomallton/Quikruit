@@ -1,87 +1,32 @@
-body {
-    font-family: 'Century Gothic','Futura',san-serif;
-    background: #3a3935;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    display: block;
-    color: white;
-}
-
-#container {
-  position: relative;
-  width: 100%;
-  min-width: 980px;
-  padding: 0;
-}
-
-h1{
-  font-size: 20px;
-  margin: 20px 30px 20px;
-  text-align: left;
-  position: relative;
-}
-
-#header{
-  width: auto;
-  height: 40px;
-  padding: 10px 40px;
-  line-height: 40px;
-  overflow: hidden;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #f4ad07;
-  border: solid black 2px;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
 li a:hover {
   color: white;
 }
 
-#welcome {
-  color: #3a3935;
-}
-
 #status {
   border: solid black 2px;
-  width: auto;
+  width: 94%;
   height: 10%;
   padding: 1%;
 }
 
 #correspondence {
-  border: solid black 2px;
-  width: auto;
+  text-align: center;
+  border-right: solid black 2px;
+  border-left: solid black 2px;
+  width: 94%;
   height: 10%;
   padding: 1%;
   margin-top: 2%;
 }
 
-.date{
-  width: 20%;
-  text-align: right;
+table {
+  width:100%;
+  border-right: solid #D14102 2px;
+  border-left: solid #D14102 2px;
 }
 
-td {
-  width: 20%;
-  text-align: left;
+table td {
+  width: 25%;
 }
 
 #withdraw {
@@ -91,31 +36,9 @@ td {
   margin-top: 2%;
   padding: 1%;
   cursor: pointer;
-  width: auto;
+  width: 94%;
   text-align: center;
   color: red;
-}
-
-#right {
-  text-align: right;
-}
-
-#info {
-  position: relative;
-  padding: 1%;
-  padding-left: 0%;
-  padding-right: 0%;
-  width: 45%;
-}
-
-#info2 {
-  position: relative;
-  float: right;
-  margin-top: -27.6%;
-  padding: 1%;
-  padding-left: 0%;
-  padding-right: 0%;
-  width: 50%;
 }
 
 select {
@@ -126,4 +49,10 @@ select {
  cursor: pointer;
  width: auto;
  font-family: "Quicksand";
+}
+
+#notifications{
+  /* border: solid black 2px; */
+  padding: 1px;
+  background: #f16f37;
 }

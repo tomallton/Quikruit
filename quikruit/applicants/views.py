@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 import pdb
 from .models import *
@@ -10,13 +10,13 @@ from .forms import *
 from recruiters.models import JobListing
 from core.forms import AccountCreationForm
 
-@login_required(login_url='/Project/applicants/login/')
+@login_required(login_url='/quikruit/applicants/login/')
 def homepage(request):
 	profile = None
 	try:
 		profile = request.user.applicant_profile
 	except ApplicantProfile.DoesNotExist:
-		return HttpResponseRedirect("/Project/applicants/login/")
+		return HttpResponseRedirect("/quikruit/applicants/login/")
 	context = {
 		'profile': profile,
         'notifications': profile.account.notifications.all(),
@@ -32,7 +32,7 @@ def register(request):
 
     if request.method == 'POST':
         account_form = AccountCreationForm(request.POST)
-        profile_form = ApplicantProfileForm(request.POST)
+        profile_form = ApplicantProfileForm(request.POST, request.FILES)
         
         if account_form.errors or profile_form.errors:
             context = {
@@ -57,23 +57,44 @@ def register(request):
         }
     return render(request, 'applicants/app_registration.html', context)
 
-@login_required(login_url='/Project/applicants/login/')
-def application_form(request):
-    profile = request.user.applicant_profile
+# @login_required(login_url='/quikruit/applicants/login/')
+# def application_form(request, job_id):
+#     try:
+#         profile = request.user.applicant_profile
+#     except ApplicantProfile.DoesNotExist:
+#         return HttpResponseRedirect("/quikruit/applicants/login/")
+#     context = {
+#         'profile': profile,
+#         'job': JobListing.objects.get(pk=job_id)
+#     }
+#     return render(request, 'applicants/app_applicationform.html', context)
+
+@login_required(login_url='/quikruit/applicants/login/')
+def application_form(request, job_id):
+    try:
+        profile = request.user.applicant_profile
+    except ApplicantProfile.DoesNotExist:
+        return HttpResponseRedirect("/quikruit/applicants/login/")
+    job = JobListing.objects.get(pk=job_id)
     def render_page():
         a_level_formset = ALevelFormSet(instance=profile)
         prior_employment_formset = PriorEmploymentFormSet(instance=profile)
         degree_formset = DegreeFormSet(instance=profile)
+        cover_letter_form = JobApplicationForm()
+        skills_and_hobbies_formset = SkillHobbyLevelFormSet(instance=profile)
         context = {
+            'job': job,
             'profile': profile,
             'a_levels': a_level_formset,
             'prior_employment': prior_employment_formset,
+            'skills_and_hobbies': skills_and_hobbies_formset,
+            'cover_letter_form': cover_letter_form,
             'degree': degree_formset,
         }
         return render(request, 'applicants/app_applicationform.html', context)
 
     if not request.user.is_applicant:
-        return HttpResponseRedirect("/Project/applicants/login/")
+        return HttpResponseRedirect("/quikruit/applicants/login/")
 
 
     if request.method == "POST":
@@ -102,3 +123,16 @@ def application_form(request):
         return render_page()
     elif request.method == "GET":
         return render_page()
+
+@login_required(login_url='/quikruit/applicants/login/')
+def job_list(request):
+    profile = None
+    try:
+        profile = request.user.applicant_profile
+    except ApplicantProfile.DoesNotExist:
+        return HttpResponseRedirect("/quikruit/applicants/login/")
+    context = {
+        'profile': profile,
+        'job_listings': JobListing.objects.all()
+    }
+    return render(request, 'applicants/app_joblistings.html', context)

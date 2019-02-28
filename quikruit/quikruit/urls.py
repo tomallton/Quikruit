@@ -21,8 +21,8 @@ from core import views as core_views
 
 urlpatterns = [
     path('', core_views.global_homepage),
-    path('admin/', admin.site.urls),
+    path('recruiters/', admin.site.urls),
     path('applicants/', include('applicants.urls')),
-    path('recruiters/', include('recruiters.urls')),
-    path('testing/', include('online_tests.urls'))
+    path('testing/', include('online_tests.urls')),
+    path('markdownx/', include('markdownx.urls')),
 ] + static('media/', document_root=MEDIA_ROOT)

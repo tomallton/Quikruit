@@ -7,64 +7,24 @@ a:hover {
  color: #babfb3;
 }
 
-body {
-    /* font-family: 'Century Gothic','Futura',san-serif; */
-    background: #3a3935;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    display: block;
-    color: white;
-}
-
-#container {
-  position: relative;
-  width: 100%;
-  min-width: 980px;
-  padding: 0;
-}
-
-h1{
-  font-size: 20px;
-  margin: 20px 30px 20px;
-  text-align: left;
-  position: relative;
-}
-
-#header{
-  background-image: url("https://cdn.pixabay.com/photo/2017/10/06/11/09/tile-2822716_1280.jpg");
-  width: auto;
-  height: 40px;
-  padding: 10px 40px;
-  line-height: 40px;
-  overflow: hidden;
-}
-
-ul {
-  list-style-type: none;
-  margin: auto;
-  padding: auto;
-}
-
-#box {
-  width: 70%;
-  margin: auto;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
 
 li a:hover {
   color: white;
+}
+
+#applicationform {
+  padding-top: 20px;
+}
+
+.collapsebutton {
+  border: 2px solid white;
+  padding: 5px;
+  display: inline-block;
+  margin: 2px 0;
+}
+
+.collapsiblebox {
+  padding: 10px 0;
 }
 
 .application {
@@ -78,6 +38,11 @@ li a:hover {
   padding: 1%;
 }
 
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .error {
   font-family: 'Quicksand';
   color: red;
@@ -89,27 +54,7 @@ li a:hover {
   padding: 1%;
 }
 
-#submitbutton1, #savebutton1, #exitbutton1 {
- border: solid black 2px;
- background-color: white;
- font-size: 100%;
- color: black;
- padding: 1%;
- cursor: pointer;
- width: auto;
- margin-right: 2%;
- text-align: center;
-}
-
-#submitbutton1 {
-  color: #27cc0a;
-}
-
-#exitbutton1 {
-  color: red;
-}
-
-.button{
+.button {
   background-color: white;
   border: solid black 1px;
   font-size: 90%;
@@ -122,6 +67,15 @@ li a:hover {
   color: black;
 }
 
+#submitbutton {
+  background-color: #D14102;
+  color:white;
+}
+
 a:hover {
   color:red;
+}
+
+.formsetcontainer {
+  border: 2px solid white;
 }
