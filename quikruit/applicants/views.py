@@ -143,18 +143,18 @@ def job_list(request):
 
 @login_required(login_url='/quikruit/applicants/login/')
 def settings(request):
-    # if request.method == 'POST':
-    #     form = PasswordChangeForm(request.user, request.POST)
-    #     if form.is_valid():
-    #         user = form.save()
-    #         update_session_auth_hash(request, user)  # Important!
-    #         messages.success(request, 'Your password was successfully updated!')
-    #         return redirect('change_password')
-    #     else:
-    #         messages.error(request, 'Please correct the error below.')
-    # else:
-    #     form = PasswordChangeForm(request.user)
-    # return render(request, '/change_password.html', {
-    #     'form': form
-    # })
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, '/change_password.html', {
+        'form': form
+    })
 	return render(request, 'applicants/app_changepassword.html', {})
