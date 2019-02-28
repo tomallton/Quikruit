@@ -24,18 +24,21 @@
 
 {% block content %}
 <div id="notifications">
-  <ul>
-    {% for notif in notifications %}
+  <h1>Notifications</h1>
+  {% for notif in notifications %}
+    <div class="notificationwrapper">
+      <span class="notificationdate">{{ notif.created }}</span><br>
+      <span class="notificationmessage">
       {% if notif.link %}
-        <li><a href="{{ notif.link }}">{{ notif.message }}</a></li>
+        <a href="{{ notif.link }}">{{ notif.message }}</a></li>
       {% else %}
-        <li>{{ notif.message }}</li>
+        {{ notif.message }}
       {% endif %}
-      <li> {{ notif.created }} </li>
-    {% empty %}
-      No notifications
-    {% endfor %}
-  </ul>
+    </span>
+    </div>
+  {% empty %}
+    No notifications
+  {% endfor %}
 </div>
 </br>
 <div id="jobs">

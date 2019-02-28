@@ -23,7 +23,7 @@ def homepage(request):
 		return HttpResponseRedirect("/quikruit/applicants/login/")
 	context = {
 		'profile': profile,
-        'notifications': profile.account.notifications.all(),
+        'notifications': profile.account.notifications.order_by('-created'),
 		'current_date_and_time': timezone.now(),
         'job_listings': JobListing.objects.all()
 	}
@@ -139,7 +139,7 @@ def application_form(request, job_id):
         skills_and_hobbies_formset.save()
         job_application_form.clean()
         job_application_form.save()
-        return render_page()
+        return HttpResponseRedirect(reverse('applicants_homepage'))
     elif request.method == "GET":
         return render_page()
 
