@@ -157,4 +157,4 @@ def settings(request):
     return render(request, '/change_password.html', {
         'form': form
     })
-	return render(request, 'applicants/app_changepassword.html', {})
+    return render(request, 'applicants/app_changepassword.html', {})
