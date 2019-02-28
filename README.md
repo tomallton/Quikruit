@@ -1,7 +1,7 @@
 # Quikruit_Development
 Development of Quikruit
-* [Applicants server](http://3.8.125.240/Project/applicants)
-* [Recruiters server](http://3.8.125.240/Project/recruiters)
+* [Applicants server](http://3.8.125.240/quikruit/applicants)
+* [Recruiters server](http://3.8.125.240/quikruit/recruiters)
 
 Recruiter account:
 
