@@ -183,3 +183,6 @@ class JobApplication(StringBasedModelIDMixin):
     )
     status = models.IntegerField(choices=status_choices, default=0)
     last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{} -> {}'.format(self.applicant.name, self.job_listing.title)
