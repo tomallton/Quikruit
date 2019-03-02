@@ -57,6 +57,7 @@ $(document).ready(function () {
         $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`);
         break;
       case '_degree':
+        alert("this is triggered!");
         extra_html = new_degree_template(degree_count);
         degree_count += 1;
         $('#id_degree-TOTAL_FORMS').attr('value', `${degree_count}`);
@@ -79,15 +80,15 @@ $(document).ready(function () {
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form = new_degree_template(degree_count);
+    var new_form1 = new_degree_template(degree_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form = new_alevel_template(alevel_count);
+    var new_form2 = new_alevel_template(alevel_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form = new_skillhobby_template(skillhobby_count);
+    var new_form3 = new_skillhobby_template(skillhobby_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
   });
