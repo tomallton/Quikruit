@@ -24,7 +24,7 @@
 
 {% block content %}
 <div id="notifications">
-  <h1>Notifications</h1>
+  <h1>Notifications</h1><br>
   {% for notif in notifications %}
     <div class="notificationwrapper">
       <span class="notificationdate">{{ notif.created }}</span><br>
@@ -73,5 +73,4 @@
     </table>
   </div> -->
   <br>
-  <a id="withdraw" href="">WITHDRAW APPLICATION</a>
 {% endblock %}
