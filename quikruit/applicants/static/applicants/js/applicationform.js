@@ -87,19 +87,19 @@ $(document).ready(function () {
         break;
     }
 
-    var new_form = new_employment_template(employment_count);
+    var new_form1 = new_employment_template(employment_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form = new_degree_template(degree_count);
+    var new_form2 = new_degree_template(degree_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form = new_alevel_template(alevel_count);
+    var new_form3 = new_alevel_template(alevel_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form = new_skillhobby_template(skillhobby_count);
+    var new_form4 = new_skillhobby_template(skillhobby_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
   });
