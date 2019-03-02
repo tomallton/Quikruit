@@ -5,7 +5,7 @@ import numpy as np
 
 from tensorflow.python.data import Dataset
 
-from .models import JobApplication
+from .models import JobApplication, SkillHobby
 
 # A dictionary which maps programming languages to their position in a one-hot encoding
 # For example, a person that knows C and SQL will have the array [0, 1, 0, 0, 0, 0, 0, 1, 0]
@@ -55,7 +55,10 @@ def supervised_learning(application):
   for application in (JobApplication.objects.filter(status=JobApplication.OFFER_GIVEN)): #?
     job_listing = application.job_listing
     applicant = application.applicant
-    applicant_skills_and_hobbies = list(applicant.skills_and_hobbies.all())
+    applicant_skills_and_hobbies = applicant.skills_and_hobbies.all()
+
+    applicant_skills = list(applicant_skills_and_hobbies.filter(kind=SkillHobby.SKILL))
+    applicant_proglangs = list(applicant_skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE))
     applicant_a_levels = list(applicant.a_levels.all())
     applicant_degrees = list(applicant.degree.all())
 
