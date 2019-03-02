@@ -38,12 +38,12 @@ table td {
 }
 
 select {
- border: solid black 2px;
- background-color: white;
+ /* border: solid black 2px; */
+ background-color: #f16f37;
  font-size: 90%;
- padding: 2%;
+ padding: 1%;
  cursor: pointer;
- width: auto;
+ width: 100%;
  font-family:'Century Gothic','Futura',system-ui,sans-serif;
 }
 
