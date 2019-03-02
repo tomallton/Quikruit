@@ -24,6 +24,17 @@ function new_degree_template(n) {
   <input type="hidden" name="degree-${n}-id" id="id_degree-${n}-id">`;
 }
 
+function new_alevel_template(n) {
+  return `<label for="id_alevel-${n}-subject">Subject:</label>
+  <input type="text" name="alevel-${n}-subject" maxlength="60" id="id_alevel-${n}-institution">
+  <label for="id_alevel-${n}-grade">Grade:</label>
+  <input type="text" name="alevel-${n}-grade" maxlength="60" id="id_alevel-${n}-grade">
+  <label for="id_alevel-${n}-DELETE">Delete:</label>
+  <input type="checkbox" name="alevel-${n}-DELETE" id="id_alevel-0-DELETE">
+  <input type="hidden" name="a_levels-${n}-applicant" value="8l8va8rii5idixi" id="id_alevel-${n}-applicant">
+  <input type="hidden" name="alevel-${n}-id" id="id_alevel-${n}-id">`;
+}
+
 $(document).ready(function () {
 
   $('.collapsebutton').click(function() {
@@ -53,13 +64,11 @@ $(document).ready(function () {
 
     switch (id) {
       case '_employment':
-        alert("hi hello employer");
         extra_html = new_employment_template(employment_count);
         employment_count += 1;
         $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`);
         break;
       case '_degree':
-        alert("hi hello ployer");
         extra_html = new_degree_template(degree_count);
         degree_count += 1;
         $('#id_degree-TOTAL_FORMS').attr('value', `${degree_count}`);
