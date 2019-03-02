@@ -65,7 +65,7 @@ class TestQuestion(StringBasedModelIDMixin):
 class QuestionResponse(models.Model):
     test = models.ForeignKey(
         'online_tests.OnlineTest',
-        related_name = 'test_answers',
+        related_name = 'qurestion_responses',
         on_delete = models.CASCADE
     )
     

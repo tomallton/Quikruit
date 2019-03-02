@@ -1,22 +1,23 @@
 from django.contrib import admin
 from .models import *
 from applicants.models import JobApplication
+from django.utils.html import format_html
+from django.urls import reverse
 
-<<<<<<< Updated upstream
-#admin.site.register(OnlineTest)
 admin.site.register(TestQuestion)
-admin.site.register(QuestionAnswer)
+admin.site.register(QuestionResponse)
      
-class TestQuestionAnswerInLine(admin.TabularInline):
-    model = QuestionAnswer
-    readonly_fields = ['question','answer','correct']
+class TestQuestionResponseInLine(admin.TabularInline):
+    model = QuestionResponse
+    fields = ['_question','answer','correct']
+    readonly_fields = ['_question','answer','correct']
     
-    def question(self,obj):
+    def _question(self,obj):
         return format_html(
-			'<a href="{l}">{a} <strong>[Click to view]</strong></a>'.format(
-				l=reverse('admin:online_test_TestQuestion_change', args=[obj.testquestion.model_id]),
-				a=obj.applicant
-			)
+            '<a href="{l}">{a} <strong>[Click to view]</strong></a>'.format(
+                l=reverse('admin:online_tests_testquestion_change', args=[obj.question.model_id]),
+                a='{}...'.format(obj.question.question[:100])
+            )
         )
     
     def has_delete_permission(self, request, obj=None):
@@ -27,34 +28,18 @@ class TestQuestionAnswerInLine(admin.TabularInline):
 class OnlineTestAdmin(admin.ModelAdmin):
     inlines = [
         #OnlineTestInline,
-        TestQuestionAnswerInLine
+        TestQuestionResponseInLine
     ]
     
-    readonly_fields = ['application','date_completed','result']
-    list_display = ('application','date_completed','result')
+    fields = ['_Application','date_completed','result']
+    readonly_fields = ['_Application','date_completed','result']
+    list_display = ('model_id','application','date_completed','result')
     
-    def application(self,obj):
+    def _Application(self,obj):
         return format_html(
-			'<a href="{l}">{a} <strong>[Click to view]</strong></a>'.format(
-				l=reverse('admin:applicants_JobApplication_change', args=[obj.jobapplication.model_id]),
-				a=obj.applicant
-			)
+            '<a href="{l}">{a} <strong>[Click to view]</strong></a>'.format(
+                l=reverse('admin:applicants_jobapplication_change', args=[obj.application.model_id]),
+                a=obj.application
+            )
         )
-=======
-class QuestionResponseInline(admin.TabularInline):
-	model = QuestionResponse
-	extra=0
-	readonly_fields=['answer', 'correct']
-
-@admin.register(OnlineTest)
-class OnlineTestAdmin(admin.ModelAdmin):
-	readonly_fields = ['date_completed','result']
-
-	inlines = [
-		QuestionResponseInline
-	]
-
-admin.site.register(TestQuestion)
->>>>>>> Stashed changes
-
 # Register your models here.
