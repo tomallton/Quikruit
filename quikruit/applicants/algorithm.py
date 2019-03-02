@@ -1,7 +1,11 @@
 # These libraries need to be installed first
 import tensorflow as tf
 import pandas as pd
-import 
+import numpy as np
+
+from tensorflow.python.data import Dataset
+
+from .models import JobApplication, SkillHobby
 
 # A dictionary which maps programming languages to their position in a one-hot encoding
 # For example, a person that knows C and SQL will have the array [0, 1, 0, 0, 0, 0, 0, 1, 0]
@@ -35,21 +39,35 @@ skills_and_hobbies = {
  # can be excluded? 
 }
 
-def generate_score():
-  
-  if (there are enough labeled applications on the system):
-    return supervised_learning()
+def generate_magic_score(application):
+  return 0.5 #PLACEHOLDER
+
+def generate_score(application):
+  if (len(JobApplication.objects.all()) > 150):
+    return supervised_learning(application)
   else:
-    return manual_score()
+    return manual_score(application)
     
-def supervised_learning():
+def supervised_learning(application):
   # A logistic regression approach
+  
+  # Positive applicants (i.e. ones who were offered a job)
+  for application in (JobApplication.objects.filter(status=JobApplication.OFFER_GIVEN)): #?
+    job_listing = application.job_listing
+    applicant = application.applicant
+    applicant_skills_and_hobbies = applicant.skills_and_hobbies.all()
+
+    applicant_skills = list(applicant_skills_and_hobbies.filter(kind=SkillHobby.SKILL))
+    applicant_proglangs = list(applicant_skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE))
+    applicant_a_levels = list(applicant.a_levels.all())
+    applicant_degrees = list(applicant.degree.all())
+
   
 # This method will use the job details in order to calculate a score if the supervised learning cannot be used
 # Starting from a score of 50, maximum 50 more points can be added or subtracted
 # If a required skill/programming language is not present, a fraction of the maximum will be subtracted (but if it is, do not modify the score)
 # If an optional skill/language is present, a fraction of the maximum will be added (but if it is not, do not modify the score)
-def manual_score():
+def manual_score(application):
   starting_score = 50
   maximum_to_add = 50
   maximum_to_subtract = -50

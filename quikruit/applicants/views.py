@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -50,6 +50,7 @@ def register(request):
             new_account = account_form.save()
             profile_form.instance.account = new_account
             profile_form.save()
+            login(request, new_account)
             return HttpResponseRedirect(reverse('applicants_homepage'))
     else:
         account_form = AccountCreationForm()
