@@ -37,6 +37,10 @@ select#id_skill_hobby_levels-0-level {
     border: solid black 1px;
 }
 
+#formset_skillhobby {
+  border: solid red 3px;
+}
+
 select  {
   padding: 8px;
   width: 70%;
