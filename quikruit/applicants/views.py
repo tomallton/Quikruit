@@ -180,6 +180,6 @@ def settings(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'applicants/app_homepage.html', {
+    return render(request, 'applicants/app_settings.html', {
         'form': form
     })
