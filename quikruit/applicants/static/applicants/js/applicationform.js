@@ -57,17 +57,17 @@ $(document).ready(function () {
         $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`);
         break;
       case '_degree':
-        extra_html = new_degree_form(degree_count);
+        extra_html = new_degree_template(degree_count);
         degree_count += 1;
         $('#id_degree-TOTAL_FORMS').attr('value', `${degree_count}`);
         break;
       case '_alevel':
-        extra_html = new_alevel_form(alevel_count);
+        extra_html = new_alevel_template(alevel_count);
         alevel_count += 1;
         $('#id_alevel-TOTAL_FORMS').attr('value', `${alevel_count}`);
         break;
       case '_skillhobby':
-        extra_html = new_skillhobby_form(skillhobby_count);
+        extra_html = new_skillhobby_template(skillhobby_count);
         skillhobby_count += 1;
         $('#id_skillhobby-TOTAL_FORMS').attr('value', `${skillhobby_count}`);
         break;
