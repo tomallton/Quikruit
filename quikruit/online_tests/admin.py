@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import *
 from applicants.models import JobApplication
 
+<<<<<<< Updated upstream
 #admin.site.register(OnlineTest)
 admin.site.register(TestQuestion)
 admin.site.register(QuestionAnswer)
@@ -39,5 +40,21 @@ class OnlineTestAdmin(admin.ModelAdmin):
 				a=obj.applicant
 			)
         )
+=======
+class QuestionResponseInline(admin.TabularInline):
+	model = QuestionResponse
+	extra=0
+	readonly_fields=['answer', 'correct']
+
+@admin.register(OnlineTest)
+class OnlineTestAdmin(admin.ModelAdmin):
+	readonly_fields = ['date_completed','result']
+
+	inlines = [
+		QuestionResponseInline
+	]
+
+admin.site.register(TestQuestion)
+>>>>>>> Stashed changes
 
 # Register your models here.

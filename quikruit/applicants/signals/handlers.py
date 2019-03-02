@@ -29,5 +29,5 @@ def job_application_save_handler(sender, **kwargs):
         kwargs['instance'].job_listing.title
       )
     )
-    test_notification.link = reverse('testing_prepare', args=[kwargs['instance'].job_listing.model_id])
+    test_notification.link = reverse('testing_prepare', args=[online_test.model_id])
     test_notification.save()  

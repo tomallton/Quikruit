@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.urls import reverse
 from .models import *
+from recruiters.admin import SuitabilitesInline
 
 # Register your models here.
 
@@ -78,6 +79,10 @@ class JobApplicationAdmin(admin.ModelAdmin):
 	list_display = ('job_listing', 'applicant', 'status', 'last_updated')
 	readonly_fields = ('applicant_profile','job_listing','date_submitted', 'cover_letter', 'last_updated')
 	exclude = ('applicant',)
+
+	inlines = [
+		SuitabilitesInline
+	]
 
 	def applicant_profile(self, obj):
 		return format_html(
