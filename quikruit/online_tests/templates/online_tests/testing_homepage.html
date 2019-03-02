@@ -9,7 +9,7 @@
 	<h3>Here are the tests requested of you:</h3>
 	<ul>
 		{% for test in tests_requested %}
-			<a href="#">Test for application: {{ test.application.job_listing.title }}</a>
+			<li><a href="{% url 'testing_prepare' test_id=test.model_id %}">Test for application: {{ test.application.job_listing.title }}</a></li>
 		{% endfor %}
 	</ul>
 </div>

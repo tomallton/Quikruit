@@ -17,8 +17,19 @@ def homepage(request):
 	}
 	return render(request, 'online_tests/testing_homepage.html', context)
 
-def prepare(request):
-	pass
+def prepare(request, test_id):
+	try:
+		profile = request.user.applicant_profile
+	except ApplicantProfile.DoesNotExist:
+		return HttpResponseRedirect("/quikruit/applicants/login/")
+
+	test = OnlineTest.objects.get(pk=test_id)
+
+	context = {
+		'profile': profile,
+		'test': test
+	}
+	return render(request, 'online_tests/testing_prepare.html', context)
 
 def test(request):
 	pass
