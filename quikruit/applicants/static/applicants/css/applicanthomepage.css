@@ -40,11 +40,15 @@ table td {
 #joblist {
  border: none;
  background-color: #f16f37;
- font-size: 90%;
+ font-size: 100%;
  padding: 1%;
  width: 98%;
  font-family:'Century Gothic','Futura',system-ui,sans-serif;
  list-style: none;
+}
+
+#joblist li {
+    padding: 6px;
 }
 
 #notifications{
