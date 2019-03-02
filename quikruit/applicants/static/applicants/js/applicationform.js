@@ -1,14 +1,27 @@
 function new_employment_template(n) {
-return `<label for="id_prior_employment-${n}-company">Company:</label>
-<input type="text" name="prior_employment-${n}-company" maxlength="60" id="id_prior_employment-${n}-company">
-<label for="id_prior_employment-${n}-position">Position:</label>
-<input type="text" name="prior_employment-${n}-position" maxlength="60" id="id_prior_employment-${n}-position">
-<label for="id_prior_employment-${n}-employment_length">Employment length:</label>
-<input type="text" name="prior_employment-${n}-employment_length" id="id_prior_employment-${n}-employment_length">
-<label for="id_prior_employment-${n}-DELETE">Delete:</label>
-<input type="checkbox" name="prior_employment-${n}-DELETE" id="id_prior_employment-0-DELETE">
-<input type="hidden" name="prior_employment-${n}-applicant" value="8l8va8rii5idixi" id="id_prior_employment-${n}-applicant">
-<input type="hidden" name="prior_employment-${n}-id" id="id_prior_employment-${n}-id">`;
+  return `<label for="id_prior_employment-${n}-company">Company:</label>
+  <input type="text" name="prior_employment-${n}-company" maxlength="60" id="id_prior_employment-${n}-company">
+  <label for="id_prior_employment-${n}-position">Position:</label>
+  <input type="text" name="prior_employment-${n}-position" maxlength="60" id="id_prior_employment-${n}-position">
+  <label for="id_prior_employment-${n}-employment_length">Employment length:</label>
+  <input type="text" name="prior_employment-${n}-employment_length" id="id_prior_employment-${n}-employment_length">
+  <label for="id_prior_employment-${n}-DELETE">Delete:</label>
+  <input type="checkbox" name="prior_employment-${n}-DELETE" id="id_prior_employment-0-DELETE">
+  <input type="hidden" name="prior_employment-${n}-applicant" value="8l8va8rii5idixi" id="id_prior_employment-${n}-applicant">
+  <input type="hidden" name="prior_employment-${n}-id" id="id_prior_employment-${n}-id">`;
+}
+
+function new_degree_template(n) {
+  return `<label for="id_degree-${n}-institution">Institution:</label>
+  <input type="text" name="degree-${n}-institution" maxlength="60" id="id_degree-${n}-institution">
+  <label for="id_degree-${n}-qualification">Qualification:</label>
+  <input type="text" name="degree-${n}-qualification" maxlength="60" id="id_degree-${n}-qualification">
+  <label for="id_degree-${n}-level_awarded">Level Awarded:</label>
+  <input type="text" name="degree-${n}-level_awarded" id="id_degree-${n}-level_awarded">
+  <label for="id_degree-${n}-DELETE">Delete:</label>
+  <input type="checkbox" name="degree-${n}-DELETE" id="id_degree-0-DELETE">
+  <input type="hidden" name="degree-${n}-applicant" value="8l8va8rii5idixi" id="id_degree-${n}-applicant">
+  <input type="hidden" name="degree-${n}-id" id="id_degree-${n}-id">`;
 }
 
 $(document).ready(function () {
@@ -63,6 +76,18 @@ $(document).ready(function () {
     }
 
     var new_form = new_employment_template(employment_count);
+    $('#formset' + id).html(formset_html + extra_html);
+    console.log($('#formset' + id).html());
+
+    var new_form = new_degree_template(degree_count);
+    $('#formset' + id).html(formset_html + extra_html);
+    console.log($('#formset' + id).html());
+
+    var new_form = new_alevel_template(alevel_count);
+    $('#formset' + id).html(formset_html + extra_html);
+    console.log($('#formset' + id).html());
+
+    var new_form = new_skillhobby_template(skillhobby_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
   });
