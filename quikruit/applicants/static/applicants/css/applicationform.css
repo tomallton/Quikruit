@@ -35,7 +35,7 @@ li a:hover {
 }
 
 .application {
-  font-family: 'Quicksand';
+  font-family:'Century Gothic','Futura',system-ui,sans-serif;
   border: solid black 2px;
   margin-left: 24%;
   height: 7%;
@@ -51,7 +51,7 @@ textarea {
 }
 
 .error {
-  font-family: 'Quicksand';
+  font-family:'Century Gothic','Futura',system-ui,sans-serif;
   color: red;
   margin-left: 24%;
   height: auto;

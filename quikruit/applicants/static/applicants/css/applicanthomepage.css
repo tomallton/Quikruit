@@ -44,7 +44,7 @@ select {
  padding: 2%;
  cursor: pointer;
  width: auto;
- font-family: "Quicksand";
+ font-family:'Century Gothic','Futura',system-ui,sans-serif;
 }
 
 #notifications{
