@@ -49,12 +49,11 @@
 <div id="jobs">
   {% if job_listings %}
     <p>Select a Job to apply for:</p>
-    {% for job in job_listings %}
     <select>
+      {% for job in job_listings %}
       <option value="{{job.title}}">{{job.title}}</option>
+      {% endfor %}
     </select>
-    {{job.description}}
-    {% endfor %}
   {% endif %}
 </div>
   <!-- <div id = "status">Decision Pending</div> -->
