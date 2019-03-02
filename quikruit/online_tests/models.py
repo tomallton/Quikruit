@@ -13,6 +13,15 @@ class OnlineTest(StringBasedModelIDMixin):
     date_completed  = models.DateTimeField(null=True, blank=True)
     
     result = models.FloatField(null=True, blank=True)
+
+    questions = models.ManyToManyField(
+        'online_tests.TestQuestion',
+        related_name='tests',
+        through='online_tests.QuestionResponse'
+    )
+
+    def __str__(self):
+        return 'Test for application: {}'.format(self.application)
     
 # class OnlineTestConfig(models.Model):
 #     job_listing
@@ -53,16 +62,16 @@ class TestQuestion(StringBasedModelIDMixin):
     def __str__(self):
         return self.question
     
-class QuestionAnswer(models.Model):
+class QuestionResponse(models.Model):
     test = models.ForeignKey(
         'online_tests.OnlineTest',
-        related_name = 'test_answers',
+        related_name = 'qurestion_responses',
         on_delete = models.CASCADE
     )
     
     question = models.ForeignKey(
         'online_tests.TestQuestion',
-        related_name = 'question_answer',
+        related_name = 'questions',
         on_delete = models.CASCADE
     )
     

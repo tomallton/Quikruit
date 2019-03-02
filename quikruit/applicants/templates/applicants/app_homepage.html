@@ -48,12 +48,12 @@
 </br>
 <div id="jobs">
   {% if job_listings %}
-    <p>Select a Job to apply for:</p>
-    <select>
+    <p>Below is a list of the available job vacancies which can be applied to from the Job Listings page.</p>
+    <ul id="joblist">
       {% for job in job_listings %}
-      <option value="{{job.title}}">{{job.title}}</option>
+      <li value="{{job.title}}">▶︎ {{job.title}}</li>
       {% endfor %}
-    </select>
+    </ul>
   {% endif %}
 </div>
 <br>

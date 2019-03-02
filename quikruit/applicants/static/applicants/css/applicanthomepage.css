@@ -37,14 +37,14 @@ table td {
   color: red;
 }
 
-select {
- /* border: solid black 2px; */
+#joblist {
+ border: none;
  background-color: #f16f37;
  font-size: 90%;
  padding: 1%;
- cursor: pointer;
- width: 100%;
+ width: 98%;
  font-family:'Century Gothic','Futura',system-ui,sans-serif;
+ list-style: none;
 }
 
 #notifications{

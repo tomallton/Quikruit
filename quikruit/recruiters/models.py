@@ -19,22 +19,6 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
-class RecruiterProfile(models.Model):
-    account = models.OneToOneField(
-        'core.QuikruitAccount',
-        related_name="recruiter_profile",
-        on_delete=models.CASCADE
-    )
-
-    name = models.CharField(max_length=40)
-
-    department = models.ForeignKey(
-        'recruiters.Department',
-        related_name = "recruiters",
-        on_delete=models.CASCADE
-    )
-    picture = models.ImageField(null=True)
-
 class JobListing(StringBasedModelIDMixin):
     title = models.CharField(max_length=40)
     description = MarkdownxField()
@@ -77,7 +61,7 @@ class RequiredSkill(models.Model):
         return "{} requires".format(self.job_listing)
 
 class Suitabilities(models.Model):
-    application = models.ForeignKey(
+    application = models.OneToOneField(
         'applicants.JobApplication',
         related_name = 'application_suitabilities',
         on_delete=models.CASCADE
