@@ -11,14 +11,8 @@
   <form method="post">
     {% csrf_token %}
     {{ form }}
-    <button style="
-			background:#D14102;
-			border:none;
-			font-family: 'Quicksand',system-ui,sans-serif;
-			padding: 10px;
-			width:100%;
-			font-size: 16px;
-			font-weight: bold;
-		" type="submit">Save changes</button>
+    <br><br><br>
+    <input style="background:#D14102; color: white;border:none; font-family: 'Quicksand',system-ui,sans-serif;	padding: 10px; width:100%;font-size: 15px;"
+    type="submit" value="SAVE CHANGES">
   </form>
 {% endblock %}
