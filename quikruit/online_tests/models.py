@@ -3,11 +3,11 @@ from quikruit.mixins import StringBasedModelIDMixin
 from markdownx.models import MarkdownxField
 
 class OnlineTest(StringBasedModelIDMixin):
-    application = models.ForeignKey(
-        'applicants.JobApplication',
-        related_name = 'online_test',
-        on_delete=models.CASCADE
-    )
+    # application = models.ForeignKey(
+    #     'applicants.JobApplication',
+    #     related_name = 'online_test',
+    #     on_delete=models.CASCADE
+    # )
     
     date_completed  = models.DateTimeField(null=True, blank=True)
     
@@ -46,12 +46,12 @@ class TestQuestion(StringBasedModelIDMixin):
 
     question_type = models.IntegerField(choices=question_type_choices)
     
-    tested_skill = models.ForeignKey(
-        'applicants.SkillHobby',
-        related_name = 'question_for_skill',
-        on_delete = models.CASCADE,
-        null = True
-    )
+    # tested_skill = models.ForeignKey(
+    #     'applicants.SkillHobby',
+    #     related_name = 'question_for_skill',
+    #     on_delete = models.CASCADE,
+    #     null = True
+    # )
 
     question = MarkdownxField()
     answer_count = models.IntegerField(null=True, choices=answer_count_choices)

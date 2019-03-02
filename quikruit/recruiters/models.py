@@ -37,11 +37,11 @@ class RequiredSkill(models.Model):
         related_name ='required_skills',
         on_delete=models.CASCADE
     )
-    skill = models.ForeignKey(
-        'applicants.SkillHobby',
-        related_name='required_skills',
-        on_delete=models.CASCADE
-    )
+    # skill = models.ForeignKey(
+    #     'applicants.SkillHobby',
+    #     related_name='required_skills',
+    #     on_delete=models.CASCADE
+    # )
 
     MUST = 2
     SHOULD = 1
@@ -61,10 +61,10 @@ class RequiredSkill(models.Model):
         return "{} requires".format(self.job_listing)
 
 class Suitabilities(models.Model):
-    application = models.OneToOneField(
-        'applicants.JobApplication',
-        related_name = 'application_suitabilities',
-        on_delete=models.CASCADE
-    )
+    # application = models.OneToOneField(
+    #     'applicants.JobApplication',
+    #     related_name = 'application_suitabilities',
+    #     on_delete=models.CASCADE
+    # )
     magic_score = models.FloatField()
     specific_score = models.FloatField()
