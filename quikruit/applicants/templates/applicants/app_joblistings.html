@@ -15,18 +15,24 @@
 {% endblock %}
 
 {% block content %}
-<h2 id="welcome">Here are all the positions for which you can apply for:</h2>
+<br>
 <div id="jobs">
-  {% for job in job_listings %}
-  <div class="jobcontainer">
-    <h2 class='jobtitle'>{{job.title}}</h2>
-    <h3>DEPARTMENT: {{job.department}}</h3>
-    <h2 class='descriptioncollapsebutton' id='collapse_{{ job.model_id }}'>▶︎ Description</h2><br>
-    <div class="jobdescription" id='desc_{{ job.model_id }}'>
-      {{job.description|show_markdown|safe}}
+  {% if job_listings %}
+    <p id="welcome">Here are all the positions for which you can apply for:</p>
+    {% for job in job_listings %}
+    <div class="jobcontainer">
+      <h2 class='jobtitle'>{{job.title}}</h2>
+      <h3>DEPARTMENT: {{job.department}}</h3>
+      <h2 class='descriptioncollapsebutton' id='collapse_{{ job.model_id }}'>▶︎ Description</h2><br>
+      <div class="jobdescription" id='desc_{{ job.model_id }}'>
+        {{job.description|show_markdown|safe}}
+      </div>
+      <a class='applybutton' href="{% url 'applicants_applicationform' job_id=job.model_id %}">APPLY</a>
     </div>
-    <a class='applybutton' href="{% url 'applicants_applicationform' job_id=job.model_id %}">APPLY</a>
-  </div>
-{% endfor %}
+    {% endfor %}
+  {% else %}
+  <p>There are currently no job listings for which you can apply to. They will appear here as soon as vacancies arise.</p>
+  {% endif %}
+
 </div>
 {% endblock %}
