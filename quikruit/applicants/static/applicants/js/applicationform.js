@@ -41,16 +41,22 @@ $(document).ready(function () {
       case '_employment':
         extra_html = new_employment_template(employment_count);
         employment_count += 1;
-        $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`)
+        $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`);
         break;
       case '_degree':
-        extra_html = new_degree_form();
+        extra_html = new_degree_form(degree_count);
+        degree_count += 1;
+        $('#id_degree-TOTAL_FORMS').attr('value', `${degree_count}`);
         break;
       case '_alevel':
-        extra_html = new_alevel_form();
+        extra_html = new_alevel_form(alevel_count);
+        alevel_count += 1;
+        $('#id_alevel-TOTAL_FORMS').attr('value', `${alevel_count}`);
         break;
       case '_skillhobby':
-        extra_html = new_skillhobby_form();
+        extra_html = new_skillhobby_form(skillhobby_count);
+        skillhobby_count += 1;
+        $('#id_skillhobby-TOTAL_FORMS').attr('value', `${skillhobby_count}`);
         break;
       default:
         break;
@@ -61,4 +67,3 @@ $(document).ready(function () {
     console.log($('#formset' + id).html());
   });
 });
-

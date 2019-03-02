@@ -1,0 +1,13 @@
+{% extends 'online_tests/testing_base.html' %}
+
+{% block title %}Prepare for Online Test{% endblock %}
+
+{% block content %}
+<h1>Online Test</h1>
+
+<p>You have been invited to take an online test to gauge your ability.</p>
+<p>These questions will be based on the skills you wrote in your application, as well as skills that are required for the job.</p>
+<p>Take as long as you need. Good Luck!</p>
+
+<a href="{% url 'testing_test' test_id=test.model_id %}">BEGIN TEST</a>
+{% endblock %}

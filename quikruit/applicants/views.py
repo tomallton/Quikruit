@@ -123,12 +123,22 @@ def application_form(request, job_id):
         )
         job_application_form.instance.applicant = profile
         job_application_form.instance.job_listing = job
+
         if (not prior_employment_formset.is_valid() or
             not a_level_formset.is_valid() or
             not degree_formset.is_valid() or
             not skills_and_hobbies_formset.is_valid() or
             not job_application_form.is_valid()):
-            pdb.set_trace()
+            context = {
+                'job': job,
+                'profile': profile,
+                'a_levels': a_level_formset,
+                'prior_employment': prior_employment_formset,
+                'skills_and_hobbies': skills_and_hobbies_formset,
+                'cover_letter_form': job_application_form,
+                'degree': degree_formset,
+            }
+            return render(request, 'applicants/app_applicationform.html', context)
         prior_employment_formset.clean()
         prior_employment_formset.save()
         a_level_formset.clean()
