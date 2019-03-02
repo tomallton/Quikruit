@@ -65,11 +65,11 @@ li a:hover {
 }
 
 .applybutton {
+	width: 98.5%;
 	background: #D14102;
 	color: white;
 	text-decoration: none;
 	margin-top: 10px;
-	font-size: 1.5em;
 	padding: 10px;
 	display: inline-block;
 
