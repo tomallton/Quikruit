@@ -37,6 +37,14 @@ select#id_skill_hobby_levels-0-level {
     border: solid black 1px;
 }
 
+select  {
+  padding: 8px;
+  width: 70%;
+  margin-bottom: 20px;
+  font-family:'Century Gothic','Futura',system-ui,sans-serif;
+  border: solid black 1px;
+}
+
 .collapsebutton {
   border: 2px solid white;
   padding: 5px;
