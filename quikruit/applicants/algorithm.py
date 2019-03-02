@@ -1,4 +1,7 @@
+# These libraries need to be installed first
 import tensorflow as tf
+import pandas as pd
+import 
 
 # A dictionary which maps programming languages to their position in a one-hot encoding
 # For example, a person that knows C and SQL will have the array [0, 1, 0, 0, 0, 0, 0, 1, 0]
