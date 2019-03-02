@@ -54,7 +54,7 @@ select {
 }
 
 .notificationwrapper {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   padding: 10px;
   margin: 5px 0;
 }

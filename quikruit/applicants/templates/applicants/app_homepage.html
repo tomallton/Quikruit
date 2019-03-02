@@ -23,6 +23,8 @@
 {% endblock %}
 
 {% block content %}
+
+
 <div id="notifications">
   <h1>Notifications</h1><br>
   {% for notif in notifications %}
@@ -37,21 +39,25 @@
     </span>
     </div>
   {% empty %}
-    No notifications
+    <p>From this portal, you are able to make and track your applications through Quikruit.
+      Notifications regarding the update of your applications can be seen here.
+      Begin by selecting a job from the listing below and clicking 'Apply'.
+    </p>
   {% endfor %}
 </div>
 </br>
 <div id="jobs">
   {% if job_listings %}
     <p>Select a Job to apply for:</p>
+    {% for job in job_listings %}
     <select>
-      {% for job in job_listings %}
       <option value="{{job.title}}">{{job.title}}</option>
-      {% endfor %}
     </select>
+    {{job.description}}
+    {% endfor %}
   {% endif %}
 </div>
-  <div id = "status">Decision Pending</div>
+  <!-- <div id = "status">Decision Pending</div> -->
   <!-- <div id = "correspondence">
     <table>
       <th>CORRESPONDENCE</th>
