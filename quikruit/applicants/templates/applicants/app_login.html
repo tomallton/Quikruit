@@ -10,7 +10,7 @@
 {% block navbar %}{# NO NAVBAR #}{% endblock %}
 
 {% block content %}
-<h1>Log in to Quikruit</h1>
+<h1>Log in to Quikruit</h1><br>
   {% if form.errors %}
     <span class="error">Your username and password didn't match. Please try again.</span>
   {% endif %}
@@ -22,8 +22,11 @@
       {{ form.password.label_tag }}<br>
       {{ form.password }}<br>
     </div>
+    <br>
     <input type='submit' value='LOGIN' id="loginbutton1"><p class="error"></p>
+    <p style="text-align: center">- OR -</p>
+    <br>
     <input type="hidden" name="next" value="{{ next }}">
+    <a href="{% url 'applicants_registration' %}" id="registerbutton1">CLICK HERE TO REGISTER</a>
   </form>
-  <a href="{% url 'applicants_registration' %}" id="registerbutton1">CLICK HERE TO REGISTER</a>
 {% endblock %}

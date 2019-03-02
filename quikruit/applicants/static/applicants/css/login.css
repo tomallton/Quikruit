@@ -67,10 +67,11 @@ input {
 }
 
 #registerbutton1 {
- margin: 20px 30px 20px;
- background-color: #D14102;
- display: block;
- padding: .5em;
- cursor: pointer;
- color: white;
+   text-align: center;
+   margin-top: 20px;
+   background-color: #f16f37;
+   display: block;
+   padding: .5em;
+   cursor: pointer;
+   color: white;
 }
