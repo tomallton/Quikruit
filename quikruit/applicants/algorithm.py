@@ -43,7 +43,7 @@ def generate_magic_score(application):
   return 0.5 #PLACEHOLDER
 
 def generate_score(application):
-  if (len(JobApplication.objects.all()) > 150):
+  if len(JobApplication.objects.all()) > 150:
     return supervised_learning(application)
   else:
     return manual_score(application)
@@ -51,11 +51,11 @@ def generate_score(application):
 def supervised_learning(application):
   # A logistic regression approach
   
-  # Positive applicants (i.e. ones who were offered a job)
-  for application in (JobApplication.objects.filter(status=JobApplication.OFFER_GIVEN)): #?
-    job_listing = application.job_listing
-    applicant = application.applicant
-    applicant_skills_and_hobbies = applicant.skills_and_hobbies.all()
+  # The model is trained based on candidates that received an answer (rejection, interview or job offer)
+  for appl in JobApplication.objects.exclude(status__in = [JobApplication.SENT, JobApplication.ONLINE_TEST_COMPLETED]):
+    job_listing = appl.job_listing
+    applicant = appl.applicant
+    applicant_skills_and_hobbies = appl.skills_and_hobbies.all()
 
     applicant_skills = list(applicant_skills_and_hobbies.filter(kind=SkillHobby.SKILL))
     applicant_proglangs = list(applicant_skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE))
