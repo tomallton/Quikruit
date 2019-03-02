@@ -24,6 +24,11 @@ input#id_picture {
     color: white;
 }
 
+li {
+    color: grey;
+}
+
+
 #container {
   position: relative;
   width: 100%;
@@ -87,8 +92,9 @@ input[type="submit"] {
 }
 
 #login_button {
- margin: 20px 30px 20px;
- background-color: #D14102;
+ text-align: center;
+ margin-top: 40px;
+ background-color: #f16f37;
  display: block;
  padding: .5em;
  cursor: pointer;

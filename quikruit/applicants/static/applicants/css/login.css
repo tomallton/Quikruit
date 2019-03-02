@@ -64,11 +64,12 @@ input {
 #loginbutton1{
   background-color: #D14102;
   color:white;
+  margin-bottom: 0px;
 }
 
 #registerbutton1 {
    text-align: center;
-   margin-top: 20px;
+   margin-top: 40px;
    background-color: #f16f37;
    display: block;
    padding: .5em;
