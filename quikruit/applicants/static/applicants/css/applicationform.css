@@ -16,6 +16,23 @@ li a:hover {
   padding-top: 20px;
 }
 
+input[type="checkbox" i] {
+  -webkit-transform: scale(1.5);
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+select#id_skill_hobby_levels-0-skillhobby {
+    padding: 8px;
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+select#id_skill_hobby_levels-0-level {
+    padding: 8px;
+}
+
 .collapsebutton {
   border: 2px solid white;
   padding: 5px;
