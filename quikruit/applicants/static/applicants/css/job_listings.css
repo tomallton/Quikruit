@@ -58,14 +58,14 @@ li a:hover {
 }
 
 .descriptioncollapsebutton {
-	border: 2px solid white;
+	/* border: 2px solid white; */
 	padding: 5px;
 	display: inline-block;
 	margin: 2px 0;
 }
 
 .applybutton {
-	background: #fc6308;
+	background: #D14102;
 	color: white;
 	text-decoration: none;
 	margin-top: 10px;
