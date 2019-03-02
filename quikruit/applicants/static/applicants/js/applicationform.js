@@ -67,40 +67,44 @@ $(document).ready(function () {
         extra_html = new_employment_template(employment_count);
         employment_count += 1;
         $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`);
+        $('#formset' + id).html(formset_html + extra_html);
         break;
       case '_degree':
         extra_html = new_degree_template(degree_count);
         degree_count += 1;
         $('#id_degree-TOTAL_FORMS').attr('value', `${degree_count}`);
+        $('#formset' + id).html(formset_html + extra_html);
         break;
       case '_alevel':
         extra_html = new_alevel_template(alevel_count);
         alevel_count += 1;
         $('#id_alevel-TOTAL_FORMS').attr('value', `${alevel_count}`);
+        $('#formset' + id).html(formset_html + extra_html);
         break;
       case '_skillhobby':
         extra_html = new_skillhobby_template(skillhobby_count);
         skillhobby_count += 1;
         $('#id_skillhobby-TOTAL_FORMS').attr('value', `${skillhobby_count}`);
+        $('#formset' + id).html(formset_html + extra_html);
         break;
       default:
         break;
     }
 
-    var new_form1 = new_employment_template(employment_count);
-    $('#formset' + id).html(formset_html + extra_html);
-    console.log($('#formset' + id).html());
-
-    var new_form2 = new_degree_template(degree_count);
-    $('#formset' + id).html(formset_html + extra_html);
-    console.log($('#formset' + id).html());
-
-    var new_form3 = new_alevel_template(alevel_count);
-    $('#formset' + id).html(formset_html + extra_html);
-    console.log($('#formset' + id).html());
-
-    var new_form4 = new_skillhobby_template(skillhobby_count);
-    $('#formset' + id).html(formset_html + extra_html);
-    console.log($('#formset' + id).html());
+    // var new_form1 = new_employment_template(employment_count);
+    // $('#formset' + id).html(formset_html + extra_html);
+    // console.log($('#formset' + id).html());
+    //
+    // var new_form2 = new_degree_template(degree_count);
+    // $('#formset' + id).html(formset_html + extra_html);
+    // console.log($('#formset' + id).html());
+    //
+    // var new_form3 = new_alevel_template(alevel_count);
+    // $('#formset' + id).html(formset_html + extra_html);
+    // console.log($('#formset' + id).html());
+    //
+    // var new_form4 = new_skillhobby_template(skillhobby_count);
+    // $('#formset' + id).html(formset_html + extra_html);
+    // console.log($('#formset' + id).html());
   });
 });
