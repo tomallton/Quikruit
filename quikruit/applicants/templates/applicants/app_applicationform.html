@@ -52,7 +52,7 @@
 		{{ skills_and_hobbies.management_form }}
 		<div id='formset_skillhobby'>
 			{% for form in skills_and_hobbies %}
-				{{ form }}
+				{{ form.as_p }}
 			{% endfor %}
 		</div>
 		<h3 class='addnew' id='addnew_skillhobby'>+ Add another Skill or Hobby</h3>
