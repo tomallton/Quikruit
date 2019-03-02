@@ -5,6 +5,8 @@ import numpy as np
 
 from tensorflow.python.data import Dataset
 
+from .models import JobApplication
+
 # A dictionary which maps programming languages to their position in a one-hot encoding
 # For example, a person that knows C and SQL will have the array [0, 1, 0, 0, 0, 0, 0, 1, 0]
 programming_languages = {
@@ -37,9 +39,11 @@ skills_and_hobbies = {
  # can be excluded? 
 }
 
+def generate_magic_score(application):
+  return 0.5 #PLACEHOLDER
+
 def generate_score(application):
-  
-  if (there are enough labeled applications on the system):
+  if (len(JobApplication.objects.all()) > 150):
     return supervised_learning(application)
   else:
     return manual_score(application)
@@ -47,8 +51,14 @@ def generate_score(application):
 def supervised_learning(application):
   # A logistic regression approach
   
-  for cv in (applications.all()): #?
-    if cv.(application_status)
+  # Positive applicants (i.e. ones who were offered a job)
+  for application in (JobApplication.objects.filter(status=JobApplication.OFFER_GIVEN)): #?
+    job_listing = application.job_listing
+    applicant = application.applicant
+    applicant_skills_and_hobbies = list(applicant.skills_and_hobbies.all())
+    applicant_a_levels = list(applicant.a_levels.all())
+    applicant_degrees = list(applicant.degree.all())
+
   
 # This method will use the job details in order to calculate a score if the supervised learning cannot be used
 # Starting from a score of 50, maximum 50 more points can be added or subtracted

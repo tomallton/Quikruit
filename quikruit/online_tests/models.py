@@ -1,6 +1,5 @@
 from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
-import online_tests.fields as customFields
 from markdownx.models import MarkdownxField
 
 class OnlineTest(StringBasedModelIDMixin):
@@ -30,12 +29,11 @@ class TestQuestion(StringBasedModelIDMixin):
     MULTI_SELECT = 0
     SINGLE_SELECT = 1
     TEXT_ENTRY = 2
-    ANSWER_LABELS = 4
 
     question_type_choices = (
         (MULTI_SELECT, 'Multiple Choice (Checkboxes)'),
         (SINGLE_SELECT,'Multiple Choice (Radio buttons)'),
-        (TEXT_ENTRY, 'Simple text entry')
+        # (TEXT_ENTRY, 'Simple text entry')
     )
     answer_count_choices = ((i, i) for i in range(1,6))
     correct_answer_choices = (

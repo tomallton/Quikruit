@@ -9,7 +9,7 @@ admin.site.register(QuestionResponse)
      
 class TestQuestionResponseInLine(admin.TabularInline):
     model = QuestionResponse
-    fields = ['_question','answer','correct']
+    fields = ['question','answer','correct']
     readonly_fields = ['_question','answer','correct']
     
     def _question(self,obj):
