@@ -25,6 +25,7 @@ function new_degree_template(n) {
 }
 
 $(document).ready(function () {
+
   $('.collapsebutton').click(function() {
     var idregex = /\_[a-z 0-9]*/;
     var id = idregex.exec($(this).attr('id'))[0];
@@ -52,12 +53,13 @@ $(document).ready(function () {
 
     switch (id) {
       case '_employment':
+        alert("hi hello employer");
         extra_html = new_employment_template(employment_count);
         employment_count += 1;
         $('#id_prior_employment-TOTAL_FORMS').attr('value', `${employment_count}`);
         break;
       case '_degree':
-        alert("this is triggered!");
+        alert("hi hello ployer");
         extra_html = new_degree_template(degree_count);
         degree_count += 1;
         $('#id_degree-TOTAL_FORMS').attr('value', `${degree_count}`);
@@ -80,15 +82,15 @@ $(document).ready(function () {
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form1 = new_degree_template(degree_count);
+    var new_form = new_degree_template(degree_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form2 = new_alevel_template(alevel_count);
+    var new_form = new_alevel_template(alevel_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
 
-    var new_form3 = new_skillhobby_template(skillhobby_count);
+    var new_form = new_skillhobby_template(skillhobby_count);
     $('#formset' + id).html(formset_html + extra_html);
     console.log($('#formset' + id).html());
   });
