@@ -1,0 +1,46 @@
+
+.radiochoice ul {
+	display: inline-block;
+	padding: 0;
+	margin: 0 auto;
+}
+
+.radiochoice label {
+	font-weight: bold;
+	font-size: 30px;
+	height: 100%
+}
+
+.radiochoice input {
+	vertical-align: middle;
+}
+
+.radiochoice li {
+	display: inline-block;
+	padding: 10px;
+	margin: 0 5px;
+	border: 2px solid white;	
+}
+
+.multiplechoice ul {
+	display: inline-block;
+	padding: 0;
+	margin: 0 auto;
+}
+
+.multiplechoice label {
+	font-weight: bold;
+	font-size: 30px;
+	height: 100%
+}
+
+.multiplechoice input {
+	vertical-align: middle;
+}
+
+.multiplechoice li {
+	display: inline-block;
+	padding: 10px;
+	margin: 0 5px;
+	border: 2px solid white;	
+}

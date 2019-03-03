@@ -1,6 +1,7 @@
 from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
 from markdownx.models import MarkdownxField
+import online_tests.fields as custom_fields
 
 class OnlineTest(StringBasedModelIDMixin):
     application = models.ForeignKey(
@@ -12,12 +13,6 @@ class OnlineTest(StringBasedModelIDMixin):
     date_completed  = models.DateTimeField(null=True, blank=True)
     
     result = models.FloatField(null=True, blank=True)
-
-    questions = models.ManyToManyField(
-        'online_tests.TestQuestion',
-        related_name='tests',
-        through='online_tests.QuestionResponse'
-    )
 
     def __str__(self):
         return 'Test for application: {}'.format(self.application)
@@ -37,11 +32,11 @@ class TestQuestion(StringBasedModelIDMixin):
     )
     answer_count_choices = ((i, i) for i in range(1,6))
     correct_answer_choices = (
-        (0,'A'),
-        (1,'B'),
-        (2,'C'),
-        (3,'D'),
-        (4,'E')
+        ('A','A'),
+        ('B','B'),
+        ('C','C'),
+        ('D','D'),
+        ('E','E')
     )
 
     question_type = models.IntegerField(choices=question_type_choices)
@@ -54,8 +49,7 @@ class TestQuestion(StringBasedModelIDMixin):
     )
 
     question = MarkdownxField()
-    answer_count = models.IntegerField(null=True, choices=answer_count_choices)
-    correct_answer = models.IntegerField(choices=correct_answer_choices)
+    correct_answer = models.TextField(blank=True)
 
     def __str__(self):
         return self.question
@@ -63,7 +57,7 @@ class TestQuestion(StringBasedModelIDMixin):
 class QuestionResponse(models.Model):
     test = models.ForeignKey(
         'online_tests.OnlineTest',
-        related_name = 'qurestion_responses',
+        related_name = 'question_responses',
         on_delete = models.CASCADE
     )
     
@@ -77,11 +71,7 @@ class QuestionResponse(models.Model):
     
     @property
     def correct(self):
-        if not self.question.correctAnswer:
-            return None
-        elif self.answer == self.question.correctAnswer:
-            return True
-        else:
-            return False
+        return self.answer == self.question.correct_answer
+
     
 # Create your models here.

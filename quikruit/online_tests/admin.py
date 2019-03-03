@@ -33,8 +33,14 @@ class OnlineTestAdmin(admin.ModelAdmin):
     
     fields = ['_Application','date_completed','result']
     readonly_fields = ['_Application','date_completed','result']
-    list_display = ('model_id','application','date_completed','result')
+    list_display = ('applicant','job_listing','date_completed','result')
     
+    def applicant(self, obj):
+        return obj.application.applicant
+
+    def job_listing(self, obj):
+        return obj.application.job_listing
+
     def _Application(self,obj):
         return format_html(
             '<a href="{l}">{a} <strong>[Click to view]</strong></a>'.format(

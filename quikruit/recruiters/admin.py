@@ -1,6 +1,12 @@
 from django.contrib import admin
 from .models import *
 from applicants.models import JobApplication
+from core.models import Notification
+
+def invite_marked_applications_to_interview(modeladmin, request, queryset):
+	for application in queryset:
+		application.status = JobApplication.INTERVIEW_REQUESTED
+		application.save()
 
 class ReqiredSkillInline(admin.TabularInline):
 	model = RequiredSkill
@@ -23,6 +29,7 @@ class JobListingAdmin(admin.ModelAdmin):
 		ReqiredSkillInline,
 		JobApplicationInline
 	]
+	filter_horizontal = ('suitable_applications',)
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):

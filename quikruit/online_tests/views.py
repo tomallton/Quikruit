@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from applicants.models import ApplicantProfile
 from .models import *
+from applicants.models import JobApplication
 from django.http import HttpResponseRedirect
 from .forms import *
+import pdb
+from django.utils import timezone as tz
 
 # Create your views here.
 def homepage(request):
@@ -37,8 +40,25 @@ def test(request, test_id):
         profile = request.user.applicant_profile
     except ApplicantProfile.DoesNotExist:
         return HttpResponseRedirect("/quikruit/applicants/login/")
-
     test = OnlineTest.objects.get(pk=test_id)
+
+    if request.method == 'POST':
+        response_formset = QuestionResponseFormSet(request.POST)
+        response_formset.save()
+        answers = test.question_responses.all()
+        correct_answers = [a for a in answers if a.correct]
+        score = (len(correct_answers) / len(answers))
+        test.result = score
+        test.date_completed = tz.now()
+        test.save()
+        application = test.application
+        application.status = JobApplication.ONLINE_TEST_COMPLETED
+        application.save()
+        return render(request, 'online_tests/testing_complete.html', None)
+
+    if test.date_completed is not None:
+        return render(request, 'online_tests/testing_complete.html', None)
+
     response_formset = QuestionResponseFormSet(queryset=QuestionResponse.objects.filter(test=test))
 
     context = {

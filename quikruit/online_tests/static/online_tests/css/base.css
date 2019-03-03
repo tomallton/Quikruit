@@ -42,16 +42,6 @@ li a:hover {
   color: white;
 }
 
-input {
-  font-family: "Quicksand";
-  border: none;
-  width: 100%;
-  margin-bottom: 2%;
-  font-size: 90%;
-  padding: .5em;
-  box-sizing: border-box;
-}
-
 h1{
   font-size: 20px;
   margin: 0;

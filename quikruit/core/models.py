@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from quikruit.mixins import StringBasedModelIDMixin
 from applicants import models as applicant_models
+import pdb
 
 class QuikruitAccountManager(BaseUserManager):
     def _create_user(self, email, password=None, **kwargs):
@@ -72,6 +73,16 @@ class QuikruitAccount(StringBasedModelIDMixin, AbstractBaseUser):
     def __str__(self):
         return "{}".format(self.email)
 
+    def send_notification(self, message, link=''):
+        notification = Notification()
+        notification.account = self
+        notification.message = message
+        if link:
+            notification.link = link
+        # pdb.set_trace()
+        notification.save()
+
+
 class Notification(StringBasedModelIDMixin):
     account = models.ForeignKey(
         'core.QuikruitAccount',
@@ -81,3 +92,5 @@ class Notification(StringBasedModelIDMixin):
     message = models.TextField()
     link = models.URLField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+
+

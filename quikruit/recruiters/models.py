@@ -28,6 +28,12 @@ class JobListing(StringBasedModelIDMixin):
         on_delete=models.CASCADE
     )
 
+    suitable_applications = models.ManyToManyField(
+        'applicants.JobApplication',
+        related_name='suitable_job_listings',
+        blank=True,
+    )
+
     def __str__(self):
         return "{0}: {1}".format(self.department, self.title)
 

@@ -75,14 +75,14 @@ def supervised_learning(application):
   # The model is trained based on candidates that received an answer (rejection, interview or job offer)
   for appl in JobApplication.objects.exclude(status__in = [JobApplication.SENT, JobApplication.ONLINE_TEST_COMPLETED]):
     process_application(appl, langs, a_lvls, degs, pr_empl, accepted, index)
-    index ++
+    # index ++
 
   features = pd.DataFrame({ 'Programming Languages': langs, 'A Levels': a_lvls, 'Degrees': degs, 'Prior Employment': pr_empl, 'Accepted': accepted })
   classifier = train_model(features)
   predictions = classifier.predict()
 
 def train_model(examples):
-
+  pass
 
 # This method will use the job details in order to calculate a score if the supervised learning cannot be used
 # Starting from a score of 50, maximum 50 more points can be added or subtracted

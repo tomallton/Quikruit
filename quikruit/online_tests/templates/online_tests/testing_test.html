@@ -1,21 +1,36 @@
 {% extends 'online_tests/testing_base.html' %}
-{% load markdown_view_tag %}
+{% load static %} {% load markdown_view_tag %}
+
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'online_tests/css/test.css' %}">
+{% endblock %}
 
 {% block title %}Quikruit Testing Homepage{% endblock %}
 
 {% block content %}
 <h1>Test!</h1>
-<form>
+<form id="testform" method="POST" action="{% url 'testing_test' test_id=test.model_id %}">
+	{% csrf_token %}
+	{{ response_formset.management_form }}
 	{% for response_form in response_formset %}
 		{{ response_form.instance.question.question|show_markdown|safe }}
 		{{ response_form.question.as_hidden }}
+		{{ response_form.id.as_hidden }}
 		{% if response_form.instance.question.question_type == response_form.instance.question.SINGLE_SELECT %}
-			{{ response_form.radio_choice }}
-		{% elif response_form.instance.question.question_type == esponse_form.instance.question.MULTI_SELECT %}
-			{{ response_form.multiple_choice }}
+			<h3>Select one:</h3>
+			<div class='radiochoice'>
+				{{ response_form.radio_choice }}
+			</div>
+		{% elif response_form.instance.question.question_type == response_form.instance.question.MULTI_SELECT %}
+			<h3>Select all that apply:</h3>
+			<div class='multiplechoice'>
+				{{ response_form.multiple_choice }}
+			</div>
 		{% else %}
 			{{ response_form.answer }}
 		{% endif %}
 	{% endfor %}
+	<input type="submit">
 </form>
 {% endblock %}

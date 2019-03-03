@@ -1,0 +1,9 @@
+{% extends 'online_tests/testing_base.html' %}
+
+{% block title %}Test Complete{% endblock %}
+
+{% block content %}
+<h1>Test Complete</h1>
+<p>Thank you for completing the test.</p>
+<a href="{% url 'applicants_homepage' %}">Click here to return to your Dashboard.</a>
+{% endblock %}
