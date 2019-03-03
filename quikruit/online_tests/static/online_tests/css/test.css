@@ -1,8 +1,16 @@
+.questioncontainer {
+	border: 2px solid white;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.questioncontainer h2 {
+	margin: 0;
+}
 
 .radiochoice ul {
 	display: inline-block;
 	padding: 0;
-	margin: 0 auto;
 }
 
 .radiochoice label {
