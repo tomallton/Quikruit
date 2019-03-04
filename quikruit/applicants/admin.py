@@ -91,3 +91,5 @@ class JobApplicationAdmin(admin.ModelAdmin):
 				a=obj.applicant
 			)
 		)
+
+admin.site.register(Feature)

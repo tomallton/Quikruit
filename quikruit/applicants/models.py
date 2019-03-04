@@ -103,6 +103,9 @@ class Degree(models.Model):
     # the expected 1st, 2:1, 2:2 etc. choices.
     level_awarded = models.CharField(max_length=20)
 
+    def __str__(self):
+        return "{}, {}, {}".format(self.institution, self.qualification, self.level_awarded)
+
 class ALevel(models.Model):
     applicant = models.ForeignKey(
         'applicants.ApplicantProfile',
@@ -186,3 +189,10 @@ class JobApplication(StringBasedModelIDMixin):
 
     def __str__(self):
         return '{} -> {}'.format(self.applicant.name, self.job_listing.title)
+
+class Feature(models.Model):
+    name = models.CharField(max_length=50)
+    weight = models.FloatField(default=1.0)
+
+    def __str__(self):
+        return self.name

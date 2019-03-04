@@ -13,7 +13,7 @@ def magic_score(applicant):
         score += feature_model.weight
     return sigmoid(score);
 
-def appliation_change(applicant, status):
+def application_change(applicant, status):
     change = 0
     if status == JobApplication.INTERVIEW_REQUESTED or status == JobApplication.OFFER_GIVEN:
         change = 0.01

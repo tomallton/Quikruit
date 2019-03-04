@@ -1,11 +1,12 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
-from applicants.models import JobApplication
+from applicants.models import *
 from online_tests.models import OnlineTest
 from recruiters.models import Suitabilities
 from core.models import Notification
 from django.urls import reverse
 from applicants.algorithm import magic_score, application_change
+import pdb
 
 notification_messages = {
   JobApplication.SENT: {
@@ -94,3 +95,20 @@ def job_application_save_handler(sender, **kwargs):
 
     suitability_score.magic_score = magic_score(application)
     suitability_score.save()
+
+@receiver(post_save, sender=SkillHobby)
+def skill_hobby_save_handler(sender, **kwargs):
+  skill_hobby = kwargs['instance']
+  pdb.set_trace()
+  if not Feature.objects.filter(name=str(skill_hobby)).exists():
+    new_feature = Feature()
+    new_feature.name = str(skill_hobby)
+    new_feature.save()
+
+@receiver(post_save, sender=Degree)
+def degree_save_handler(sender, **kwargs):
+  degree = kwargs['instance']
+  if not Feature.objects.filter(name=str(degree)).exists():
+    new_feature = Feature()
+    new_feature.name = str(degree)
+    new_feature.save()
