@@ -5,7 +5,7 @@ from online_tests.models import OnlineTest
 from recruiters.models import Suitabilities
 from core.models import Notification
 from django.urls import reverse
-from applicants.algorithm import generate_magic_score
+from applicants.algorithm import magic_score, application_change
 
 notification_messages = {
   JobApplication.SENT: {
@@ -23,7 +23,7 @@ notification_messages = {
     'message': '''
     You have been invited to conduct an interview for your application to {}.
     Please contact hr@quikruit.example to arrange one.
-    ''', 
+    ''',
     'link': 'mailto:hr@quikruit.example'
   },
   JobApplication.INTERVIEW_COMPLETED: {
@@ -58,6 +58,8 @@ def job_application_save_handler(sender, **kwargs):
   notification_dict = notification_messages[application.status]
   notification_message = notification_dict['message'].format(job_title)
 
+  application_change(application, application.status)
+
   account.send_notification(notification_message, link=notification_dict['link'])
 
   try:
@@ -75,7 +77,7 @@ def job_application_save_handler(sender, **kwargs):
       )
     )
     test_notification.link = reverse('testing_prepare', args=[online_test.model_id])
-    test_notification.save() 
+    test_notification.save()
 
   try:
     _ = Suitabilities.objects.get(application=application)
@@ -90,5 +92,5 @@ def job_application_save_handler(sender, **kwargs):
       shared_skills = len(list(set(required_skills) & set(applicant_skills)))
       suitability_score.specific_score = (shared_skills / len(required_skills))
 
-    suitability_score.magic_score = generate_magic_score(application)
+    suitability_score.magic_score = magic_score(application)
     suitability_score.save()
