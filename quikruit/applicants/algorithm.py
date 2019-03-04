@@ -38,8 +38,9 @@ def change_weight(feature, change):
     feature_model.weight = weight
     feature_model.save()
 
-def features(applicant):
+def features(application):
     applicant_features = set();
+    applicant = application.applicant
 
     for a_level in applicant.a_levels.all():
         applicant_features.add(str(a_level))
