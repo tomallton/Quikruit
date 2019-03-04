@@ -99,7 +99,7 @@ def job_application_save_handler(sender, **kwargs):
 @receiver(post_save, sender=SkillHobby)
 def skill_hobby_save_handler(sender, **kwargs):
   skill_hobby = kwargs['instance']
-  pdb.set_trace()
+  # pdb.set_trace()
   if not Feature.objects.filter(name=str(skill_hobby)).exists():
     new_feature = Feature()
     new_feature.name = str(skill_hobby)
