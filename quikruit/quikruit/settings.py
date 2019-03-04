@@ -141,3 +141,5 @@ MEDIA_URL = "/quikruit/media/"
 LOGIN_REDIRECT_URL = "/quikruit/applicants/"
 
 MARKDOWNX_URLS_PATH = '/quikruit/markdownx/markdownify/'
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
