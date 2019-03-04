@@ -11,7 +11,7 @@ cal = pdt.Calendar()
 job = JobListing.objects.get(title='Engineer – Full Stack')
 
 def load():
-    with open('/Users/jordan/Documents/University/Modules/CS261/Group Project/Quikruit_Development/quikruit/dataset/cvDataset.json') as f:
+    with open('dataset/cvDataset.json') as f:
         data = json.load(f)
 
     _ = input("start")
