@@ -114,7 +114,7 @@ media/
 
 .env
 db.sqlite3
-dataset/
+*cvDataset.json
 
 # macOS
 .DS_STORE
