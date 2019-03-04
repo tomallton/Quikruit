@@ -2,7 +2,7 @@
 import math
 
     def magicScore(applicant):
-
+        return 1;
 
     # Applies a sigmoid function to a given value.
     #
