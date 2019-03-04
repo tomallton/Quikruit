@@ -1,71 +1,59 @@
-
 import math
 
-from applicants.models import SkillHobby, Feature
-from applicants.models import JobApplication
+from applicants.models import SkillHobby, Feature, JobApplication
 
-    def magic_score(applicant):
+def sigmoid(x):
+    return 2 * (1 / (1 + math.pow(math.e, -x / 5)) - 0.5)
 
-        applicant_features = features(applicant)
+def magic_score(applicant):
+    applicant_features = features(applicant)
+    score = 0
+    for applicant_feature in applicant_features:
+        feature_model = Feature.objects.get(name=applicant_feature)
+        score += feature_model.weight
+    return sigmoid(score);
 
-        score = 0
+def appliation_change(applicant, status):
+    change = 0
+    if status == JobApplication.INTERVIEW_REQUESTED or status == JobApplication.OFFER_GIVEN:
+        change = 0.01
+    elif status == JobApplication.REJECTED:
+        change = -0.01
+    else:
+        return
 
-        for applicant_feature in applicant_features:
-            feature_model = Feature.objects.get(name=applicant_feature)
-            score += feature_model.weight
+    applicant_features = features(applicant)
 
-        return sigmoid(score);
+    for applicant_feature in applicant_features:
+        change_weight(applicant_feature, change)
 
-    def appliation_change(applicant, status):
+def change_weight(feature, change):
+    feature_model = Feature.objects.get(name=feature)
 
-        change = 0
+    weight = feature_model.weight + change
 
-        if status == JobApplication.INTERVIEW_REQUESTED || status == JobApplication.OFFER_GIVEN:
-            change = 0.01
-        else if status == JobApplication.REJECTED:
-            change = -0.01
-        else:
-            return
+    weight = math.max(weight, 0)
+    weight = math.min(weight, 3)
 
-        applicant_features = features(applicant)
+    feature_model.weight = weight
+    feature_model.save()
 
-        for applicant_feature in applicant_features:
-            change_weight(applicant_feature, change)
+def features(applicant):
+    applicant_features = set();
 
-    def change_weight(feature, change):
-        feature_model = Feature.objects.get(name=feature)
+    for a_level in applicant.a_levels.all():
+        applicant_features.add(str(a_level))
 
-        weight = feature_model.weight + change
+    for degree in applicant.degree.all():
+        applicant_features.add(str(degree))
 
-        weight = math.max(weight, 0)
-        weight = math.min(weight, 3)
+    for skill in applicant.skills_and_hobbies.filter(kind=SkillHobby.SKILL):
+        applicant_features.add(str(skill))
 
-        feature_model.weight = weight
-        feature_model.save()
+    for programming_language in applicant.skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE):
+        applicant_features.add(str(programming_language))
 
-    def features(applicant):
-        applicant_features = set();
+    for prior_employment in applicant.prior_employment.all():
+        applicant_features.add(str(prior_employment))
 
-        for a_level in applicant.a_levels.all():
-            applicant_features.add(str(a_level))
-
-        for degree in applicant.degree.all():
-            applicant_features.add(str(degree))
-
-        for skill in applicant.skills_and_hobbies.filter(kind=SkillHobby.SKILL:
-            applicant_features.add(str(skill))
-
-        for programming_language in applicant.skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE:
-            applicant_features.add(str(programming_language))
-
-        for prior_employment in applicant.prior_employment.all():
-            applicant_features.add(str(prior_employment))
-
-        return applicant_features
-
-    #
-    # Applies a sigmoid function to a given value.
-    # Returns a value between 0 and 1 not inclusive proportional to the input x.
-    #
-    def sigmoid(x):
-        return 2 * (1 / (1 + math.pow(math.e, -x / 5)) - 0.5)
+    return applicant_features
