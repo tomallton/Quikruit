@@ -1,4 +1,5 @@
 import math
+import pdb
 
 from applicants.models import SkillHobby, Feature, JobApplication
 
@@ -32,8 +33,8 @@ def change_weight(feature, change):
 
     weight = feature_model.weight + change
 
-    weight = math.max(weight, 0)
-    weight = math.min(weight, 3)
+    weight = max(weight, 0)
+    weight = min(weight, 3)
 
     feature_model.weight = weight
     feature_model.save()
@@ -43,18 +44,18 @@ def features(application):
     applicant = application.applicant
 
     for a_level in applicant.a_levels.all():
-        applicant_features.add(str(a_level))
+        applicant_features.add(a_level.feature_description)
 
     for degree in applicant.degree.all():
-        applicant_features.add(str(degree))
+        applicant_features.add(degree.feature_description)
 
     for skill in applicant.skills_and_hobbies.filter(kind=SkillHobby.SKILL):
-        applicant_features.add(str(skill))
+        applicant_features.add(skill.feature_description)
 
     for programming_language in applicant.skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE):
-        applicant_features.add(str(programming_language))
+        applicant_features.add(programming_language.feature_description)
 
     for prior_employment in applicant.prior_employment.all():
-        applicant_features.add(str(prior_employment))
+        applicant_features.add(prior_employment.feature_description)
 
     return applicant_features

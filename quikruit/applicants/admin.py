@@ -76,13 +76,16 @@ class SkillHobbyLevelAdmin(admin.ModelAdmin):
 
 @admin.register(JobApplication)
 class JobApplicationAdmin(admin.ModelAdmin):
-	list_display = ('job_listing', 'applicant', 'status', 'last_updated')
+	list_display = ('job_listing', 'applicant', 'status', 'last_updated', 'magic_score')
 	readonly_fields = ('applicant_profile','job_listing','date_submitted', 'cover_letter', 'last_updated')
 	exclude = ('applicant',)
 
 	inlines = [
 		SuitabilitesInline
 	]
+
+	def magic_score(self, obj):
+		return obj.application_suitabilities.magic_score
 
 	def applicant_profile(self, obj):
 		return format_html(

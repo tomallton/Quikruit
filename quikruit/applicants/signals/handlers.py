@@ -99,16 +99,35 @@ def job_application_save_handler(sender, **kwargs):
 @receiver(post_save, sender=SkillHobby)
 def skill_hobby_save_handler(sender, **kwargs):
   skill_hobby = kwargs['instance']
-  # pdb.set_trace()
-  if not Feature.objects.filter(name=str(skill_hobby)).exists():
+  
+  if skill_hobby.kind == SkillHobby.HOBBY:
+    return
+
+  if not Feature.objects.filter(name=skill_hobby.feature_description).exists():
     new_feature = Feature()
-    new_feature.name = str(skill_hobby)
+    new_feature.name = skill_hobby.feature_description
     new_feature.save()
 
 @receiver(post_save, sender=Degree)
 def degree_save_handler(sender, **kwargs):
   degree = kwargs['instance']
-  if not Feature.objects.filter(name=str(degree)).exists():
+  if not Feature.objects.filter(name=degree.feature_description).exists():
     new_feature = Feature()
-    new_feature.name = str(degree)
+    new_feature.name = degree.feature_description
+    new_feature.save()
+
+@receiver(post_save, sender=ALevel)
+def a_level_save_handler(sender, **kwargs):
+  a_level = kwargs['instance']
+  if not Feature.objects.filter(name=a_level.feature_description).exists():
+    new_feature = Feature()
+    new_feature.name = a_level.feature_description
+    new_feature.save()
+
+@receiver(post_save, sender=PriorEmployment)
+def prior_employment_save_handler(sender, **kwargs):
+  prior_employment = kwargs['instance']
+  if not Feature.objects.filter(name=prior_employment.feature_description).exists():
+    new_feature = Feature()
+    new_feature.name = prior_employment.feature_description
     new_feature.save()

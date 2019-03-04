@@ -3,6 +3,8 @@ from quikruit.mixins import StringBasedModelIDMixin
 from django.utils import timezone
 from quikruit.settings import MEDIA_ROOT
 
+s = lambda s: s.strip(' \t\n\r')
+
 def _directory_path(instance, filename, model):
     split_file_name = filename.split(sep='.')
     filetype = split_file_name[len(split_file_name) - 1]
@@ -86,8 +88,11 @@ class PriorEmployment(models.Model):
     employment_length = models.DurationField(null=True)
 
     @property
-    def length_of_employment(self):
-        return self.employed_until - self.employed_from
+    def feature_description(self):
+        return '{} [Prior Employment]'.format(s(self.company))
+
+    def __str__(self):
+        return '{}|{} [Prior Employment]'.format(s(self.company), s(self.position))
 
 class Degree(models.Model):
     applicant = models.ForeignKey(
@@ -103,8 +108,12 @@ class Degree(models.Model):
     # the expected 1st, 2:1, 2:2 etc. choices.
     level_awarded = models.CharField(max_length=20)
 
+    @property
+    def feature_description(self):
+        return '{}|{} [Degree]'.format(s(self.qualification), s(self.level_awarded))
+
     def __str__(self):
-        return "{}, {}, {}".format(self.institution, self.qualification, self.level_awarded)
+        return "{}|{}|{} [Degree]".format(s(self.institution), s(self.qualification), s(self.level_awarded))
 
 class ALevel(models.Model):
     applicant = models.ForeignKey(
@@ -115,8 +124,12 @@ class ALevel(models.Model):
     subject = models.CharField(max_length=40)
     grade = models.CharField(max_length=2)
 
+    @property
+    def feature_description(self):
+        return str(self)
+
     def __str__(self):
-        return "A-Level {} at grade {}".format(self.subject, self.grade)
+        return "{}|Grade {} [A-Level]".format(s(self.subject), s(self.grade))
 
 class SkillHobbyLevel(models.Model):
     applicant = models.ForeignKey(
@@ -135,7 +148,7 @@ class SkillHobbyLevel(models.Model):
     level = models.IntegerField(choices=level_choices)
 
     def __str__(self):
-        return "{} | {} | {}".format(self.applicant.name, self.skillhobby, self.level)
+        return "{}|{}|{}".format(self.applicant.name, self.skillhobby, self.level)
 
 class SkillHobby(StringBasedModelIDMixin):
     name = models.CharField(
@@ -151,6 +164,10 @@ class SkillHobby(StringBasedModelIDMixin):
         (PROGRAMMING_LANGUAGE, "Programming Language")
     )
     kind = models.IntegerField(choices=kind_choices)
+
+    @property
+    def feature_description(self):
+        return str(self)
 
     def __str__(self):
         return "{1} [{0}]".format(self.get_kind_display(), self.name)
