@@ -52,10 +52,6 @@ notification_messages = {
 
 perform_selection = False
 
-@receiver(pre_save, sender=JobApplication)
-def job_application_pre_save_handler(sender, **kwargs):
-
-
 @receiver(post_save, sender=JobApplication)
 def job_application_save_handler(sender, **kwargs):
   application = kwargs['instance']
