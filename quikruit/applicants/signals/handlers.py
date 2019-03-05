@@ -100,7 +100,7 @@ def job_application_save_handler(sender, **kwargs):
 
   if kwargs['created'] and application.job_listing.applications.count() % 15 == 0:
     job_listing = application.job_listing
-    all_applications = job_listing.applications.order_by('-application_suitabilites__magic_score')
+    all_applications = job_listing.applications.order_by('-application_suitabilities__magic_score')
     applications_count = round(all_applications.count() / 0.25)
     selected_applications = all_applications[:applications_count]
     job_listing.suitable_applications.set(selected_applications)
