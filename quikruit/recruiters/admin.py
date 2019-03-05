@@ -34,7 +34,6 @@ class JobListingAdmin(admin.ModelAdmin):
 	
 	def get_form(self, request, obj=None, **kwargs):
 		form = super().get_form(request, obj, **kwargs)
-		pdb.set_trace()
 		if obj:
 			form.base_fields['suitable_applications'].queryset = JobApplication.objects.filter(job_listing=obj)
 		else:
