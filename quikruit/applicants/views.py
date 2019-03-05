@@ -62,18 +62,6 @@ def register(request):
         }
     return render(request, 'applicants/app_registration.html', context)
 
-# @login_required(login_url='/quikruit/applicants/login/')
-# def application_form(request, job_id):
-#     try:
-#         profile = request.user.applicant_profile
-#     except ApplicantProfile.DoesNotExist:
-#         return HttpResponseRedirect("/quikruit/applicants/login/")
-#     context = {
-#         'profile': profile,
-#         'job': JobListing.objects.get(pk=job_id)
-#     }
-#     return render(request, 'applicants/app_applicationform.html', context)
-
 @login_required(login_url='/quikruit/applicants/login/')
 def application_form(request, job_id):
     try:
