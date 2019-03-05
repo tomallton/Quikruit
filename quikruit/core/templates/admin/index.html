@@ -1,0 +1,13 @@
+{% extends "admin/index.html" %}
+
+{% block sidebar %}
+<div id="content-related">
+    <div class="module" id="recent-actions-module">
+        <h2>Recent Notifications</h2>
+        <ul class="actionlist">
+        {% for notif in user.notifications.all reversed %}
+            <li>{{ notif.created }} <br> {{ notif.message }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>{% endblock %}

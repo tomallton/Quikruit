@@ -34,4 +34,6 @@ class NotificationAdmin(admin.ModelAdmin):
 	readonly_fields = ('created',)
 
 admin.site.site_header = format_html('<img id="logo" src="/quikruit/static/svg/logo_recruiters.svg" alt="Quikruit Logo">')
+admin.site.index_title = "Quikruit Recruiters Management Portal"
 admin.site.register(QuikruitAccount, QuikruitAccountAdmin)
+admin.site.unregister(Group)

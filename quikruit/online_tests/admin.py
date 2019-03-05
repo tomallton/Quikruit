@@ -5,7 +5,6 @@ from django.utils.html import format_html
 from django.urls import reverse
 
 admin.site.register(TestQuestion)
-admin.site.register(QuestionResponse)
      
 class TestQuestionResponseInLine(admin.TabularInline):
     model = QuestionResponse

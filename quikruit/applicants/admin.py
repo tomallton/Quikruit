@@ -67,12 +67,12 @@ class ApplicantProfileAdmin(admin.ModelAdmin):
 class SkillHobbyAdmin(admin.ModelAdmin):
 	list_display = ('name', 'kind')
 
-@admin.register(SkillHobbyLevel)
-class SkillHobbyLevelAdmin(admin.ModelAdmin):
-	list_display = ('applicant_name', 'skillhobby', 'level')
+# @admin.register(SkillHobbyLevel)
+# class SkillHobbyLevelAdmin(admin.ModelAdmin):
+# 	list_display = ('applicant_name', 'skillhobby', 'level')
 
-	def applicant_name(self, obj):
-		return obj.applicant.name
+# 	def applicant_name(self, obj):
+# 		return obj.applicant.name
 
 @admin.register(JobApplication)
 class JobApplicationAdmin(admin.ModelAdmin):
@@ -85,7 +85,9 @@ class JobApplicationAdmin(admin.ModelAdmin):
 	]
 
 	def magic_score(self, obj):
-		return obj.application_suitabilities.magic_score
+		return "{}%".format(round(obj.application_suitabilities.magic_score * 100,1))
+
+	magic_score.admin_order_field = 'application_suitabilities__magic_score'
 
 	def applicant_profile(self, obj):
 		return format_html(

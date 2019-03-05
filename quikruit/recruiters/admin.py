@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import *
 from applicants.models import JobApplication
 from core.models import Notification
+import pdb
 
 def invite_marked_applications_to_interview(modeladmin, request, queryset):
 	for application in queryset:
@@ -30,6 +31,15 @@ class JobListingAdmin(admin.ModelAdmin):
 		JobApplicationInline
 	]
 	filter_horizontal = ('suitable_applications',)
+	
+	def get_form(self, request, obj=None, **kwargs):
+		form = super().get_form(request, obj, **kwargs)
+		pdb.set_trace()
+		if obj:
+			form.base_fields['suitable_applications'].queryset = JobApplication.objects.filter(job_listing=obj)
+		else:
+			form.base_fields['suitable_applications'].queryset = None
+		return form
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
