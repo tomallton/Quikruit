@@ -37,7 +37,7 @@ class JobListingAdmin(admin.ModelAdmin):
 		if obj:
 			form.base_fields['suitable_applications'].queryset = JobApplication.objects.filter(job_listing=obj)
 		else:
-			form.base_fields['suitable_applications'].queryset = None
+			form.base_fields['suitable_applications'].queryset = JobApplication.objects.none()
 		return form
 
 @admin.register(Department)
