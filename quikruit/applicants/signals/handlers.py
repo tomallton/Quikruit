@@ -54,9 +54,7 @@ perform_selection = False
 
 @receiver(pre_save, sender=JobApplication)
 def job_application_pre_save_handler(sender, **kwargs):
-  application = kwargs['instance']
-  if count(application.job_listing.applications) + 1 % 10 == 0:
-    perform_selection = True
+
 
 @receiver(post_save, sender=JobApplication)
 def job_application_save_handler(sender, **kwargs):
@@ -104,8 +102,7 @@ def job_application_save_handler(sender, **kwargs):
     suitability_score.magic_score = magic_score(application)
     suitability_score.save()
 
-  if perform_selection:
-    perform_selection = False
+  if kwargs['created'] and application.job_listing.applications.count() % 15 == 0:
     job_listing = application.job_listing
     all_applications = job_listing.applications.order_by('-application_suitabilites__magic_score')
     applications_count = round(all_applications.count() / 0.25)
