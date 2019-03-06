@@ -1,0 +1,11 @@
+{% extends 'admin/login.html' %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
+<style type="text/css">
+	.login .form-row label {
+		color: white;
+	}
+</style>
+{% endblock %}
