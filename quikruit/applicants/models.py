@@ -79,7 +79,6 @@ class PriorEmployment(models.Model):
     )
     company = models.CharField(max_length=60)
     position = models.CharField(max_length=60)
-    employment_length = models.DurationField(null=True)
 
     @property
     def feature_description(self):

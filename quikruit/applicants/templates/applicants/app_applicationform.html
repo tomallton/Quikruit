@@ -71,7 +71,6 @@
 		<h3 class='addnew' id='addnew_a_levels'>+ Add another A-Level</h3>
 	</div>
 	<h3 class='collapsebutton' id='collapsebutton_skill_hobby_levels'>▼ Skills and Hobbies</h3><br>
-  <h4>Please enter upto 10 Skills or Hobbies.</h4>
 	<div class='collapsiblebox' id='collapse_skill_hobby_levels'>
 		{{ skill_hobby_levels.management_form }}
 		<div class='formsetcontainer' id='formset_skill_hobby_levels'>
@@ -83,6 +82,7 @@
 					<div class='suggestionscontainer' style="height: 0;">
 						<ul class='skillhobbysuggestions'></ul>
 					</div>
+				<span class='left'>Novice</span><span class='right'>Expert</span>
 					{{ form.level }}
 				</div>
 			{% endfor %}
@@ -95,7 +95,9 @@
 				<div class='suggestionscontainer' style="height: 0;">
 						<ul class='skillhobbysuggestions'></ul>
 				</div>
+				<span class='left'>Novice</span>
 				{{ skill_hobby_levels.empty_form.level }}
+				<span class='right'>Expert</span>
 			</div>
 		</div>
 		<h3 class='addnew' id='addnew_skill_hobby_levels'>+ Add another Skill or Hobby</h3>

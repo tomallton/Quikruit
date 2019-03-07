@@ -11,7 +11,7 @@ import pdb
 class PriorEmploymentInline(admin.TabularInline):
 	model = PriorEmployment
 	can_delete = False
-	readonly_fields = ['company','position','employment_length']
+	readonly_fields = ['company','position']
 	extra = 0
 
 	def has_add_permission(self,request):

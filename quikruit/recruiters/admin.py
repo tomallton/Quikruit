@@ -4,6 +4,7 @@ from .models import *
 from applicants.models import JobApplication
 from core.models import Notification
 import pdb
+from quikruit.settings import get_base_url
 
 def invite_marked_applications_to_interview(modeladmin, request, queryset):
 	for application in queryset:
@@ -35,7 +36,7 @@ class JobApplicationInline(admin.StackedInline):
 	def link(self, obj):
 		return format_html(
 			'<a href="{l}"><strong>[Click to view]</strong></a>'.format(
-				l=reverse('admin:applicants_jobapplication_change', args=[obj.model_id]),
+				l=get_base_url() + reverse('admin:applicants_jobapplication_change', args=[obj.model_id]),
 			)
 		)
 

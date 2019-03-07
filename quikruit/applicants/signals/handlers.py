@@ -108,7 +108,7 @@ def job_application_save_handler(sender, **kwargs):
         '''
         There are now {} applications to {}. Quikruit has automatically selected {} of them.
         Click here to view the job listing.
-        '''.format(job_listing.applications.count(), job_listing.title, job_listing.suitable_applications.count()),
+        '''.format(job_listing.applications.count(), job_listing.title, job_listing.suitable_applications.count() ),
         link=reverse('admin:recruiters_joblisting_change', args=[job_listing.model_id])
       )
 

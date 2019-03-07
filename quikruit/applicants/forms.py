@@ -6,6 +6,8 @@ class SkillHobbyLevelForm(forms.ModelForm):
 	skill_hobby = forms.CharField(widget=forms.TextInput(attrs={'class':'skillhobbyslot'}))
 	skill_hobby.label = 'Skill / Hobby / Programming Language'
 
+	level = forms.IntegerField(widget=forms.NumberInput(attrs={'type':'range', 'step': '1', 'min':'0', 'max':'10'}))
+
 	def __init__(self, *args, **kwargs):
 		super(SkillHobbyLevelForm, self).__init__(*args, **kwargs)
 		try:

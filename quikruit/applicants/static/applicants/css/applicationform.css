@@ -154,3 +154,7 @@ a:hover {
 .skillhobbyslot.filled {
   background: lightgrey;
 }
+
+span.right {
+  float: right;
+}

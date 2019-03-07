@@ -12,7 +12,7 @@ import sys
 cal = pdt.Calendar()
 job = JobListing.objects.get(title__contains="Full Stack")
 
-sep = '===================================================='
+sep = '=' * 60
 
 def load():
     with open('dataset/cvDataset.json') as f:
@@ -37,16 +37,18 @@ def load():
 
         sys.stdout.write('\u001b[2J')
         print(sep)
+        print('Degree')
 
         degree = Degree()
         degree.applicant = profile
         degree.institution = a['University Attended']
         degree.qualification = a['Degree Qualification']
         degree.level_awarded = a['Degree Level']
-        print(degree)
+        print('{}, {}, {}'.format(degree.institution, degree.qualification, degree.level_awarded))
         degree.save()
 
         print(sep)
+        print('A-Levels')
 
         for al in a['A-Level Qualifications']:
             alo = ALevel()
@@ -54,9 +56,11 @@ def load():
             alo.subject = al['Subject']
             alo.grade = al['Grade']
             alo.save()
-            print(alo)
+            row_format ="{:>20}" * (2)
+            print(row_format.format(alo.subject, alo.grade))
 
         print(sep)
+        print('Languages Known')
 
         for l in a['Languages Known']:
             try:
@@ -72,9 +76,11 @@ def load():
             lol.skillhobby = lo
             lol.level = l['Expertise']
             lol.save()
-            print(lol)
+            row_format ="{:>20}" * (2)
+            print(row_format.format(lo.name, lol.level))
 
         print(sep)
+        print('Skills')
 
         for l in a['Skills']:
             try:
@@ -90,9 +96,11 @@ def load():
             lol.skillhobby = lo
             lol.level = l['Expertise']
             lol.save()
-            print(lol)
+            row_format ="{:>20}" * (2)
+            print(row_format.format(lo.name, lol.level))
 
         print(sep)
+        print('Hobbies')
 
         for l in a['Hobbies']:
             try:
@@ -108,9 +116,11 @@ def load():
             lol.skillhobby = lo
             lol.level = l['Interest']
             lol.save()
-            print(lol)
+            row_format ="{:>20}" * (2)
+            print(row_format.format(lo.name, lol.level))
 
         print(sep)
+        print('Previous Employment')
 
         for pe in a['Previous Employment']:
             peo = PriorEmployment()
@@ -120,7 +130,8 @@ def load():
             diff = cal.parseDT(pe['Length of Employment'], sourceTime=datetime.min)[0] - datetime.min
             peo.employment_length = diff
             peo.save()
-            print(peo)
+            row_format ="{:>40}" * (2)
+            print(row_format.format(peo.position, peo.company))
 
         ja = JobApplication()
         ja.job_listing = job
