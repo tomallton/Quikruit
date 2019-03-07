@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from AWS import is_aws
+from quikruit.AWS import is_aws
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,8 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-@property
-def BASE_URL(self):
+def get_base_url(self):
     return '/quickruit' if is_aws else ''
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -135,17 +134,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = '/home/bitnami/apps/django/django_projects/quikruit/static/'
-STATIC_URL = BASE_URL + '/static/'
+STATIC_URL = get_base_url() + '/static/'
 
 STATICFILES_DIRS = [
     'global_static/',
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = BASE_URL + '/media/'
+MEDIA_URL = get_base_url()() + '/media/'
 
-LOGIN_REDIRECT_URL = BASE_URL + '/applicants/'
+LOGIN_REDIRECT_URL = get_base_url()() + '/applicants/'
 
-MARKDOWNX_URLS_PATH = BASE_URL + '/markdownx/markdownify/'
+MARKDOWNX_URLS_PATH = get_base_url()() + '/markdownx/markdownify/'
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000

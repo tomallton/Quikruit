@@ -13,9 +13,9 @@ from .forms import *
 from recruiters.models import JobListing
 from core.forms import AccountCreationForm
 
-from quikruit.settings import BASE_URL
+from quikruit.settings import get_base_url
 
-LOGIN_URL = BASE_URL + '/applicants/login/'
+LOGIN_URL = get_base_url() + '/applicants/login/'
 
 @login_required(login_url=LOGIN_URL)
 def homepage(request):
