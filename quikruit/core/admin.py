@@ -4,6 +4,7 @@ from django.contrib.auth.models import Group
 from .models import QuikruitAccount, Notification
 from .forms import AccountCreationForm
 from django.utils.html import format_html
+from quikruit.settings import STATIC_URL
 
 class QuikruitAccountAdmin(auth_admin.UserAdmin):
 	add_form = AccountCreationForm
@@ -28,12 +29,9 @@ class QuikruitAccountAdmin(auth_admin.UserAdmin):
 	readonly_fields = ('model_id',)
 	filter_horizontal = ()
 
-@admin.register(Notification)
-class NotificationAdmin(admin.ModelAdmin):
-	fields = ('account','message','link','created')
-	readonly_fields = ('created',)
+logo_url = STATIC_URL + 'svg/logo_recruiters.svg'
 
-admin.site.site_header = format_html('<img id="logo" src="/quikruit/static/svg/logo_recruiters.svg" alt="Quikruit Logo">')
+admin.site.site_header = format_html('<img id="logo" src="{}" alt="Quikruit Logo">'.format(logo_url))
 admin.site.index_title = "Quikruit Recruiters Management Portal"
 admin.site.register(QuikruitAccount, QuikruitAccountAdmin)
 admin.site.unregister(Group)

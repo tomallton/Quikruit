@@ -6,7 +6,13 @@
         <h2>Recent Notifications</h2>
         <ul class="actionlist">
         {% for notif in user.notifications.all reversed %}
-            <li>{{ notif.created }} <br> {{ notif.message }}</li>
+            <li>{{ notif.created }} <br> 
+            	{% if notif.link %}
+        			<a href='{{notif.link}}'>{{ notif.message }}</a>
+        		{% else %}
+        			{{notif.message}}
+        		{%endif%}
+        	</li>
         {% endfor %}
         </ul>
     </div>

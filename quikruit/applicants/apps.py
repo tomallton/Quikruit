@@ -5,4 +5,4 @@ class ApplicantsConfig(AppConfig):
 
     def ready(self):
     	import applicants.signals.handlers
-    	print("signals imported.")
+    	print("applicants: signals imported.")

@@ -113,6 +113,44 @@ a:hover {
   color:red;
 }
 
-.formsetcontainer {
-  border: 2px solid white;
+.formcontainer {
+  padding-top: 20px;
+}
+
+.formsetcontainer .formcontainer:first-child {
+}
+
+.formsetcontainer .formcontainer:not(:first-child) {
+  border-top: 2px solid white; 
+}
+
+.suggestionscontainer {
+  transition: all 0.5s;
+  overflow: hidden;
+  background: white;
+  color: black;
+  position: relative;
+  margin-top: -20px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+  display: tab
+  height: 0;
+}
+
+.skillhobbysuggestions {
+  padding: 0;
+  margin: 0;
+}
+
+.skillhobbysuggestions li {
+  height: 32px;
+  line-height: 32px;
+  font-size: 20px;
+  padding-left: .5em;
+}
+
+.skillhobbyslot.filled {
+  background: lightgrey;
 }

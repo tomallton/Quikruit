@@ -18,6 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+BASE_URL = ''
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'l=_d&*to=duxe-@i$mt+cb4h0hbn-5791xqfcol1)ig=d*37t9'
@@ -30,7 +31,8 @@ ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1', 
     'jordans-macbook-pro.local',
-    'jordans-mbp.wifi-campus.warwick.ac.uk'
+    'jordans-mbp.wifi-campus.warwick.ac.uk',
+    '172.31.221.213'
 ]
 
 
@@ -129,17 +131,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = '/home/bitnami/apps/django/django_projects/quikruit/static/'
-STATIC_URL = '/quikruit/static/'
+STATIC_URL = BASE_URL + '/static/'
 
 STATICFILES_DIRS = [
     'global_static/',
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = "/quikruit/media/"
+MEDIA_URL = BASE_URL + '/media/'
 
-LOGIN_REDIRECT_URL = "/quikruit/applicants/"
+LOGIN_REDIRECT_URL = BASE_URL + '/applicants/'
 
-MARKDOWNX_URLS_PATH = '/quikruit/markdownx/markdownify/'
+MARKDOWNX_URLS_PATH = BASE_URL + '/markdownx/markdownify/'
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000

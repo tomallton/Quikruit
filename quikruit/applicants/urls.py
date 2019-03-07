@@ -21,6 +21,8 @@ urlpatterns = [
 	# URL Example: http://quikruit.example/job/3v4tnf7cgy7yg78/apply/
 	path('job/<slug:job_id>/apply/', views.application_form, name='applicants_applicationform'),
 
+	path('job/<slug:job_id>/apply/skillhobby/', views.skill_hobby_dropdown, name='skill_hobby_dropdown'),
+
 	path('register/', views.register, name='applicants_registration'),
 
 	path('jobs/', views.job_list, name='applicants_joblistings'),

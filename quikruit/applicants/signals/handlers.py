@@ -1,10 +1,12 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from django.urls import reverse
+
 from applicants.models import *
 from online_tests.models import OnlineTest
-from recruiters.models import Suitabilities
-from core.models import Notification
-from django.urls import reverse
+from recruiters.models import Suitabilities, JobListing, Department
+from core.models import Notification, QuikruitAccount
+
 from applicants.algorithm import magic_score, application_change
 import pdb
 
@@ -50,7 +52,26 @@ notification_messages = {
   }
 }
 
-perform_selection = False
+def send_update_notification(application):
+  job_title = application.job_listing.title
+  account = application.applicant.account
+  notification_dict = notification_messages[application.status]
+  notification_message = notification_dict['message'].format(job_title)
+  account.send_notification(notification_message, link=notification_dict['link'])
+
+def create_online_test(application):
+  if not OnlineTest.objects.filter(application=application).exists():
+    online_test = OnlineTest()
+    online_test.application = application
+    online_test.save()
+    online_test.populate()
+
+    application.applicant.account.send_notification(
+      'An Online Test has been prepared for you for your application to {}. Please click here to complete it.'.format(
+        application.job_listing.title
+      ),
+      link=reverse('testing_prepare', args=[online_test.model_id])
+    )
 
 @receiver(post_save, sender=JobApplication)
 def job_application_save_handler(sender, **kwargs):
@@ -58,33 +79,11 @@ def job_application_save_handler(sender, **kwargs):
   account = application.applicant.account
   job_title = application.job_listing.title
 
-  notification_dict = notification_messages[application.status]
-  notification_message = notification_dict['message'].format(job_title)
+  send_update_notification(application)
+  application_change(application)
+  create_online_test(application)
 
-  application_change(application, application.status)
-
-  account.send_notification(notification_message, link=notification_dict['link'])
-
-  try:
-    _ = OnlineTest.objects.get(application=application)
-  except OnlineTest.DoesNotExist:
-    online_test = OnlineTest()
-    online_test.application = application
-    online_test.save()
-
-    test_notification = Notification()
-    test_notification.account = application.applicant.account
-    test_notification.message = (
-      'An Online Test has been prepared for you for your application to {}. Please click here to complete it.'.format(
-        application.job_listing.title
-      )
-    )
-    test_notification.link = reverse('testing_prepare', args=[online_test.model_id])
-    test_notification.save()
-
-  try:
-    _ = Suitabilities.objects.get(application=application)
-  except Suitabilities.DoesNotExist:
+  if not Suitabilities.objects.filter(application=application).exists():
     suitability_score = Suitabilities()
     suitability_score.application = application
     required_skills = application.job_listing.required_skills.all()
@@ -101,42 +100,51 @@ def job_application_save_handler(sender, **kwargs):
   if kwargs['created'] and application.job_listing.applications.count() % 15 == 0:
     job_listing = application.job_listing
     all_applications = job_listing.applications.order_by('-application_suitabilities__magic_score')
-    applications_count = round(all_applications.count() / 0.25)
+    applications_count = round(all_applications.count() * 0.25)
     selected_applications = all_applications[:applications_count]
     job_listing.suitable_applications.set(selected_applications)
+    for admin_account in QuikruitAccount.objects.filter(is_superuser=True):
+      admin_account.send_notification(
+        '''
+        There are now {} applications to {}. Quikruit has automatically selected {} of them.
+        Click here to view the job listing.
+        '''.format(job_listing.applications.count(), job_listing.title, 10),
+        link=reverse('admin:recruiters_joblisting_change', args=[job_listing.model_id])
+      )
+
+def add_feature(description):
+  if not Feature.objects.filter(name=description).exists():
+    for d in Department.objects.all():
+      new_feature = Feature()
+      new_feature.department = d
+      new_feature.name = description
+      new_feature.save()
 
 @receiver(post_save, sender=SkillHobby)
 def skill_hobby_save_handler(sender, **kwargs):
   skill_hobby = kwargs['instance']
   
-  if skill_hobby.kind == SkillHobby.HOBBY:
-    return
+  if kwargs['created'] and skill_hobby.kind == SkillHobby.UNCATEGORISED:
+    for admin_account in QuikruitAccount.objects.filter(is_superuser=True):
+      admin_account.send_notification(
+        '''
+        An applicant has added a new Skill / Hobby to the database ({}), please click here to
+        correctly categorise it.
+        '''.format(skill_hobby.name),
+        link=reverse('admin:applicants_skillhobby_change', args=[skill_hobby.name])
+      )
 
-  if not Feature.objects.filter(name=skill_hobby.feature_description).exists():
-    new_feature = Feature()
-    new_feature.name = skill_hobby.feature_description
-    new_feature.save()
+  if skill_hobby.kind != SkillHobby.HOBBY:
+    add_feature(skill_hobby.feature_description)
 
 @receiver(post_save, sender=Degree)
 def degree_save_handler(sender, **kwargs):
-  degree = kwargs['instance']
-  if not Feature.objects.filter(name=degree.feature_description).exists():
-    new_feature = Feature()
-    new_feature.name = degree.feature_description
-    new_feature.save()
+  add_feature(kwargs['instance'].feature_description)
 
 @receiver(post_save, sender=ALevel)
 def a_level_save_handler(sender, **kwargs):
-  a_level = kwargs['instance']
-  if not Feature.objects.filter(name=a_level.feature_description).exists():
-    new_feature = Feature()
-    new_feature.name = a_level.feature_description
-    new_feature.save()
+  add_feature(kwargs['instance'].feature_description)
 
 @receiver(post_save, sender=PriorEmployment)
 def prior_employment_save_handler(sender, **kwargs):
-  prior_employment = kwargs['instance']
-  if not Feature.objects.filter(name=prior_employment.feature_description).exists():
-    new_feature = Feature()
-    new_feature.name = prior_employment.feature_description
-    new_feature.save()
+  add_feature(kwargs['instance'].feature_description)

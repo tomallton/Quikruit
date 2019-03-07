@@ -1,42 +1,3 @@
-#status {
-  border: solid black 2px;
-  width: 94%;
-  height: 10%;
-  padding: 1%;
-}
-
-#correspondence {
-  text-align: center;
-  border-right: solid black 2px;
-  border-left: solid black 2px;
-  width: 94%;
-  height: 10%;
-  padding: 1%;
-  margin-top: 2%;
-}
-
-table {
-  width:100%;
-  border-right: solid #D14102 2px;
-  border-left: solid #D14102 2px;
-}
-
-table td {
-  width: 25%;
-}
-
-#withdraw {
-  border: solid black 2px;
-  background-color: white;
-  font-size: 100%;
-  margin-top: 2%;
-  padding: 1%;
-  cursor: pointer;
-  width: 94%;
-  text-align: center;
-  color: red;
-}
-
 #joblist {
  border: none;
  background-color: #f16f37;
@@ -51,10 +12,19 @@ table td {
     padding: 6px;
 }
 
-#notifications{
+#notifications {
   border: solid white 2px;
-  padding: 15px;
+  padding: 20px;
 /*  background: #f16f37;*/
+}
+
+#notifications h2 {
+  margin-top: 0;
+}
+
+#notifications p {
+  margin-bottom: 0;
+  text-align: justify;
 }
 
 .notificationwrapper {

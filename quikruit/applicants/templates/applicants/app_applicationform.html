@@ -4,6 +4,7 @@
 {% block head %}
 <link rel="stylesheet" href="{% static 'applicants/css/applicationform.css' %}" type="text/css"/>
 <script src="{% static 'applicants/js/applicationform.js' %}" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block title %}Application Form{% endblock %}
@@ -13,50 +14,91 @@
 {% endif %}
 {% endblock %}
 
+{% block pageheader %}Application Form • {{ job.title }}{% endblock %}
+
 {% block content %}
-<h1>Application Form • {{ job.title}} </h1>
 <form method="POST" id="applicationform" action="{% url 'applicants_applicationform' job_id=job.model_id %}">
 	{% csrf_token %}
-	<h3 class="collapsebutton" id='collapsebutton_employment'>▼ Prior Employment</h3><br>
-	<div class='collapsiblebox' id='collapse_employment'>
+	<h3 class="collapsebutton" id='collapsebutton_prior_employment'>▼ Prior Employment</h3><br>
+	<div class='collapsiblebox' id='collapse_prior_employment'>
 			{{ prior_employment.management_form }}
-		<div id='formset_employment'>
+		<div class='formsetcontainer' id='formset_prior_employment'>
 			{% for form in prior_employment %}
-				{{ form }}
+				<div class='formcontainer'>
+					{{ form }}
+				</div>
 			{% endfor %}
 		</div>
-		<h3 class='addnew' id='addnew_employment'>+ Add another Employment</h3>
+		<div id='emptyform_prior_employment' style='display:none'>
+			<div class='formcontainer'>
+				{{ prior_employment.empty_form }}
+			</div>
+		</div>
+		<h3 class='addnew' id='addnew_prior_employment'>+ Add another Employment</h3>
 	</div>
 	<h3 class='collapsebutton' id='collapsebutton_degree'>▼ Degree</h3><br>
 	<div class='collapsiblebox' id='collapse_degree'>
 		{{ degree.management_form }}
-		<div id='formset_degree'>
+		<div class='formsetcontainer' id='formset_degree'>
 			{% for form in degree %}
-				{{ form }}
+				<div class='formcontainer'>
+					{{ form }}
+				</div>
 			{% endfor %}
+		</div>
+		<div id='emptyform_degree' style='display:none'>
+			<div class='formcontainer'>
+				{{ degree.empty_form }}
+			</div>
 		</div>
 		<h3 class='addnew' id='addnew_degree'>+ Add another Degree</h3>
 	</div>
-	<h3 class='collapsebutton' id='collapsebutton_alevel'>▼ A-Levels</h3><br>
-	<div class='collapsiblebox' id='collapse_alevel'>
+	<h3 class='collapsebutton' id='collapsebutton_a_levels'>▼ A-Levels</h3><br>
+	<div class='collapsiblebox' id='collapse_a_levels'>
 		{{ a_levels.management_form }}
-		<div id="formset_alevel">
+		<div class='formsetcontainer' id="formset_a_levels">
 			{% for form in a_levels %}
-				{{ form }}
+				<div class='formcontainer'>
+					{{ form }}
+				</div>
 			{% endfor %}
 		</div>
-		<h3 class='addnew' id='addnew_alevel'>+ Add another A-Level</h3>
+		<div id='emptyform_a_levels' style='display:none'>
+			<div class='formcontainer'>
+				{{ a_levels.empty_form }}
+			</div>
+		</div>
+		<h3 class='addnew' id='addnew_a_levels'>+ Add another A-Level</h3>
 	</div>
-	<h3 class='collapsebutton' id='collapsebutton_skillhobby'>▼ Skills and Hobbies</h3><br>
+	<h3 class='collapsebutton' id='collapsebutton_skill_hobby_levels'>▼ Skills and Hobbies</h3><br>
   <h4>Please enter upto 10 Skills or Hobbies.</h4>
-	<div class='collapsiblebox' id='collapse_skillhobby'>
-		{{ skills_and_hobbies.management_form }}
-		<div id='formset_skillhobby'>
-			{% for form in skills_and_hobbies %}
-				{{ form.as_p }}
+	<div class='collapsiblebox' id='collapse_skill_hobby_levels'>
+		{{ skill_hobby_levels.management_form }}
+		<div class='formsetcontainer' id='formset_skill_hobby_levels'>
+			{% for form in skill_hobby_levels %}
+				<div class='formcontainer'>
+					{{ form.id.as_hidden }}
+					{{ form.skill_hobby.label }}
+					{{ form.skill_hobby }}
+					<div class='suggestionscontainer' style="height: 0;">
+						<ul class='skillhobbysuggestions'></ul>
+					</div>
+					{{ form.level }}
+				</div>
 			{% endfor %}
 		</div>
-		<h3 class='addnew' id='addnew_skillhobby'>+ Add another Skill or Hobby</h3>
+		<div id='emptyform_skill_hobby_levels' style='display:none'>
+			<div class='formcontainer'>
+				{{ skill_hobby_levels.empty_form.id.as_hidden }}
+				{{ skill_hobby_levels.empty_form.skill_hobby.label }}
+				{{ skill_hobby_levels.empty_form.skill_hobby }}
+				<div class='suggestionscontainer' style="height: 0;">
+						<ul class='skillhobbysuggestions'></ul>
+				</div>
+				{{ skill_hobby_levels.empty_form.level }}
+			</div>
+		</div>
+		<h3 class='addnew' id='addnew_skill_hobby_levels'>+ Add another Skill or Hobby</h3>
 	</div>
 	<h3>Cover Letter</h3>
 	{{ cover_letter_form.cover_letter }}

@@ -10,8 +10,9 @@
 
 {% block navbar %}{# NO NAVBAR #}{% endblock %}
 
+{% block pageheader %}Register to Quikruit{% endblock %}
+
 {% block content %}
-<h1>Register to Quikruit</h1><br>
   <form id="registerform" action="{% url 'applicants_registration' %}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           {{ account_form.as_ul }}

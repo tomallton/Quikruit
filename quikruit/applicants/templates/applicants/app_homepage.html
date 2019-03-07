@@ -22,11 +22,11 @@
 {% endif %}
 {% endblock %}
 
+{% block pageheader %}Quikruit Dashboard{% endblock %}
+
 {% block content %}
-
-
 <div id="notifications">
-  <h1>Notifications</h1><br>
+  <h2>Notifications</h2>
   {% for notif in notifications %}
     <div class="notificationwrapper">
       <span class="notificationdate">{{ notif.created }}</span><br>

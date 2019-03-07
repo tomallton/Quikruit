@@ -1,5 +1,5 @@
 {% extends 'applicants/app_base.html' %}
-{% load static %} {% load markdown_view_tag %}
+{% load static %}
 
 {% block title %}Applicant Job Listing{% endblock %}
 
@@ -14,18 +14,19 @@
 {% endif %}
 {% endblock %}
 
+{% block pageheader %}Job Listings{% endblock %}
+
 {% block content %}
-<br>
 <div id="jobs">
   {% if job_listings %}
-    <p id="welcome">Here are all the positions for which you can apply for:</p>
+    <h2>Here are all the positions for which you can apply for:</h2>
     {% for job in job_listings %}
     <div class="jobcontainer">
       <h3 class='jobtitle'>{{job.title}}</h3>
       <p><span style="font-weight: bold">DEPARTMENT:</span> {{job.department}}</p>
       <p class='descriptioncollapsebutton' id='collapse_{{ job.model_id }}'>▶︎ Description</p><br>
       <div class="jobdescription" id='desc_{{ job.model_id }}'>
-        {{job.description|show_markdown|safe}}
+        {{ job.html_description }}
       </div>
       <a class='applybutton' href="{% url 'applicants_applicationform' job_id=job.model_id %}">APPLY</a>
     </div>

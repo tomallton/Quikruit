@@ -1,10 +1,14 @@
 {% extends "admin/base.html" %}
 
 {% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'markdownx/admin/css/markdownx.css' %}">
+{% endblock %}
+
 {% block extrastyle %}
 <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 <style type="text/css">
-
 body{
 	font-family:'Century Gothic','Futura',system-ui,sans-serif;
 	background:#3a3935;
@@ -12,10 +16,6 @@ body{
 
 #logo{
 	height:40px
-}
-
-.login .form-row label {
-	color: white;
 }
 
 #header{
@@ -90,14 +90,8 @@ p {
 	color: white;
 }
 
-
-div.markdownx-preview * {
-	all: revert;
-}
-
 li {
 	list-style: initial !important;
 }
-
 </style>
 {% endblock %}

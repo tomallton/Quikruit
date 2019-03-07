@@ -46,12 +46,6 @@ class ApplicantProfile(StringBasedModelIDMixin):
         blank=True,
         null=True)
 
-    jobs = models.ManyToManyField(
-        'recruiters.JobListing',
-        through='applicants.JobApplication',
-        related_name='applicants'
-    )
-
     skills_and_hobbies = models.ManyToManyField(
         'applicants.SkillHobby',
         through='applicants.SkillHobbyLevel',
@@ -150,18 +144,21 @@ class SkillHobbyLevel(models.Model):
     def __str__(self):
         return "{}|{}|{}".format(self.applicant.name, self.skillhobby, self.level)
 
-class SkillHobby(StringBasedModelIDMixin):
+class SkillHobby(models.Model):
     name = models.CharField(
         max_length=40,
-        unique=True
+        unique=True,
+        primary_key=True
     )
     SKILL                = 0
     HOBBY                = 1
     PROGRAMMING_LANGUAGE = 2
+    UNCATEGORISED        = 3
     kind_choices = (
         (SKILL, "Skill"),
         (HOBBY, "Hobby"),
-        (PROGRAMMING_LANGUAGE, "Programming Language")
+        (PROGRAMMING_LANGUAGE, "Programming Language"),
+        (UNCATEGORISED, 'Currently Uncategorised')
     )
     kind = models.IntegerField(choices=kind_choices)
 
@@ -210,6 +207,11 @@ class JobApplication(StringBasedModelIDMixin):
 class Feature(models.Model):
     name = models.CharField(max_length=50)
     weight = models.FloatField(default=1.0)
+    department = models.ForeignKey(
+        'recruiters.Department',
+        related_name='relevant_features',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name

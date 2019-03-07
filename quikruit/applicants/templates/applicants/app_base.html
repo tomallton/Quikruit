@@ -6,7 +6,7 @@
   <title>{% block title %}Application Form{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'applicants/css/base.css' %}" type="text/css"/>
   <script src='{% static "js/jquery-3.3.1.min.js" %}' type='text/javascript'></script>
-  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet'>
   {% block head %}{% endblock %}
 </head>
 <body>
@@ -27,6 +27,7 @@
       {% endblock %}
     </div>
     <div id="content">
+      <h1 id='pageheader'>{% block pageheader %}{% endblock %}</h1>
       {% block content %}{% endblock %}
     </div>
   </body>

@@ -1,5 +1,5 @@
 {% extends 'online_tests/testing_base.html' %}
-{% load static %} {% load markdown_view_tag %}
+{% load static %}
 
 
 {% block head %}
@@ -15,7 +15,7 @@
 	{{ response_formset.management_form }}
 	{% for response_form in response_formset %}
 		<div class='questioncontainer'>
-		{{ response_form.instance.question.question|show_markdown|safe }}
+		{{ response_form.instance.question.html_question|safe }}
 		{{ response_form.question.as_hidden }}
 		{{ response_form.id.as_hidden }}
 		{% if response_form.instance.question.question_type == response_form.instance.question.SINGLE_SELECT %}

@@ -1,26 +1,29 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
-import pdb
+
 from .models import *
 from .forms import *
+
 from recruiters.models import JobListing
 from core.forms import AccountCreationForm
-from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
 
-@login_required(login_url='/quikruit/applicants/login/')
+from quikruit.settings import BASE_URL
+
+LOGIN_URL = BASE_URL + '/applicants/login/'
+
+@login_required(login_url=LOGIN_URL)
 def homepage(request):
 	profile = None
 	try:
 		profile = request.user.applicant_profile
 	except ApplicantProfile.DoesNotExist:
-		return HttpResponseRedirect("/quikruit/applicants/login/")
+		return HttpResponseRedirect(LOGIN_URL)
 	context = {
 		'profile': profile,
         'notifications': profile.account.notifications.order_by('-created'),
@@ -62,12 +65,12 @@ def register(request):
         }
     return render(request, 'applicants/app_registration.html', context)
 
-@login_required(login_url='/quikruit/applicants/login/')
+@login_required(login_url=LOGIN_URL)
 def application_form(request, job_id):
     try:
         profile = request.user.applicant_profile
     except ApplicantProfile.DoesNotExist:
-        return HttpResponseRedirect("/quikruit/applicants/login/")
+        return HttpResponseRedirect(LOGIN_URL)
     job = JobListing.objects.get(pk=job_id)
     def render_page():
         a_level_formset = ALevelFormSet(instance=profile)
@@ -80,14 +83,14 @@ def application_form(request, job_id):
             'profile': profile,
             'a_levels': a_level_formset,
             'prior_employment': prior_employment_formset,
-            'skills_and_hobbies': skills_and_hobbies_formset,
+            'skill_hobby_levels': skills_and_hobbies_formset,
             'cover_letter_form': cover_letter_form,
             'degree': degree_formset,
         }
         return render(request, 'applicants/app_applicationform.html', context)
 
     if not request.user.is_applicant:
-        return HttpResponseRedirect("/quikruit/applicants/login/")
+        return HttpResponseRedirect(LOGIN_URL)
 
 
     if request.method == "POST":
@@ -118,12 +121,13 @@ def application_form(request, job_id):
             not degree_formset.is_valid() or
             not skills_and_hobbies_formset.is_valid() or
             not job_application_form.is_valid()):
+            pdb.set_trace()
             context = {
                 'job': job,
                 'profile': profile,
                 'a_levels': a_level_formset,
                 'prior_employment': prior_employment_formset,
-                'skills_and_hobbies': skills_and_hobbies_formset,
+                'skill_hobby_levels': skills_and_hobbies_formset,
                 'cover_letter_form': job_application_form,
                 'degree': degree_formset,
             }
@@ -142,20 +146,20 @@ def application_form(request, job_id):
     elif request.method == "GET":
         return render_page()
 
-@login_required(login_url='/quikruit/applicants/login/')
+@login_required(login_url=LOGIN_URL)
 def job_list(request):
     profile = None
     try:
         profile = request.user.applicant_profile
     except ApplicantProfile.DoesNotExist:
-        return HttpResponseRedirect("/quikruit/applicants/login/")
+        return HttpResponseRedirect(LOGIN_URL)
     context = {
         'profile': profile,
         'job_listings': JobListing.objects.all()
     }
     return render(request, 'applicants/app_joblistings.html', context)
 
-@login_required(login_url='/quikruit/applicants/login/')
+@login_required(login_url=LOGIN_URL)
 def settings(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -171,3 +175,13 @@ def settings(request):
     return render(request, 'applicants/app_settings.html', {
         'form': form
     })
+
+def skill_hobby_dropdown(request, job_id):
+    filter_text = request.POST['skillhobby_filter']
+    print(filter_text)
+    skillhobby_qset = SkillHobby.objects.filter(name__startswith=filter_text)
+    print(skillhobby_qset)
+    context = {
+        'skillhobbies': skillhobby_qset.all()
+    }
+    return render(request, 'applicants/app_skillhobby_autofill.html', context)

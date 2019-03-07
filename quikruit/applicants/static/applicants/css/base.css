@@ -17,6 +17,12 @@ body {
   overflow: hidden;
 }
 
+#pageheader{
+  font-family: 'Quicksand', 'Century Gothic', 'Futura', system-ui, sans-serif;
+  font-weight: bold;
+  margin-top: 0;
+}
+
 #navbar ul {
   list-style-type: none;
   margin: 0px;
@@ -30,7 +36,7 @@ body {
   padding-left: 30px;
 }
 
-li a {
+#navbar li a {
   display: block;
   color: black;
   text-align: center;
@@ -38,26 +44,26 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+#navbar li a:hover {
   color: white;
 }
 
 input {
-  font-family: "Quicksand";
   border: none;
   width: 100%;
-  margin-bottom: 2%;
-  font-size: 90%;
+  margin-bottom: 20px;
+  font-size: 20px;
   padding: .5em;
   box-sizing: border-box;
 }
 
-h1{
-  font-size: 20px;
-  margin: 0;
-}
-
 form {
 	width: 50%;
+  min-width: 500px;
 	margin: 0 auto;
+}
+
+input[type=submit] {
+  background: #D14102;
+  color: white;
 }

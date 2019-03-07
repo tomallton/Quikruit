@@ -1,19 +1,5 @@
-#content {
-	padding: 0 40px;
-}
-
 #container{
 	padding: 0px;
-}
-
-body {
-		font-family:'Century Gothic','Futura',system-ui,sans-serif;
-    background: #3a3935;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    display: block;
-    color: white;
 }
 
 #navbar ul {
@@ -65,12 +51,12 @@ li a:hover {
 }
 
 .applybutton {
-	width: 98.5%;
+	width: 100%;
 	background: #f16f37;
 	color: white;
 	text-decoration: none;
 	margin-top: 10px;
 	padding: 10px;
+	box-sizing: border-box;
 	display: inline-block;
-
 }

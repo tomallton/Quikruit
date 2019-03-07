@@ -1,14 +1,8 @@
 from django.db import models
 from quikruit.mixins import StringBasedModelIDMixin
 from markdownx.models import MarkdownxField
-from django import template
 from markdownx.utils import markdownify
-
-register = template.Library()
-
-@register.filter
-def show_markdown(text):
-    return markdownify(text)
+from django.utils.html import format_html
 
 class Department(models.Model):
     name = models.CharField(
@@ -27,6 +21,11 @@ class JobListing(StringBasedModelIDMixin):
         related_name='job_listings',
         on_delete=models.CASCADE
     )
+
+    @property
+    def html_description(self):
+        return format_html(markdownify(self.description))
+    
 
     suitable_applications = models.ManyToManyField(
         'applicants.JobApplication',

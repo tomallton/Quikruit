@@ -9,19 +9,18 @@ a {
     color: white;
     background: #D14102;
     padding: 10px;
-    margin: 20px 0;
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
     display: inline-block;
-}
-
-h1 {
-    margin: 0;
 }
 </style>
 {% endblock %}
 
 {% block navbar %}{# NO NAVBAR #}{% endblock %}
 
+{% block pageheader %}Logged out successfully.{% endblock %}
+
 {% block content %}
-<h1>Logged out successfully.</h1>
-<a href="{% url 'applicants_login' %}">Click here to login again.</a>
+<a href="{% url 'applicants_login' %}">login again</a>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.urls import reverse
 from .models import *
 from applicants.models import JobApplication
 from core.models import Notification
@@ -17,12 +18,29 @@ class SuitabilitesInline(admin.TabularInline):
 
 class JobListingInline(admin.StackedInline):
 	model = JobListing
-	exclude = ('description',)
+	exclude = ('description','suitable_applications')
 
 class JobApplicationInline(admin.StackedInline):
 	model = JobApplication
-	readonly_fields = ['applicant', 'cover_letter']
+	readonly_fields = ['applicant','job_listing','magic_score','test_score','cover_letter','link']
 	extra = 0
+
+	def magic_score(self, obj):
+		return obj.application_suitabilities.magic_score
+
+	def test_score(self, obj):
+		# pdb.set_trace()
+		return obj.online_test.result
+
+	def link(self, obj):
+		return format_html(
+			'<a href="{l}"><strong>[Click to view]</strong></a>'.format(
+				l=reverse('admin:applicants_jobapplication_change', args=[obj.model_id]),
+			)
+		)
+
+	def has_add_permission(self,request):
+		return False
 
 @admin.register(JobListing)
 class JobListingAdmin(admin.ModelAdmin):
@@ -45,6 +63,3 @@ class DepartmentAdmin(admin.ModelAdmin):
 	inlines = [
 		JobListingInline,
 	]
-
-# Register your models here.
-admin.site.register(RequiredSkill)

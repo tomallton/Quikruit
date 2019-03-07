@@ -7,16 +7,6 @@ a:hover {
  color: #babfb3;
 }
 
-body {
-  font-family:'Century Gothic','Futura',system-ui,sans-serif;
-    background: #3a3935;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    display: block;
-    color: white;
-}
-
 #container {
   position: relative;
   width: 100%;
@@ -30,21 +20,6 @@ body {
   padding: 10px 40px;
   line-height: 40px;
   overflow: hidden;
-}
-
-#loginform {
-  width: 50%;
-  margin: 0 auto;
-}
-
-input {
-  font-family:'Century Gothic','Futura',system-ui,sans-serif;
-  border: none;
-  width: 100%;
-  margin-bottom: 2%;
-  font-size: 90%;
-  padding: .5em;
-  box-sizing: border-box;
 }
 
 .error {
@@ -61,15 +36,14 @@ input {
   color:grey;
 }
 
-#loginbutton1{
-  background-color: #D14102;
-  color:white;
-  margin-bottom: 0px;
+#loginbutton {
+  margin-bottom: 0;
 }
 
-#registerbutton1 {
+#registerbutton {
    text-align: center;
-   margin-top: 40px;
+   font-size: 20px;
+   display: block;
    background-color: #f16f37;
    display: block;
    padding: .5em;

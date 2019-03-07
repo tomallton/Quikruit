@@ -4,11 +4,13 @@ from applicants.models import JobApplication
 from django.utils.html import format_html
 from django.urls import reverse
 
-admin.site.register(TestQuestion)
+@admin.register(TestQuestion)
+class TestQuestionAdmin(admin.ModelAdmin):
+	list_display = ('tested_skill','question')
      
 class TestQuestionResponseInLine(admin.TabularInline):
     model = QuestionResponse
-    fields = ['question','answer','correct']
+    fields = ['_question','answer','correct']
     readonly_fields = ['_question','answer','correct']
     
     def _question(self,obj):
@@ -26,7 +28,6 @@ class TestQuestionResponseInLine(admin.TabularInline):
 @admin.register(OnlineTest)
 class OnlineTestAdmin(admin.ModelAdmin):
     inlines = [
-        #OnlineTestInline,
         TestQuestionResponseInLine
     ]
     

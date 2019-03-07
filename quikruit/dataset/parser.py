@@ -6,16 +6,21 @@ from applicants.models import *
 from recruiters.models import JobListing
 import parsedatetime as pdt
 from datetime import datetime
+import random
+import sys
 
 cal = pdt.Calendar()
-job = JobListing.objects.get(title='Engineer – Full Stack')
+job = JobListing.objects.get(title__contains="Full Stack")
+
+sep = '===================================================='
 
 def load():
     with open('dataset/cvDataset.json') as f:
         data = json.load(f)
 
     _ = input("start")
-    for a in data[251:]:
+    while True:
+        a = random.choice(data)
         print(a['Name'])
         email = '{}@quikruit.example'.format(a['Name'].replace(' ',''))
         
@@ -30,12 +35,18 @@ def load():
         profile.name = a['Name']
         profile.save()
 
+        sys.stdout.write('\u001b[2J')
+        print(sep)
+
         degree = Degree()
         degree.applicant = profile
         degree.institution = a['University Attended']
         degree.qualification = a['Degree Qualification']
         degree.level_awarded = a['Degree Level']
+        print(degree)
         degree.save()
+
+        print(sep)
 
         for al in a['A-Level Qualifications']:
             alo = ALevel()
@@ -43,6 +54,9 @@ def load():
             alo.subject = al['Subject']
             alo.grade = al['Grade']
             alo.save()
+            print(alo)
+
+        print(sep)
 
         for l in a['Languages Known']:
             try:
@@ -58,6 +72,9 @@ def load():
             lol.skillhobby = lo
             lol.level = l['Expertise']
             lol.save()
+            print(lol)
+
+        print(sep)
 
         for l in a['Skills']:
             try:
@@ -73,6 +90,9 @@ def load():
             lol.skillhobby = lo
             lol.level = l['Expertise']
             lol.save()
+            print(lol)
+
+        print(sep)
 
         for l in a['Hobbies']:
             try:
@@ -88,6 +108,9 @@ def load():
             lol.skillhobby = lo
             lol.level = l['Interest']
             lol.save()
+            print(lol)
+
+        print(sep)
 
         for pe in a['Previous Employment']:
             peo = PriorEmployment()
@@ -97,19 +120,37 @@ def load():
             diff = cal.parseDT(pe['Length of Employment'], sourceTime=datetime.min)[0] - datetime.min
             peo.employment_length = diff
             peo.save()
+            print(peo)
 
         ja = JobApplication()
         ja.job_listing = job
+        print(ja.job_listing)
         ja.applicant = profile
 
-        degree = ja.applicant.degree.all()[0]
-        if (
-            'Computer Science'          in degree.qualification or 
-            'Mathematics'               in degree.qualification or
-            'Engineering'               in degree.qualification or
-            'Physics'                   in degree.qualification
-        ) and ja.applicant.degree.all()[0].level_awarded in ['1st', '2:1']:
-            ja.status = ja.OFFER_GIVEN
-        else:
-            ja.status = ja.REJECTED
-        ja.save()
+        while True:
+            selection = input('(g) Good\n(n) Not Good\n(x) Exit\n>> ')
+            if selection == 'g':
+                ja.status = ja.OFFER_GIVEN
+                ja.save()
+                break
+            elif selection == 'n':
+                ja.status = ja.REJECTED
+                ja.save()
+                break
+            else:
+                break
+
+        if selection == 'x':
+            break;
+
+        # degree = ja.applicant.degree.all()[0]
+        # if (
+        #     'Computer Science'          in degree.qualification or 
+        #     'Mathematics'               in degree.qualification or
+        #     'Engineering'               in degree.qualification or
+        #     'Physics'                   in degree.qualification
+        # ) and ja.applicant.degree.all()[0].level_awarded in ['1st', '2:1']:
+        #     ja.status = ja.OFFER_GIVEN
+        # else:
+        #     ja.status = ja.REJECTED
+        # ja.save()

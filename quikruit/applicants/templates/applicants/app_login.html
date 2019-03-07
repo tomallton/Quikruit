@@ -9,23 +9,21 @@
 
 {% block navbar %}{# NO NAVBAR #}{% endblock %}
 
+{% block pageheader %}Log in to Quikruit{% endblock %}
+
 {% block content %}
-<h1>Log in to Quikruit</h1><br>
   {% if form.errors %}
     <span class="error">Your username and password didn't match. Please try again.</span>
   {% endif %}
   <form id='loginform' method="post" action="{% url 'applicants_login' %}">
     {% csrf_token %}
-    <div class="inputcontainer">
-      {{ form.username.label_tag }}<br>
-      {{ form.username }}<br>
-      {{ form.password.label_tag }}<br>
-      {{ form.password }}<br>
-    </div>
-    <br>
-    <input type='submit' value='LOGIN' id="loginbutton1"><p class="error"></p>
+    {{ form.username.label_tag }}<br>
+    {{ form.username }}<br>
+    {{ form.password.label_tag }}<br>
+    {{ form.password }}<br>
+    <input type='submit' value='LOGIN' id="loginbutton">
     <p style="text-align: center">- OR -</p>
     <input type="hidden" name="next" value="{{ next }}">
-    <a href="{% url 'applicants_registration' %}" id="registerbutton1">CLICK HERE TO REGISTER</a>
+    <a href="{% url 'applicants_registration' %}" id="registerbutton">CLICK HERE TO REGISTER</a>
   </form>
 {% endblock %}

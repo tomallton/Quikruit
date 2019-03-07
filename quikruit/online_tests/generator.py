@@ -4,7 +4,7 @@ from .models import TestQuestion
 
 def generate_questions():
 	while True:
-		skill = random.choice(SkillHobby.objects.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE))
+		skill = random.choice(SkillHobby.objects.exclude(kind=SkillHobby.HOBBY))
 		question_type = random.randint(0,1)
 
 		all_choices = 'ABCD'
@@ -15,7 +15,7 @@ def generate_questions():
 		else:
 			answer = ''.join(c for c in all_choices if random.random() > 0.5)
 
-		question_text = '''## Testing Programming language: {} \n ### Correct answer: {}'''.format(skill.name, answer)
+		question_text = '''## Testing {}: \n### Correct answer: {}'''.format(skill, answer)
 
 		print('{} | {} | {} | {}'.format(skill, question_type, question_text, answer))
 
