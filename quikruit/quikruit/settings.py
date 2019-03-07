@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import sys.platform
+from AWS import is_aws
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,7 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-BASE_URL = ''
+
+@property
+def BASE_URL(self):
+    return '/quickruit' if is_aws else ''
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'l=_d&*to=duxe-@i$mt+cb4h0hbn-5791xqfcol1)ig=d*37t9'
