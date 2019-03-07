@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 def get_base_url():
-    return '/quickruit' if is_aws else ''
+    return '/quikruit' if is_aws else ''
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'l=_d&*to=duxe-@i$mt+cb4h0hbn-5791xqfcol1)ig=d*37t9'
