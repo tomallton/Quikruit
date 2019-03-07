@@ -141,10 +141,10 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = get_base_url()() + '/media/'
+MEDIA_URL = get_base_url() + '/media/'
 
-LOGIN_REDIRECT_URL = get_base_url()() + '/applicants/'
+LOGIN_REDIRECT_URL = get_base_url() + '/applicants/'
 
-MARKDOWNX_URLS_PATH = get_base_url()() + '/markdownx/markdownify/'
+MARKDOWNX_URLS_PATH = get_base_url() + '/markdownx/markdownify/'
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
