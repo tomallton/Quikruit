@@ -1,1 +1,0 @@
-chmod --recursive a+rw /home/bitnami/apps/django/django_projects/Quikruit_Development/

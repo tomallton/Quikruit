@@ -63,7 +63,7 @@ class RequiredSkill(models.Model):
     )
 
     def __str__(self):
-        return "{} requires".format(self.job_listing)
+        return "{} requires {}".format(self.job_listing, self.skill)
 
 class Suitabilities(models.Model):
     application = models.OneToOneField(

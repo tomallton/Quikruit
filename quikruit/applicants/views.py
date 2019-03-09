@@ -155,7 +155,7 @@ def job_list(request):
         return HttpResponseRedirect(LOGIN_URL)
     context = {
         'profile': profile,
-        'job_listings': JobListing.objects.all()
+        'job_listings': JobListing.objects.exclude(applications__applicant=profile)
     }
     return render(request, 'applicants/app_joblistings.html', context)
 

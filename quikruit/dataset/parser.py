@@ -18,7 +18,7 @@ def load():
     with open('dataset/cvDataset.json') as f:
         data = json.load(f)
 
-    _ = input("start")
+    _ = input("Press Enter to start.")
     while True:
         a = random.choice(data)
         print(a['Name'])

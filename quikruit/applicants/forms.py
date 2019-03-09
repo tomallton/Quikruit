@@ -45,7 +45,7 @@ class JobApplicationForm(forms.ModelForm):
 		model = JobApplication
 		fields = ('cover_letter',)
 
-ALevelFormSet = forms.inlineformset_factory(ApplicantProfile, ALevel, extra=1, exclude=[], can_delete=False)
-DegreeFormSet = forms.inlineformset_factory(ApplicantProfile, Degree, extra=1, exclude=[], can_delete=False)
-PriorEmploymentFormSet = forms.inlineformset_factory(ApplicantProfile, PriorEmployment, extra=1, exclude=[], can_delete=False)
-SkillHobbyLevelFormSet = forms.inlineformset_factory(ApplicantProfile, SkillHobbyLevel, form=SkillHobbyLevelForm, extra=1, can_delete=False)
+ALevelFormSet = forms.inlineformset_factory(ApplicantProfile, ALevel, extra=0, exclude=[], can_delete=False)
+DegreeFormSet = forms.inlineformset_factory(ApplicantProfile, Degree, extra=0, exclude=[], can_delete=False)
+PriorEmploymentFormSet = forms.inlineformset_factory(ApplicantProfile, PriorEmployment, extra=0, exclude=[], can_delete=False)
+SkillHobbyLevelFormSet = forms.inlineformset_factory(ApplicantProfile, SkillHobbyLevel, form=SkillHobbyLevelForm, extra=0, can_delete=False)

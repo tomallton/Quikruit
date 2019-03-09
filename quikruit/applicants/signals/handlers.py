@@ -86,7 +86,7 @@ def job_application_save_handler(sender, **kwargs):
   if not Suitabilities.objects.filter(application=application).exists():
     suitability_score = Suitabilities()
     suitability_score.application = application
-    required_skills = application.job_listing.required_skills.all()
+    required_skills = [rs.skill for rs in application.job_listing.required_skills.all()]
     if not required_skills:
       suitability_score.specific_score = 1
     else:
@@ -112,14 +112,6 @@ def job_application_save_handler(sender, **kwargs):
         link=reverse('admin:recruiters_joblisting_change', args=[job_listing.model_id])
       )
 
-def add_feature(description):
-  if not Feature.objects.filter(name=description).exists():
-    for d in Department.objects.all():
-      new_feature = Feature()
-      new_feature.department = d
-      new_feature.name = description
-      new_feature.save()
-
 @receiver(post_save, sender=SkillHobby)
 def skill_hobby_save_handler(sender, **kwargs):
   skill_hobby = kwargs['instance']
@@ -133,18 +125,3 @@ def skill_hobby_save_handler(sender, **kwargs):
         '''.format(skill_hobby.name),
         link=reverse('admin:applicants_skillhobby_change', args=[skill_hobby.name])
       )
-
-  if skill_hobby.kind != SkillHobby.HOBBY:
-    add_feature(skill_hobby.feature_description)
-
-@receiver(post_save, sender=Degree)
-def degree_save_handler(sender, **kwargs):
-  add_feature(kwargs['instance'].feature_description)
-
-@receiver(post_save, sender=ALevel)
-def a_level_save_handler(sender, **kwargs):
-  add_feature(kwargs['instance'].feature_description)
-
-@receiver(post_save, sender=PriorEmployment)
-def prior_employment_save_handler(sender, **kwargs):
-  add_feature(kwargs['instance'].feature_description)

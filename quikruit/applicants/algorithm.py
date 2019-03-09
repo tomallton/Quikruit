@@ -30,7 +30,7 @@ def application_change(application):
         change_weight(applicant_feature, change)
 
 def change_weight(feature, change):
-
+    # pdb.set_trace()
     weight = feature.weight + change
 
     weight = max(weight, 0)
@@ -45,19 +45,19 @@ def features(application):
     department = application.job_listing.department
 
     for a_level in applicant.a_levels.all():
-        applicant_features.append(Feature.objects.get(name=a_level.feature_description, department=department))
+        applicant_features.append(Feature.objects.get_or_create(name=a_level.feature_description, department=department)[0])
 
     for degree in applicant.degree.all():
-        applicant_features.append(Feature.objects.get(name=degree.feature_description, department=department))
+        applicant_features.append(Feature.objects.get_or_create(name=degree.feature_description, department=department)[0])
 
     for skill in applicant.skills_and_hobbies.filter(kind=SkillHobby.SKILL):
         # pdb.set_trace()
-        applicant_features.append(Feature.objects.get(name=skill.feature_description, department=department))
+        applicant_features.append(Feature.objects.get_or_create(name=skill.feature_description, department=department)[0])
 
     for programming_language in applicant.skills_and_hobbies.filter(kind=SkillHobby.PROGRAMMING_LANGUAGE):
-        applicant_features.append(Feature.objects.get(name=programming_language.feature_description, department=department))
+        applicant_features.append(Feature.objects.get_or_create(name=programming_language.feature_description, department=department)[0])
 
     for prior_employment in applicant.prior_employment.all():
-        applicant_features.append(Feature.objects.get(name=prior_employment.feature_description, department=department))
+        applicant_features.append(Feature.objects.get_or_create(name=prior_employment.feature_description, department=department)[0])
 
     return applicant_features
