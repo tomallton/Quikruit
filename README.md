@@ -1,4 +1,4 @@
-# Quikruit
+![Quikruit][Branding/logo.png?raw=true]
 
 Developed for The University of Warwick Group Software Project, in association with Deutsche Bank. Won first prize upon presentation to the judges.
 
